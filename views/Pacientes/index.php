@@ -96,7 +96,7 @@
                                                         </button>
 
                                                         <div class="dropdown-menu dropdown-menu-end">
-                                                            <a class="dropdown-item" href="apps-projects-overview.html"><i class="ri-eye-fill align-bottom me-2 text-muted"></i>
+                                                            <a class="dropdown-item" href="../infoPaciente/informacionConsulta.php"><i class="ri-eye-fill align-bottom me-2 text-muted"></i>
                                                                 Ver</a>
                                                             <a class="dropdown-item" href="apps-projects-create.html"><i class="ri-pencil-fill align-bottom me-2 text-muted"></i>
                                                                 Editar</a>

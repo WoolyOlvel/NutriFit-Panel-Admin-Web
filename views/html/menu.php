@@ -41,7 +41,18 @@
                             stroke="bold"
                             style="width:36px;height:36px;display:flex;">
                         </lord-icon> <span style="margin-top: 0.4rem; margin-left:0.5rem" data-key="t-dashboards">Dashboards</span>
+                       
                     </a>
+
+                    <div class="collapse menu-dropdown" id="sidebarApps">
+                        <ul class="nav nav-sm flex-column">
+                            
+                            <li class="nav-item">
+                                <a href="../home/index.php" class="nav-link" data-key="t-chat"> Dashboard </a>
+                            </li>
+                           
+                        </ul>
+                    </div>
                 </li> <!-- end Dashboard Menu -->
                 <li class="nav-item">
                     <a class="nav-link menu-link" href="#sidebarApps" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarApps">
@@ -61,23 +72,17 @@
                                 <a href="../misPacientes/misPacientes.php" class="nav-link" data-key="t-chat"> Lista Pacientes </a>
                             </li>
                             <li class="nav-item">
-                                <a href="#sidebarEmail" class="nav-link" data-key="t-email">
+                                <a href="../addPaciente/anadirPaciente.php" class="nav-link" data-key="t-email">
                                     Añadir Paciente
                                 </a>
                             </li>
-                        
+
                             <li class="nav-item">
-                                <a href="#sidebarTasks" class="nav-link" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarTasks" data-key="t-tasks"> Tasks
+                                <a href="../consulta/generarConsulta.php" class="nav-link" data-key="t-email">
+                                    Generar Consulta
                                 </a>
-                                <div class="collapse menu-dropdown" id="sidebarTasks">
-                                    <ul class="nav nav-sm flex-column">
-                                        <li class="nav-item">
-                                            <a href="apps-tasks-kanban.html" class="nav-link" data-key="t-kanbanboard"> Kanban Board </a>
-                                        </li>
-                                       
-                                    </ul>
-                                </div>
                             </li>
+                        
                         </ul>
                     </div>
                 </li>
@@ -96,12 +101,9 @@
                     <div class="collapse menu-dropdown" id="sidebarLayouts">
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
-                                <a href="layouts-vertical.html" target="_blank" class="nav-link" data-key="t-vertical">Ver Citas Agendadas</a>
+                                <a href="../citaAgendadas/calendarioCitas.php" class="nav-link" data-key="t-vertical">Ver Citas Agendadas</a>
                             </li>
-                            <li class="nav-item">
-                                <a href="layouts-detached.html" target="_blank" class="nav-link" data-key="t-detached">Detached</a>
-                            </li>
-                            
+                           
                         </ul>
                     </div>
                 </li> <!-- end Dashboard Menu -->

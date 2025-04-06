@@ -12,7 +12,7 @@
     <link rel="shortcut icon" href="img/logo2.ico">
 
     <!-- glightbox css -->
-    <link rel="stylesheet" href="assets/libs/glightbox/css/glightbox.min.css">
+    <link rel="stylesheet" href="assets/libs/glightbox/css/glightbox.min.css">>
 
     <!-- Layout config Js -->
     <script src="assets/js/layout.js"></script>
@@ -25,6 +25,275 @@
     <!-- custom Css-->
     <link href="assets/css/custom.min.css" rel="stylesheet" type="text/css" />
 
+
+    <style>
+        .sk-chase {
+            width: 40px;
+            height: 40px;
+            position: relative;
+            animation: sk-chase 2.5s infinite linear both;
+        }
+
+        .sk-chase-dot {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            left: 0;
+            top: 0;
+            animation: sk-chase-dot 2.0s infinite ease-in-out both;
+        }
+
+        .sk-chase-dot:before {
+            content: '';
+            display: block;
+            width: 25%;
+            height: 25%;
+            background-color: #9fa1a5;
+            border-radius: 100%;
+            animation: sk-chase-dot-before 2.0s infinite ease-in-out both;
+        }
+
+        .sk-chase-dot:nth-child(1) {
+            animation-delay: -1.1s;
+        }
+
+        .sk-chase-dot:nth-child(2) {
+            animation-delay: -1.0s;
+        }
+
+        .sk-chase-dot:nth-child(3) {
+            animation-delay: -0.9s;
+        }
+
+        .sk-chase-dot:nth-child(4) {
+            animation-delay: -0.8s;
+        }
+
+        .sk-chase-dot:nth-child(5) {
+            animation-delay: -0.7s;
+        }
+
+        .sk-chase-dot:nth-child(6) {
+            animation-delay: -0.6s;
+        }
+
+        .sk-chase-dot:nth-child(1):before {
+            animation-delay: -1.1s;
+        }
+
+        .sk-chase-dot:nth-child(2):before {
+            animation-delay: -1.0s;
+        }
+
+        .sk-chase-dot:nth-child(3):before {
+            animation-delay: -0.9s;
+        }
+
+        .sk-chase-dot:nth-child(4):before {
+            animation-delay: -0.8s;
+        }
+
+        .sk-chase-dot:nth-child(5):before {
+            animation-delay: -0.7s;
+        }
+
+        .sk-chase-dot:nth-child(6):before {
+            animation-delay: -0.6s;
+        }
+
+        @keyframes sk-chase {
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes sk-chase-dot {
+
+            80%,
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes sk-chase-dot-before {
+            50% {
+                transform: scale(0.4);
+            }
+
+            100%,
+            0% {
+                transform: scale(1.0);
+            }
+        }
+
+
+        a.fg-emoji-picker-close-button {
+            background-color: #dedede;
+        }
+
+        .fg-emoji-picker {
+            /* position: fixed; */
+            position: absolute;
+            z-index: 999;
+            width: 300px;
+            min-height: 360px;
+            background-color: white;
+            box-shadow: 0px 2px 13px -2px rgba(0, 0, 0, 0.1803921568627451);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .fg-emoji-picker .fg-emoji-picker-all-categories {
+            height: 301px;
+            overflow-y: auto;
+            padding: 0 15px 15px 15px;
+        }
+
+        .fg-emoji-picker .fg-emoji-picker-container-title {
+            color: black;
+            margin: 10px 0;
+        }
+
+        .fg-emoji-picker * {
+            margin: 0;
+            padding: 0;
+            text-decoration: none;
+            color: #666;
+            font-family: sans-serif;
+        }
+
+        .fg-emoji-picker ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .fg-emoji-picker .fg-emoji-picker-category {
+            margin-top: 1px;
+            padding-top: 15px;
+        }
+
+        .fg-emoji-picker-categories svg {
+            width: 17px;
+            height: 17px;
+        }
+
+        .fg-emoji-picker-grid {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .fg-emoji-picker-grid>li {
+            cursor: pointer;
+            flex: 0 0 calc(100% / 5);
+            max-width: calc(100% / 5);
+            height: 48px;
+            min-width: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all .2s ease;
+            background-color: white;
+        }
+
+        .fg-emoji-picker-grid>li:hover {
+            background-color: #99c9ef;
+        }
+
+        .fg-emoji-picker-grid>li:hover a {
+            -webkit-transform: scale(1.2);
+            -ms-transform: scale(1.2);
+            -moz-transform: scale(1.2);
+            transform: scale(1.2);
+        }
+
+        .fg-emoji-picker-grid>li>a {
+            display: block;
+            font-size: 25px;
+            margin: 0;
+            padding: 25px 0px;
+            line-height: 0;
+            -webkit-transition: all .3s ease;
+            -moz-transition: all .3s ease;
+            -ms-transition: all .3s ease;
+            transition: all .3s ease;
+        }
+
+        /* FILTERS */
+        .fg-emoji-picker-categories {
+            /*padding: 0 15px;*/
+            background: #ececec;
+        }
+
+        .fg-emoji-picker-categories ul {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .fg-emoji-picker-categories li {
+            flex: 1;
+        }
+
+        .fg-emoji-picker-categories li.active {
+            background-color: #99c9ef;
+        }
+
+        .fg-emoji-picker-categories a {
+            padding: 12px 7px;
+            display: flex;
+            text-align: center;
+            justify-content: center;
+            align-items: center;
+            transition: all .2s ease;
+        }
+
+        .fg-emoji-picker-categories a:hover {
+            background-color: #99c9ef;
+        }
+
+        .fg-emoji-picker-search {
+            position: relative;
+            height: 25px;
+        }
+
+        .fg-emoji-picker-search input {
+            position: absolute;
+            width: 85%;
+            left: 0;
+            top: 0;
+            border: none;
+            padding: 5px 30px 5px 15px;
+            outline: none;
+            background-color: #dedede;
+            font-size: 12px;
+            color: #616161;
+        }
+
+        .fg-emoji-picker-search svg {
+            width: 15px;
+            height: 15px;
+            position: absolute;
+            right: 7px;
+            top: 5px;
+            fill: #333333;
+            pointer-events: none;
+        }
+
+
+        /* FOOTER */
+        .fg-emoji-picker-footer {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            height: 50px;
+            padding: 0 15px 15px 15px;
+        }
+
+        .fg-emoji-picker-footer-icon {
+            font-size: 30px;
+            margin-right: 8px;
+        }
+    </style>
 
 </head>
 
@@ -116,7 +385,7 @@
                                         <!-- item -->
                                         <a href="javascript:void(0);" class="dropdown-item notify-item py-2">
                                             <div class="d-flex">
-                                                <img src="../../assets/images/users/avatar-2.jpg" class="me-3 rounded-circle avatar-xs" alt="user-pic">
+                                                <img src="assets/images/users/avatar-2.jpg" class="me-3 rounded-circle avatar-xs" alt="user-pic">
                                                 <div class="flex-grow-1">
                                                     <h6 class="m-0">Angela Bernier</h6>
                                                     <span class="fs-11 mb-0 text-muted">Manager</span>
@@ -126,7 +395,7 @@
                                         <!-- item -->
                                         <a href="javascript:void(0);" class="dropdown-item notify-item py-2">
                                             <div class="d-flex">
-                                                <img src="../../assets/images/users/avatar-3.jpg" class="me-3 rounded-circle avatar-xs" alt="user-pic">
+                                                <img src="assets/images/users/avatar-3.jpg" class="me-3 rounded-circle avatar-xs" alt="user-pic">
                                                 <div class="flex-grow-1">
                                                     <h6 class="m-0">David Grasso</h6>
                                                     <span class="fs-11 mb-0 text-muted">Web Designer</span>
@@ -136,7 +405,7 @@
                                         <!-- item -->
                                         <a href="javascript:void(0);" class="dropdown-item notify-item py-2">
                                             <div class="d-flex">
-                                                <img src="../../assets/images/users/avatar-5.jpg" class="me-3 rounded-circle avatar-xs" alt="user-pic">
+                                                <img src="assets/images/users/avatar-5.jpg" class="me-3 rounded-circle avatar-xs" alt="user-pic">
                                                 <div class="flex-grow-1">
                                                     <h6 class="m-0">Mike Bunch</h6>
                                                     <span class="fs-11 mb-0 text-muted">React Developer</span>
@@ -277,7 +546,7 @@
 
                                             <div class="text-reset notification-item d-block dropdown-item position-relative">
                                                 <div class="d-flex">
-                                                    <img src="../../assets/images/users/avatar-2.jpg" class="me-3 rounded-circle avatar-xs flex-shrink-0" alt="user-pic">
+                                                    <img src="assets/images/users/avatar-2.jpg" class="me-3 rounded-circle avatar-xs flex-shrink-0" alt="user-pic">
                                                     <div class="flex-grow-1">
                                                         <a href="#!" class="stretched-link">
                                                             <h6 class="mt-0 mb-1 fs-13 fw-semibold">Angela Bernier</h6>
@@ -326,7 +595,7 @@
 
                                             <div class="text-reset notification-item d-block dropdown-item position-relative">
                                                 <div class="d-flex">
-                                                    <img src="../../assets/images/users/avatar-8.jpg" class="me-3 rounded-circle avatar-xs flex-shrink-0" alt="user-pic">
+                                                    <img src="assets/images/users/avatar-8.jpg" class="me-3 rounded-circle avatar-xs flex-shrink-0" alt="user-pic">
                                                     <div class="flex-grow-1">
                                                         <a href="#!" class="stretched-link">
                                                             <h6 class="mt-0 mb-1 fs-13 fw-semibold">Maureen Gibson</h6>
@@ -359,7 +628,7 @@
                                         <div data-simplebar style="max-height: 300px;" class="pe-2">
                                             <div class="text-reset notification-item d-block dropdown-item">
                                                 <div class="d-flex">
-                                                    <img src="../../assets/images/users/avatar-3.jpg" class="me-3 rounded-circle avatar-xs" alt="user-pic">
+                                                    <img src="assets/images/users/avatar-3.jpg" class="me-3 rounded-circle avatar-xs" alt="user-pic">
                                                     <div class="flex-grow-1">
                                                         <a href="#!" class="stretched-link">
                                                             <h6 class="mt-0 mb-1 fs-13 fw-semibold">James Lemire</h6>
@@ -382,7 +651,7 @@
 
                                             <div class="text-reset notification-item d-block dropdown-item">
                                                 <div class="d-flex">
-                                                    <img src="../../assets/images/users/avatar-2.jpg" class="me-3 rounded-circle avatar-xs" alt="user-pic">
+                                                    <img src="assets/images/users/avatar-2.jpg" class="me-3 rounded-circle avatar-xs" alt="user-pic">
                                                     <div class="flex-grow-1">
                                                         <a href="#!" class="stretched-link">
                                                             <h6 class="mt-0 mb-1 fs-13 fw-semibold">Angela Bernier</h6>
@@ -406,7 +675,7 @@
 
                                             <div class="text-reset notification-item d-block dropdown-item">
                                                 <div class="d-flex">
-                                                    <img src="../../assets/images/users/avatar-6.jpg" class="me-3 rounded-circle avatar-xs" alt="user-pic">
+                                                    <img src="assets/images/users/avatar-6.jpg" class="me-3 rounded-circle avatar-xs" alt="user-pic">
                                                     <div class="flex-grow-1">
                                                         <a href="#!" class="stretched-link">
                                                             <h6 class="mt-0 mb-1 fs-13 fw-semibold">Kenneth Brown</h6>
@@ -430,7 +699,7 @@
 
                                             <div class="text-reset notification-item d-block dropdown-item">
                                                 <div class="d-flex">
-                                                    <img src="../../assets/images/users/avatar-8.jpg" class="me-3 rounded-circle avatar-xs" alt="user-pic">
+                                                    <img src="assets/images/users/avatar-8.jpg" class="me-3 rounded-circle avatar-xs" alt="user-pic">
                                                     <div class="flex-grow-1">
                                                         <a href="#!" class="stretched-link">
                                                             <h6 class="mt-0 mb-1 fs-13 fw-semibold">Maureen Gibson</h6>
@@ -575,9 +844,242 @@
             </div>
         </header>
         <!-- ========== App Menu ========== -->
-        <?php
-        require_once("views/html/menu.php")
-        ?>
+        <div class="app-menu navbar-menu">
+            <!-- LOGO -->
+            <div class="navbar-brand-box">
+                <!-- Dark Logo-->
+                <a href="index.html" class="logo logo-dark">
+                    <span class="logo-sm">
+                        <img src="img/LogoLight2.png" alt="" height="22">
+                    </span>
+                    <span class="logo-lg">
+                        <img src="img/LogoLight2.png" alt="" height="17">
+                    </span>
+                </a>
+                <!-- Light Logo-->
+                <a href="../home/index.php" class="logo logo-light">
+                    <span class="logo-sm">
+                        <img src="img/LogoDark.png" alt="" height="22">
+                    </span>
+                    <span class="logo-lg">
+                        <img src="img/LogoDark.png" alt="" height="17">
+                    </span>
+                </a>
+                <button type="button" class="btn btn-sm p-0 fs-20 header-item float-end btn-vertical-sm-hover" id="vertical-hover">
+                    <i class="ri-record-circle-line"></i>
+                </button>
+            </div>
+
+            <div id="scrollbar">
+                <div class="container-fluid">
+
+                    <div id="two-column-menu">
+                    </div>
+                    <ul class="navbar-nav" id="navbar-nav">
+                        <li class="menu-title"><span data-key="t-menu">Menu</span></li>
+                        <li class="nav-item">
+                            <a class="nav-link menu-link" href="views/home/index.php" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarDashboards">
+                                <script src="https://cdn.lordicon.com/lordicon.js"></script>
+                                <lord-icon
+                                    src="https://cdn.lordicon.com/sjfigfgw.json"
+                                    trigger="loop"
+                                    delay="2000"
+                                    stroke="bold"
+                                    style="width:36px;height:36px;display:flex;">
+                                </lord-icon> <span style="margin-top: 0.4rem; margin-left:0.5rem" data-key="t-dashboards">Dashboards</span>
+
+                            </a>
+
+                            <div class="collapse menu-dropdown" id="sidebarApps">
+                                <ul class="nav nav-sm flex-column">
+
+                                    <li class="nav-item">
+                                        <a href="views/home/index.php" class="nav-link" data-key="t-chat"> Dashboard </a>
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </li> <!-- end Dashboard Menu -->
+                        <li class="nav-item">
+                            <a class="nav-link menu-link" href="#sidebarApps" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarApps">
+                                <script src="https://cdn.lordicon.com/lordicon.js"></script>
+                                <lord-icon
+                                    src="https://cdn.lordicon.com/egzkfnoz.json"
+                                    trigger="loop"
+                                    delay="2000"
+                                    stroke="bold"
+                                    style="width:36px;height:36px;display:flex;">
+                                </lord-icon> <span style="margin-top: 0.4rem; margin-left:0.5rem" data-key="t-apps">Pacientes</span>
+                            </a>
+                            <div class="collapse menu-dropdown" id="sidebarApps">
+                                <ul class="nav nav-sm flex-column">
+
+                                    <li class="nav-item">
+                                        <a href="views/misPacientes/misPacientes.php" class="nav-link" data-key="t-chat"> Lista Pacientes </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="views/addPaciente/anadirPaciente.php" class="nav-link" data-key="t-email">
+                                            Añadir Paciente
+                                        </a>
+                                    </li>
+
+                                    <li class="nav-item">
+                                        <a href="views/consulta/generarConsulta.php" class="nav-link" data-key="t-email">
+                                            Generar Consulta
+                                        </a>
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link menu-link" href="#sidebarLayouts" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarLayouts">
+                                <script script src="https://cdn.lordicon.com/lordicon.js"></script>
+                                <lord-icon
+                                    src="https://cdn.lordicon.com/pnlvdria.json"
+                                    trigger="loop"
+                                    delay="2000"
+                                    stroke="bold"
+                                    style="width:36px;height:36px;display:flex;">
+                                </lord-icon> <span style="margin-top: 0.4rem; margin-left:0.5rem" data-key="t-layouts">Citas</span> <span class="badge badge-pill bg-danger" data-key="t-hot">Hot</span>
+                            </a>
+                            <div class="collapse menu-dropdown" id="sidebarLayouts">
+                                <ul class="nav nav-sm flex-column">
+                                    <li class="nav-item">
+                                        <a href="views/citaAgendadas/calendarioCitas.php" class="nav-link" data-key="t-vertical">Ver Citas Agendadas</a>
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </li> <!-- end Dashboard Menu -->
+
+                        <li class="nav-item">
+                            <a class="nav-link menu-link" href="#sidebarAuth" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarAuth">
+                                <script src="https://cdn.lordicon.com/lordicon.js"></script>
+                                <lord-icon
+                                    src="https://cdn.lordicon.com/ypjuppft.json"
+                                    trigger="loop"
+                                    delay="2000"
+                                    stroke="bold"
+                                    style="width: 30px;
+                                       height: 30px;display:flex;">
+                                </lord-icon>
+                                </lord-icon><span style="margin-top: 0.4rem; margin-left:0.5rem" data-key="t-authentication">Chats</span>
+                            </a>
+                            <div class="collapse menu-dropdown" id="sidebarAuth">
+                                <ul class="nav nav-sm flex-column">
+                                    <li class="nav-item">
+                                        <a href="./chat.php" class="nav-link" data-key="t-detached">Chat</a>
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link menu-link" href="#sidebarPages" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarPages">
+                                <script src="https://cdn.lordicon.com/lordicon.js"></script>
+                                <lord-icon
+                                    src="https://cdn.lordicon.com/kbequzxu.json"
+                                    trigger="loop"
+                                    delay="2000"
+                                    stroke="bold"
+                                    style="width:36px;height:36px;display:flex;">
+                                </lord-icon><span style="margin-top: 0.4rem; margin-left:0.5rem" data-key="t-pages">Utilidades</span>
+                            </a>
+                            <div class="collapse menu-dropdown" id="sidebarPages">
+                                <ul class="nav nav-sm flex-column">
+
+                                    <li class="nav-item">
+                                        <a href="views/talla/talla.php" class="nav-link" data-key="t-timeline"> Tallas </a>
+                                    </li>
+
+                                    <li class="nav-item">
+                                        <a href="#sidebarProfile" class="nav-link" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarProfile" data-key="t-profile"> Unidades
+                                        </a>
+                                        <div class="collapse menu-dropdown" id="sidebarProfile">
+                                            <ul class="nav nav-sm flex-column">
+                                                <li class="nav-item">
+                                                    <a href="views/unidadMetrico/sistemaMetrico.php" class="nav-link" data-key="t-simple-page"> Sistemas Métricos </a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a href="views/unidadesCorporales/unidadCorporal.php" class="nav-link" data-key="t-settings"> Medidas Corporales </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </li>
+
+                                    <li class="nav-item">
+                                        <a href="../composicionCorporal/composicionCorporal.php" class="nav-link" data-key="t-pricing"> Composición Corporal </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="views/estatura/estatura.php" class="nav-link" data-key="t-privacy-policy">Estatura</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="views/divisas/divisas.php" class="nav-link" data-key="t-gallery"> Divisas </a>
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link menu-link" href="#sidebarLanding" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarLanding">
+                                <script src="https://cdn.lordicon.com/lordicon.js"></script>
+                                <lord-icon
+                                    src="https://cdn.lordicon.com/mhpmvwxb.json"
+                                    trigger="loop"
+                                    delay="2000"
+                                    stroke="bold"
+                                    style="width:36px;height:36px;display:flex;">
+                                </lord-icon><span style="margin-top: 0.4rem; margin-left:0.5rem" data-key="t-landing">Desafios NutriFit</span>
+                            </a>
+                            <div class="collapse menu-dropdown" id="sidebarLanding">
+                                <ul class="nav nav-sm flex-column">
+                                    <li class="nav-item">
+                                        <a href="views/nutriDesafiosAdd/nutriDesafios.php" class="nav-link" data-key="t-one-page"> Añadir Nuevos </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="views/listNutriDesafios/listNutriDesafios.php" class="nav-link" data-key="t-nft-landing"> Ver Lista </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link menu-link" href="#sidebarLanding" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarLanding">
+                                <script src="https://cdn.lordicon.com/lordicon.js"></script>
+                                <lord-icon
+                                    src="https://cdn.lordicon.com/gtmwvzrj.json"
+                                    trigger="loop"
+                                    delay="2000"
+                                    stroke="bold"
+                                    style="width:36px;height:36px;display:flex;">
+                                </lord-icon>
+                                <span style="margin-top: 0.4rem; margin-left:0.5rem" data-key="t-landing">Próximamente</span>
+                            </a>
+                            <div class="collapse menu-dropdown" id="sidebarLanding">
+                                <ul class="nav nav-sm flex-column">
+                                    <li class="nav-item">
+                                        <a href="#" class="nav-link" data-key="t-one-page"> IA. Merlin </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="#" class="nav-link" data-key="t-nft-landing"> VideoLlamadas </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <!-- Sidebar -->
+            </div>
+
+            <div class="sidebar-background"></div>
+        </div>
+        <!-- Left Sidebar End -->
+        <!-- Vertical Overlay-->
+        <div class="vertical-overlay"></div>
 
         <!-- Vertical Overlay-->
         <div class="vertical-overlay"></div>
@@ -597,7 +1099,7 @@
                                         <h5 class="mb-4">Chats</h5>
                                     </div>
                                     <div class="flex-shrink-0">
-                       
+
                                     </div>
                                 </div>
                                 <div class="search-box">
@@ -887,9 +1389,30 @@
             </div>
             <!-- End Page-content -->
 
-            <?php
-            require_once("views/html/footer.php")
-            ?>
+            <!--start back-to-top-->
+            <button onclick="topFunction()" class="btn btn-danger btn-icon" id="back-to-top">
+                <i class="ri-arrow-up-line"></i>
+            </button>
+            <!--end back-to-top-->
+
+            <footer class="footer">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <script>
+                                document.write(new Date().getFullYear())
+                            </script> © NutriFit Planner.
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="text-sm-end d-none d-sm-block">
+                                Panel Administrativo. Todos Los Derechos Reservados.
+                            </div>
+                            <!--<p class="mb-0"><a target="_blank" href="https://iconos8.es/" class="text-sm-end d-none d-sm-block" style="display:flex; justify-content:flex-end ;color:#98a6ad">Icons by Icons8</a></p>-->
+                        </div>
+                    </div>
+                </div>
+            </footer>
+
         </div>
         <!-- end main content-->
 
@@ -912,7 +1435,7 @@
                         </div>
                         <div class="col-auto">
                             <div class="user-chat-nav d-flex">
-                     
+
                             </div>
 
                         </div>
@@ -964,7 +1487,7 @@
                             <div class="flex-shrink-0 ms-2">
                                 <div class="d-flex gap-1">
                                     <button type="button" class="btn btn-icon text-muted btn-sm fs-18"><i class="ri-download-2-line"></i></button>
-                                   
+
                                 </div>
                             </div>
                         </div>
@@ -986,7 +1509,7 @@
                             <div class="flex-shrink-0 ms-2">
                                 <div class="d-flex gap-1">
                                     <button type="button" class="btn btn-icon text-muted btn-sm fs-18"><i class="ri-download-2-line"></i></button>
-                                    
+
                                 </div>
                             </div>
                         </div>
@@ -1008,13 +1531,13 @@
                             <div class="flex-shrink-0 ms-2">
                                 <div class="d-flex gap-1">
                                     <button type="button" class="btn btn-icon text-muted btn-sm fs-18"><i class="ri-download-2-line"></i></button>
-                                    
+
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    
+
                 </div>
             </div>
         </div>
@@ -1023,6 +1546,9 @@
     <!--end offcanvas-->
 
 
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script type="text/javascript" src="assets/libs/choices.js/public/assets/scripts/choices.min.js"></script>
+    <script type="text/javascript" src="assets/libs/flatpickr/flatpickr.min.js"></script>
     <!-- JAVASCRIPT -->
     <script src="assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="assets/libs/simplebar/simplebar.min.js"></script>
@@ -1042,6 +1568,7 @@
 
     <!-- App js -->
     <script src="assets/js/app.js"></script>
+
 </body>
 
 </html>
