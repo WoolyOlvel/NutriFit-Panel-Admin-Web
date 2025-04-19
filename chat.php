@@ -750,7 +750,7 @@
                             <div class="dropdown-menu dropdown-menu-end">
                                 <!-- item-->
                                 <h6 class="dropdown-header">Bienvenido Wilbert!</h6>
-                                <a class="dropdown-item" href="pages-profile.html" style="display: flex;">
+                                <a class="dropdown-item" href="#" style="display: flex;">
                                     <script src="https://cdn.lordicon.com/lordicon.js"></script>
                                     <lord-icon
                                         src="https://cdn.lordicon.com/cklbznjc.json"
@@ -764,7 +764,7 @@
                                     <span style="margin-top: 0.4rem; margin-left:0.5rem" class="align-middle">Perfil</span>
                                 </a>
 
-                                <a class="dropdown-item" href="apps-chat.html" style="display: flex;">
+                                <a class="dropdown-item" href="./chat.php" style="display: flex;">
                                     <script src="https://cdn.lordicon.com/lordicon.js"></script>
                                     <lord-icon
                                         src="https://cdn.lordicon.com/ypjuppft.json"
@@ -777,7 +777,7 @@
                                     <span style="margin-top: 0.4rem; margin-left:0.5rem" class="align-middle">Mensajes</span>
                                 </a>
 
-                                <a class="dropdown-item" href="pages-faqs.html" style="display: flex;">
+                                <a class="dropdown-item" href="views/ayuda/ayuda.php" style="display: flex;">
                                     <script src="https://cdn.lordicon.com/lordicon.js"></script>
                                     <lord-icon
                                         src="https://cdn.lordicon.com/jtuncxzi.json"
@@ -790,7 +790,7 @@
                                 </a>
 
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="pages-profile.html" style="display: flex;">
+                                <a class="dropdown-item" href="#" style="display: flex;">
                                     <script src="https://cdn.lordicon.com/lordicon.js"></script>
                                     <lord-icon
                                         src="https://cdn.lordicon.com/opqmrqco.json"
@@ -802,7 +802,7 @@
                                     <span class="align-middle" style="margin-top: 0.4rem; margin-left:0.5rem">Ganancias : <b>$5971.67</b></span>
                                 </a>
 
-                                <a class="dropdown-item" href="pages-profile-settings.html" style="display: flex;">
+                                <a class="dropdown-item" href="views/Ajustes/ajustes.php" style="display: flex;">
                                     <script src="https://cdn.lordicon.com/lordicon.js"></script>
                                     <lord-icon
                                         src="https://cdn.lordicon.com/qzulvmbf.json"
@@ -814,7 +814,7 @@
                                     <span class="align-middle" style="margin-top: 0.4rem; margin-left:0.5rem">Ajustes</span>
                                 </a>
 
-                                <a class="dropdown-item" href="auth-lockscreen-basic.html" style="display: flex;">
+                                <a class="dropdown-item" href="views/bloqPantalla/bloqueoPantalla.php" style="display: flex;">
                                     <script src="https://cdn.lordicon.com/lordicon.js"></script>
                                     <lord-icon
                                         src="https://cdn.lordicon.com/umjzhslu.json"
@@ -826,7 +826,7 @@
                                     <span class="align-middle" style="margin-top: 0.4rem; margin-left:0.5rem">Bloquear Pantalla</span>
                                 </a>
 
-                                <a class="dropdown-item" href="auth-logout-basic.html" style="display: flex;">
+                                <a class="dropdown-item" href="#" style="display: flex;">
                                     <script src="https://cdn.lordicon.com/lordicon.js"></script>
                                     <lord-icon
                                         src="https://cdn.lordicon.com/phvtdttk.json"

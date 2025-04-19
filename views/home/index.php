@@ -1,3 +1,9 @@
+<?php
+    
+    require_once("../html/session.php");
+?>
+
+
 <!doctype html>
 <html lang="en" data-layout="horizontal" data-topbar="light" data-sidebar-size="lg" data-sidebar="dark" data-sidebar-image="none" data-preloader="disable">
 
@@ -61,7 +67,7 @@
                                     <div class="col-12">
                                         <div class="d-flex align-items-lg-center flex-lg-row flex-column">
                                             <div class="flex-grow-1">
-                                                <h4 class="fs-16 mb-1">¡Hola! Bienvenido, Edward</h4>
+                                                <h4 class="fs-16 mb-1">¡Hola! Bienvenido,  <?php echo htmlspecialchars($_SESSION['nombre']); ?></h4>
                                                 <p class="text-muted mb-0">¡Encantados de tenerte! Aquí están tus resúmenes. </p>
                                             </div>
                                             <div class="mt-3 mt-lg-0">

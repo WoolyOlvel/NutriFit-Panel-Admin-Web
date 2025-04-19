@@ -1,8 +1,11 @@
+<?php
+require_once("../html/session.php");
+?>
+
 <!doctype html>
 <html lang="es" data-layout="horizontal" data-topbar="light" data-sidebar="dark" data-sidebar-size="lg" data-sidebar-image="none" data-preloader="disable">
 
 <head>
-
     <meta charset="utf-8" />
     <title>Tallas | NutriFit Planner</title>
 
@@ -19,15 +22,11 @@
 </head>
 
 <body>
-
     <!-- Begin page -->
     <div id="layout-wrapper">
-
         <?php
         require_once("../html/header.php")
         ?>
-
-
         <!-- removeNotificationModal -->
         <div id="removeNotificationModal" class="modal fade zoomIn" tabindex="-1" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
@@ -61,7 +60,6 @@
         <!-- Start right Content here -->
         <!-- ============================================================== -->
         <div class="main-content">
-
             <div class="page-content">
                 <div class="container-fluid">
                     <div class="row">
@@ -82,8 +80,6 @@
 
                     </div>
                     <!-- end page title -->
-
-
 
                     <div class="col-lg-12">
                         <div class="card">
@@ -123,18 +119,11 @@
 
                                         </div>
                                     </div>
-
-
                                 </div>
-
-
-
                                 <!--end row-->
                             </div>
 
                             <!--end card-body-->
-
-
                             <div class="card-body">
                                 <div class="table-responsive">
                                     <table id="buttons-datatables" class="display table table-bordered" style="width:100%">
@@ -173,17 +162,21 @@
     <!-- END layout-wrapper -->
 
     <?php
-        require_once("modal.php")
+    require_once("modal.php")
     ?>
 
     <?php
-        require_once("../html/js.php")
+    require_once("../html/js.php")
     ?>
-
-    <script type="text/javascript" src="modal.js"></script>
 
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script type="text/javascript" src="modal.js"></script>
+
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <!--datatable js-->
     <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>

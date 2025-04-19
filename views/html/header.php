@@ -438,15 +438,15 @@
                         <span class="d-flex align-items-center">
                             <img class="rounded-circle header-profile-user" src="../../img/perfilNutri.png" alt="Header Avatar">
                             <span class="text-start ms-xl-2">
-                                <span class="d-none d-xl-inline-block ms-1 fw-medium user-name-text">Wilbert Edward</span>
-                                <span class="d-none d-xl-block ms-1 fs-12 user-name-sub-text">Nutriólogo</span>
+                                <span class="d-none d-xl-inline-block ms-1 fw-medium user-name-text"><?php echo htmlspecialchars($_SESSION['nombre']); ?></span>
+                                <span class="d-none d-xl-block ms-1 fs-12 user-name-sub-text"><?php echo htmlspecialchars($_SESSION['rol_nombre']); ?></span>
                             </span>
                         </span>
                     </button>
                     <div class="dropdown-menu dropdown-menu-end">
                         <!-- item-->
-                        <h6 class="dropdown-header">Bienvenido Wilbert!</h6>
-                        <a class="dropdown-item" href="pages-profile.html" style="display: flex;">
+                        <h6 class="dropdown-header">Bienvenido <?php echo htmlspecialchars($primerNombre); ?>!</h6>
+                        <a class="dropdown-item" href="#" style="display: flex;">
                             <script src="https://cdn.lordicon.com/lordicon.js"></script>
                             <lord-icon
                                 src="https://cdn.lordicon.com/cklbznjc.json"
@@ -457,9 +457,10 @@
                                         height: 30px;
                                         ">
                             </lord-icon>
-                        <span style="margin-top: 0.4rem; margin-left:0.5rem" class="align-middle">Perfil</span></a>
+                            <span style="margin-top: 0.4rem; margin-left:0.5rem" class="align-middle">Perfil</span>
+                        </a>
 
-                        <a class="dropdown-item" href="apps-chat.html" style="display: flex;">
+                        <a class="dropdown-item" href="../../chat.php" style="display: flex;">
                             <script src="https://cdn.lordicon.com/lordicon.js"></script>
                             <lord-icon
                                 src="https://cdn.lordicon.com/ypjuppft.json"
@@ -469,9 +470,10 @@
                                 style="width: 30px;
                                        height: 30px;">
                             </lord-icon>
-                        <span style="margin-top: 0.4rem; margin-left:0.5rem" class="align-middle">Mensajes</span></a>
-                       
-                        <a class="dropdown-item" href="pages-faqs.html" style="display: flex;">
+                            <span style="margin-top: 0.4rem; margin-left:0.5rem" class="align-middle">Mensajes</span>
+                        </a>
+
+                        <a class="dropdown-item" href="../ayuda/ayuda.php" style="display: flex;">
                             <script src="https://cdn.lordicon.com/lordicon.js"></script>
                             <lord-icon
                                 src="https://cdn.lordicon.com/jtuncxzi.json"
@@ -479,11 +481,12 @@
                                 delay="2000"
                                 stroke="bold"
                                 style="width:30px;height:30px">
-                            </lord-icon> 
-                        <span style="margin-top: 0.4rem; margin-left:0.5rem" class="align-middle">Ayuda</span></a>
+                            </lord-icon>
+                            <span style="margin-top: 0.4rem; margin-left:0.5rem" class="align-middle">Ayuda</span>
+                        </a>
 
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="pages-profile.html" style="display: flex;">
+                        <a class="dropdown-item" href="#" style="display: flex;">
                             <script src="https://cdn.lordicon.com/lordicon.js"></script>
                             <lord-icon
                                 src="https://cdn.lordicon.com/opqmrqco.json"
@@ -492,9 +495,10 @@
                                 stroke="bold"
                                 style="width:30px;height:30px">
                             </lord-icon>
-                        <span class="align-middle" style="margin-top: 0.4rem; margin-left:0.5rem">Ganancias : <b>$5971.67</b></span></a>
+                            <span class="align-middle" style="margin-top: 0.4rem; margin-left:0.5rem">Ganancias : <b>$5971.67</b></span>
+                        </a>
 
-                        <a class="dropdown-item" href="pages-profile-settings.html" style="display: flex;">
+                        <a class="dropdown-item" href="../Ajustes/ajustes.php" style="display: flex;">
                             <script src="https://cdn.lordicon.com/lordicon.js"></script>
                             <lord-icon
                                 src="https://cdn.lordicon.com/qzulvmbf.json"
@@ -503,9 +507,10 @@
                                 stroke="bold"
                                 style="width:30px;height:30px">
                             </lord-icon>
-                        <span class="align-middle" style="margin-top: 0.4rem; margin-left:0.5rem">Ajustes</span></a>
+                            <span class="align-middle" style="margin-top: 0.4rem; margin-left:0.5rem">Ajustes</span>
+                        </a>
 
-                        <a class="dropdown-item" href="auth-lockscreen-basic.html" style="display: flex;">
+                        <a class="dropdown-item" href="../bloqPantalla/bloqueoPantalla.php" style="display: flex;">
                             <script src="https://cdn.lordicon.com/lordicon.js"></script>
                             <lord-icon
                                 src="https://cdn.lordicon.com/umjzhslu.json"
@@ -513,10 +518,11 @@
                                 delay="2000"
                                 stroke="bold"
                                 style="width:30px;height:30px">
-                            </lord-icon> 
-                        <span class="align-middle" style="margin-top: 0.4rem; margin-left:0.5rem">Bloquear Pantalla</span></a>
+                            </lord-icon>
+                            <span class="align-middle" style="margin-top: 0.4rem; margin-left:0.5rem">Bloquear Pantalla</span>
+                        </a>
 
-                        <a class="dropdown-item" href="auth-logout-basic.html"  style="display: flex;">
+                        <a class="dropdown-item" href="#" id="logout-link" style="display: flex;">
                             <script src="https://cdn.lordicon.com/lordicon.js"></script>
                             <lord-icon
                                 src="https://cdn.lordicon.com/phvtdttk.json"
@@ -525,7 +531,9 @@
                                 stroke="bold"
                                 style="width:30px;height:30px">
                             </lord-icon>
-                        <span class="align-middle" style="margin-top: 0.4rem; margin-left:0.5rem" data-key="t-logout">Cerrar Sesión</span></a>
+                            <span class="align-middle" style="margin-top: 0.4rem; margin-left:0.5rem" data-key="t-logout">Cerrar Sesión</span>
+                        </a>
+
                     </div>
                 </div>
             </div>

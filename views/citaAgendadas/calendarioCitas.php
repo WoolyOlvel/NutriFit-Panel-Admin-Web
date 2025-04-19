@@ -10,9 +10,7 @@
     ?>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <!-- One of the following themes -->
-    <link rel="stylesheet" href="../../assets/libs/@simonwep/pickr/themes/classic.min.css" /> <!-- 'classic' theme -->
-    <link rel="stylesheet" href="../../assets/libs/@simonwep/pickr/themes/monolith.min.css" /> <!-- 'monolith' theme -->
-    <link rel="stylesheet" href="../../assets/libs/@simonwep/pickr/themes/nano.min.css" /> <!-- 'nano' theme -->
+
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
 
@@ -278,29 +276,11 @@
         }
     </script>
 
-    <script>
-        document.querySelectorAll('.ckeditor-classic').forEach((el) => {
-            ClassicEditor
-                .create(el)
-                .catch(error => {
-                    console.error(error);
-                });
-        });
-    </script>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            flatpickr("[data-provider='flatpickr']", {
-                enableTime: true,
-                dateFormat: "d.m.y H:i",
-            });
-        });
-    </script>
 
     <script type="text/javascript" src="../../assets/libs/flatpickr/flatpickr.min.js"></script>
     <script type="text/javascript" src="../../assets/libs/choices.js/public/assets/scripts/choices.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.0/dist/sweetalert2.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.2.0/fullcalendar.min.js" defer></script>
 
 </body>
 

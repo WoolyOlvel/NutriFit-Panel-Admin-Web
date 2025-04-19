@@ -84,13 +84,13 @@
                                         </div>
 
                                         <div class="mt-4">
-                                            <form class="needs-validation" novalidate action="index.html">
+                                            <form class="needs-validation" id="registerForm" method="POST" action="http://127.0.0.1:8000/api/register">
 
 
 
                                                 <div class="mb-3">
                                                     <label for="username" class="form-label">Nombre <span class="text-danger">*</span></label>
-                                                    <input type="text" class="form-control" id="username" placeholder="Su Nombre" required>
+                                                    <input type="text" class="form-control" name="nombre" id="nombre" placeholder="Su Nombre" required>
                                                     <div class="invalid-feedback">
                                                         Por Favor Ingrese Su Nombre
                                                     </div>
@@ -98,7 +98,7 @@
 
                                                 <div class="mb-3">
                                                     <label for="username" class="form-label">Apellidos <span class="text-danger">*</span></label>
-                                                    <input type="text" class="form-control" id="username" placeholder="Sus Apellidos" required>
+                                                    <input type="text" class="form-control" name="apellidos" id="apellidos" placeholder="Sus Apellidos" required>
                                                     <div class="invalid-feedback">
                                                         Por Favor Ingrese Sus Apellidos
                                                     </div>
@@ -106,14 +106,14 @@
 
                                                 <div class="mb-3">
                                                     <label for="useremail" class="form-label">Correo Electrónico <span class="text-danger">*</span></label>
-                                                    <input type="email" class="form-control" id="useremail" placeholder="Su Correo Electrónico" required>
+                                                    <input type="email" class="form-control" name="email" id="email" placeholder="Su Correo Electrónico" required>
                                                     <div class="invalid-feedback">
                                                         Por Favor Ingrese Un Correo Electrónico
                                                     </div>
                                                 </div>
                                                 <div class="mb-3">
                                                     <label for="username" class="form-label">Usuario <span class="text-danger">*</span></label>
-                                                    <input type="text" class="form-control" id="username" placeholder="Su Usuario" required>
+                                                    <input type="text" class="form-control" name="usuario" id="usuario" placeholder="Su Usuario" required>
                                                     <div class="invalid-feedback">
                                                         Por Favor Ingrese Un Usuario
                                                     </div>
@@ -122,7 +122,7 @@
                                                 <div class="mb-3">
                                                     <label class="form-label" for="password-input">Contraseña</label>
                                                     <div class="position-relative auth-pass-inputgroup">
-                                                        <input type="password" class="form-control pe-5 password-input" onpaste="return false" placeholder="Su Contraseña" id="password-input" aria-describedby="passwordInput" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required>
+                                                        <input type="password" name="password" id="password-input" class="form-control pe-5 password-input" onpaste="return false" placeholder="Su Contraseña" aria-describedby="passwordInput" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required>
                                                         <button class="btn btn-link position-absolute end-0 top-0 text-decoration-none text-muted password-addon" type="button" id="password-addon"><i class="ri-eye-fill align-middle"></i></button>
                                                         <div class="invalid-feedback">
                                                             Ingrese Una Contraseña
@@ -143,7 +143,7 @@
                                                 </div>
 
                                                 <div class="mt-4">
-                                                    <button class="btn btn-success w-100" type="submit">Unirme</button>
+                                                    <button class="btn btn-success w-100" type="submit" id="submit-btn">Unirme</button>
                                                 </div>
 
                                                 <div class="mt-4 text-center">
@@ -152,9 +152,13 @@
                                                     </div>
 
                                                     <div>
-                                                        <button type="button" class="btn btn-primary btn-icon waves-effect waves-light"><i class="ri-facebook-fill fs-16"></i></button>
-                                                        <button type="button" class="btn btn-danger btn-icon waves-effect waves-light"><i class="ri-google-fill fs-16"></i></button>
-                                                        
+                                                        <a href="http://127.0.0.1:8000/api/auth/redirect/facebook" class="btn btn-primary btn-icon waves-effect waves-light">
+                                                            <i class="ri-facebook-fill fs-16"></i>
+                                                        </a>
+
+                                                        <a href="http://127.0.0.1:8000/api/auth/redirect/google" class="btn btn-danger btn-icon waves-effect waves-light">
+                                                            <i class="ri-google-fill fs-16"></i>
+                                                        </a>
                                                     </div>
                                                 </div>
                                             </form>
@@ -185,7 +189,9 @@
                     <div class="col-lg-12">
                         <div class="text-center">
                             <p class="mb-0" style="font-weight: bold; color:white;">&copy;
-                                <script>document.write(new Date().getFullYear())</script> NutriFit Planner. Todos Los Derechos Reservados.
+                                <script>
+                                    document.write(new Date().getFullYear())
+                                </script> NutriFit Planner. Todos Los Derechos Reservados.
                             </p>
                         </div>
                     </div>
@@ -208,6 +214,12 @@
     <script src="../../assets/js/pages/form-validation.init.js"></script>
     <!-- password create init -->
     <script src="../../assets/js/pages/passowrd-create.init.js"></script>
+
+    <!-- Asegúrate de tener SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script src="register.js"></script>
+
 </body>
 
 </html>
