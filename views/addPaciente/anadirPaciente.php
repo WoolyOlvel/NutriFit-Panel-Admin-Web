@@ -1,25 +1,7 @@
-<style>
 
-/* Reducir el tamaño del campo de búsqueda */
-.dataTables_filter input {
-    height: 25px;
-    width: 150px;
-}
-
-/* Cambiar la posición del campo de búsqueda */
-.dataTables_filter {
-    float: right; /* o left, dependiendo de dónde quieras colocarlo */
-    margin-bottom: 10px; /* Ajusta el margen inferior según sea necesario */
-}
-
-/* Ajusta la posición vertical de los botones */
-.dataTables_wrapper .dt-buttons {
-    margin-top: 20px; /* Cambia el valor según sea necesario */
-}
-
-
-
-</style>
+<?php
+require_once("../html/session.php");
+?>
 
 <!doctype html>
 <html lang="es" data-layout="horizontal" data-topbar="light" data-sidebar="dark" data-sidebar-size="lg" data-sidebar-image="none" data-preloader="disable">
@@ -155,17 +137,18 @@
                                         <thead>
                                             <tr>
 
-                                                <th>Imagen</th>
-                                                <th>Correo</th>
                                                 <th>Nombre</th>
                                                 <th>Apellidos</th>
+                                                <th>Correo</th>
                                                 <th>Telefono</th>
-                                                <th>Contraseña</th>
                                                 <th>Usuario</th>
                                                 <th>Rol</th>
-                                                <th>Editar</th>
-                                              
-                                            
+                                                <th>Enfermedad</th>
+                                                <th>Status</th>
+                                                <th>Creacion</th>
+                                                <th></th>
+                                                <th></th>
+   
                                             </tr>
                                         </thead>
                                         <tbody class="list form-check-all" id="ticket-list-data">

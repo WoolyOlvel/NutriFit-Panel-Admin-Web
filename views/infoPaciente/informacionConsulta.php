@@ -1,10 +1,14 @@
+<?php
+require_once("../html/session.php");
+?>
+
 <!doctype html>
-<html lang="en" data-layout="horizontal" data-topbar="dark" data-sidebar-size="lg" data-sidebar="light" data-sidebar-image="none" data-preloader="disable">
+<html lang="en" data-layout="horizontal" data-topbar="light" data-sidebar-size="lg" data-sidebar="dark" data-sidebar-image="none" data-preloader="disable">
 
 <head>
 
     <meta charset="utf-8" />
-    <title>Informacion Pa | NutriFit Planner</title>
+    <title>Informacion Paciente | NutriFit Planner</title>
     
     <?php
         require_once("../html/head.php")
@@ -39,7 +43,7 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                                <h4 class="mb-sm-0">Historial Paciente</h4>
+                                <h4 class="mb-sm-6">Historial Paciente</h4>
 
                                 <div class="page-title-right">
                                     <ol class="breadcrumb m-0">

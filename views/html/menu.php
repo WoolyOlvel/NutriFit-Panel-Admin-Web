@@ -72,7 +72,7 @@
                                 <a href="../misPacientes/misPacientes.php" class="nav-link" data-key="t-chat"> Lista Pacientes </a>
                             </li>
                             <li class="nav-item">
-                                <a href="../addPaciente/anadirPaciente.php" class="nav-link" data-key="t-email">
+                                <a href="../addPaciente/añadirPaciente.php" class="nav-link" data-key="t-email">
                                     Añadir Paciente
                                 </a>
                             </li>

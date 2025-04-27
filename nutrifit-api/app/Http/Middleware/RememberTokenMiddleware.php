@@ -10,19 +10,20 @@ use Illuminate\Support\Facades\Auth;
 
 class RememberTokenMiddleware
 {
-    public function handle(Request $request, Closure $next)
+    public function handle($request, Closure $next)
     {
-        if (isset($_COOKIE['remember_token'])) {
-            $token = $_COOKIE['remember_token'];
+        $token = $request->header('remember-token');
 
-            $user = User::where('remember_token', $token)
-                ->where('remember_token_expires_at', '>', now())
-                ->first();
+        $user = User::where('remember_token', $token)
+            ->where('remember_token_expires_at', '>', now())
+            ->first();
 
-            if ($user) {
-                Auth::login($user, true);
-            }
+        if (!$user) {
+            return response()->json(['error' => 'No autenticado'], 401);
         }
+
+        // Hacer que auth()->user() funcione
+        Auth::login($user);
 
         return $next($request);
     }

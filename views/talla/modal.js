@@ -157,7 +157,7 @@ function eliminar(Talla_ID) {
       `${BASE_URL}/api/talla/eliminar`,
       { Talla_ID: Talla_ID },
       function (data) {
-        console.log(data);
+
 
         // Mostrar alerta de éxito
         Swal.fire({

@@ -5,14 +5,14 @@
                 <h5 class="modal-title" id="lblTitulo"></h5>
                 <button type="button" class="btn-close" id="addBoardBtn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form method="POST" id="Categoria_form">
+            <form method="POST" id="MedidasCorporales_form">
                 <div class="modal-body">
-                    <input type="hidden" name="Categoria_ID" id="Categoria_ID" />
+                    <input type="hidden" name="MedidasCorporales_ID" id="MedidasCorporales_ID" />
 
                     <div class="row">
                         <div class="col-lg-12">
                             <label for="boardName" class="form-label"><strong>Nombre De La Medida Corporal</strong></label>
-                            <input type="text" class="form-control" name="Categoria_Nombre" id="Categoria_Nombre" placeholder="Ingresar Nombre Medida Corporal" required/>
+                            <input type="text" class="form-control" name="nombre" id="nombre" placeholder="Ingresar Nombre Medida Corporal" required/>
                         </div>
                         <div class="mt-4">
                             <div class="hstack gap-2 justify-content-end">

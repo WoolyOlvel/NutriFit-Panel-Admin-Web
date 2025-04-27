@@ -64,6 +64,8 @@ class loginController extends Controller
             return response()->json(['error' => 'Token inválido o expirado.'], 401);
         }
 
+
+
         $user->load('role');
 
         return response()->json([

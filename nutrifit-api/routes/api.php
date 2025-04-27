@@ -15,7 +15,13 @@ use App\Http\Controllers\Api\loginController;
 use App\Http\Controllers\Api\SocialAuthController;
 
 use App\Http\Controllers\Api\TallaController;
-
+use App\Http\Controllers\Api\Sistema_Metrico;
+use App\Http\Controllers\Api\medidasCorporalesController;
+use App\Http\Controllers\Api\composicionCorporalController;
+use App\Http\Controllers\Api\estaturaController;
+use App\Http\Controllers\Api\divisasController;
+use App\Http\Controllers\Api\MisPacientesController;
+use App\Http\Controllers\Api\PacienteController;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
@@ -29,7 +35,7 @@ Route::patch('/usuarios/{id}', [usuarioController::class, 'updatePartial']);
 Route::delete('/usuarios/{id}', [usuarioController::class, 'destroy']);
 
 
-//Registro Web
+//Registro Web👇
 Route::post('/register', [registerController::class, 'register']);
 
 //Login Web
@@ -39,22 +45,75 @@ Route::get('/auto-login', [loginController::class, 'autoLogin']);
 //Cierre de sesion web
 Route::post('/logout', [LoginController::class, 'logout']);
 
-//Registro Con Redes Sociales Web
+//Registro Con Redes Sociales Web👇
 Route::get('/auth/redirect/facebook', [SocialAuthController::class, 'redirectToFacebook']);
 Route::get('/auth/callback/facebook', [SocialAuthController::class, 'handleFacebookCallback']);
 
 Route::get('/auth/redirect/google', [SocialAuthController::class, 'redirectToGoogle']);
 Route::get('/auth/callback/google', [SocialAuthController::class, 'handleGoogleCallback']);
+//FIN Registro Con Redes Sociales Web  👆
 
-//Logeo Con Redes Sociales Web
+//Logeo Con Redes Sociales Web👇
 Route::post('/api/social-login/google', [SocialAuthController::class, 'google']);
 Route::post('/api/social-login/facebook', [SocialAuthController::class, 'facebook']);
+//FIN lOGEO CON REDES SOCIALES WEB  👆
 
-//Utilidades
+//Utilidades👇
+//Tallas
 Route::get('/talla/listar', [TallaController::class, 'listar']);
 Route::post('/talla/guardar_editar', [TallaController::class, 'guardar_editar']);
 Route::post('/talla/mostrar', [TallaController::class, 'mostrar']);
 Route::post('/talla/eliminar', [TallaController::class, 'eliminar']);
+//Sistema Metrico
+Route::get('/sistema_metrico/listar', [Sistema_Metrico::class, 'listar']);
+Route::post('/sistema_metrico/guardar_editar', [Sistema_Metrico::class, 'guardar_editar']);
+Route::post('/sistema_metrico/mostrar', [Sistema_Metrico::class, 'mostrar']);
+Route::post('/sistema_metrico/eliminar', [Sistema_Metrico::class, 'eliminar']);
+//Medidas Corporales
+Route::get('/medidas_corporales/listar', [medidasCorporalesController::class, 'listar']);
+Route::post('/medidas_corporales/guardar_editar', [medidasCorporalesController::class, 'guardar_editar']);
+Route::post('/medidas_corporales/mostrar', [medidasCorporalesController::class, 'mostrar']);
+Route::post('/medidas_corporales/eliminar', [medidasCorporalesController::class, 'eliminar']);
+//Composición Corporal
+Route::get('/composicion_corporal/listar', [composicionCorporalController::class, 'listar']);
+Route::post('/composicion_corporal/guardar_editar', [composicionCorporalController::class, 'guardar_editar']);
+Route::post('/composicion_corporal/mostrar', [composicionCorporalController::class, 'mostrar']);
+Route::post('/composicion_corporal/eliminar', [composicionCorporalController::class, 'eliminar']);
+//Estatura
+Route::get('/estatura/listar', [estaturaController::class, 'listar']);
+Route::post('/estatura/guardar_editar', [estaturaController::class, 'guardar_editar']);
+Route::post('/estatura/mostrar', [estaturaController::class, 'mostrar']);
+Route::post('/estatura/eliminar', [estaturaController::class, 'eliminar']);
+//Divisas
+Route::get('/divisas/listar', [divisasController::class, 'listar']);
+Route::post('/divisas/guardar_editar', [divisasController::class, 'guardar_editar']);
+Route::post('/divisas/mostrar', [divisasController::class, 'mostrar']);
+Route::post('/divisas/eliminar', [divisasController::class, 'eliminar']);
+//Fin Utilidades👆
+
+//Pácientes 👇
+//Añadir Pacientes
+Route::get('/pacientes/listar', [PacienteController::class, 'index']);
+Route::post('/pacientes/guardar_editar', [PacienteController::class, 'guardar_editar']);
+Route::post('/pacientes/mostrar', [PacienteController::class, 'mostrar']);
+Route::post('/pacientes/eliminar', [PacienteController::class, 'eliminar']);
+//Lista de Pacientes
+Route::get('/misPacientes/listar',[MisPacientesController::class, 'index']);
+Route::post('/misPacientes/guardar_editar',[MisPacientesController::class, 'guardar_editar']);
+Route::post('/misPacientes/mostrar',[MisPacientesController::class, 'mostrar']);
+Route::post('/misPacientes/eliminar',[MisPacientesController::class, 'eliminar']);
+
+//Generar Consulta Paciente
+
+
+Route::middleware('auth:api')->group(function () {
+    Route::apiResource('pacientes', 'Api\PacienteController');
+});
+
+Route::middleware('auth:api')->group(function () {
+    Route::apiResource('misPacientes', 'Api\misPacientesController');
+});
+//Fin Pacientes 👆
 
 Route::get('/appointments', [appointmentController::class, 'index']);
 Route::get('/appointments/{id}', [appointmentController::class, 'show']);
