@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\ActualizarConsultaController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\usuarioController;
@@ -18,10 +19,13 @@ use App\Http\Controllers\Api\TallaController;
 use App\Http\Controllers\Api\Sistema_Metrico;
 use App\Http\Controllers\Api\medidasCorporalesController;
 use App\Http\Controllers\Api\composicionCorporalController;
+use App\Http\Controllers\Api\ConsultaController;
 use App\Http\Controllers\Api\estaturaController;
 use App\Http\Controllers\Api\divisasController;
+use App\Http\Controllers\Api\HistorialPacienteController;
 use App\Http\Controllers\Api\MisPacientesController;
 use App\Http\Controllers\Api\PacienteController;
+use App\Http\Controllers\Api\Pre_HistorialController;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
@@ -104,6 +108,43 @@ Route::post('/misPacientes/mostrar',[MisPacientesController::class, 'mostrar']);
 Route::post('/misPacientes/eliminar',[MisPacientesController::class, 'eliminar']);
 
 //Generar Consulta Paciente
+
+Route::get('/consulta/tipos', [ConsultaController::class, 'getTiposConsulta']);
+Route::get('/consulta/documentos', [ConsultaController::class, 'getDocumentos']);
+Route::get('/consulta/tipos-pago', [ConsultaController::class, 'getTiposPago']);
+Route::get('/consulta/divisas', [ConsultaController::class, 'getDivisas']);
+
+// En api.php en la carpeta routes
+Route::get('/consulta/pacientes', [ConsultaController::class, 'getPacientes']);
+Route::get('/consulta/pacientes/{id}', [ConsultaController::class, 'getPacienteDetalle']);
+// Nueva ruta para guardar la consulta
+Route::post('/consulta/guardar', [ConsultaController::class, 'guardarConsulta']);
+Route::post('/consulta/unidad-talla', [ConsultaController::class, 'obtenerUnidadTalla']);
+
+//No usar, Peligro!! ☠️❌👇
+Route::post('/consulta/subir-plan-nutricional', [ConsultaController::class, 'subirPlanNutricional']);
+//Fin Peligro☠️❌👆
+
+
+//Pre_Historial Paciente
+Route::get('/pacientes/{pacienteId}/consultas', [Pre_HistorialController::class, 'getConsultasPaciente']);
+
+// Obtener datos de la consulta para editar (GET)
+Route::get('/consulta/editar/{consultaId}', [ActualizarConsultaController::class, 'getConsulta']);
+
+// Actualizar consulta (POST o PUT)
+Route::put('/consulta/actualizar/{consultaId}', [ActualizarConsultaController::class, 'actualizarConsulta']);
+
+Route::get('/consulta/pacientes/{pacienteId}', [ActualizarConsultaController::class, 'obtenerConsulta']);
+Route::get('/consulta/obtener/{consultaId}', [ActualizarConsultaController::class, 'obtenerConsulta']);
+
+Route::get('/consulta/{consultaId}/descargar-documentos', [HistorialPacienteController::class,'descargarDocumentos']);
+Route::get('/consulta/{consultaId}/descargar-plan', [HistorialPacienteController::class,'descargarPlanHistorial']);
+
+Route::get('/historial-paciente/consulta/{consultaId}/descargar-documentos', [HistorialPacienteController::class,'descargarTodosDocumentos']);
+Route::get('/historial-paciente/consulta/{consultaId}',[HistorialPacienteController::class,'getDetallesConsulta']);
+Route::get('/historial-paciente/{consultaId}/descargar-archivo', [HistorialPacienteController::class,'descargarTodosDocumentos']);
+
 
 
 Route::middleware('auth:api')->group(function () {

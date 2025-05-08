@@ -12,6 +12,7 @@ class Consulta extends Model
     protected $fillable = [
         'Consulta_ID',
         'Paciente_ID',
+        'Tipo_Consulta_ID', // ID del tipo de consulta
         'user_id',          // ID del nutriólogo
         'Documento_ID',     // Relacionado con los documentos
         'Pago_ID',          // Tipo de pago
@@ -37,6 +38,7 @@ class Consulta extends Model
         'cintura',
         'cadera',
         'gc',
+        'mm',
         'em',
         'altura',
         // Campos de diagnóstico y evaluación
@@ -46,10 +48,13 @@ class Consulta extends Model
         'objetivo_descripcion',
 
         'proxima_consulta',
+        'nombre_consultorio',
+        'direccion_consultorio',
         'plan_nutricional_path', // Ruta al archivo del plan nutricional
         'total_pago',
         'fecha_creacion',
         'estado',
+        'estado_proximaConsulta'
     ];
 
     protected $hidden = ['created_at', 'updated_at'];
@@ -63,7 +68,7 @@ class Consulta extends Model
     }
 
     // Relación con el modelo User (nutriólogo)
-    public function user()
+    public function users()
     {
         return $this->belongsTo(User::class, 'user_id');
     }
@@ -72,6 +77,12 @@ class Consulta extends Model
     public function role()
     {
         return $this->belongsTo(Rol::class, 'rol_id');
+    }
+
+    // Relación con el modelo Tipo_Consulta
+    public function tipoConsulta()
+    {
+        return $this->belongsTo(Tipo_Consulta::class, 'Tipo_Consulta_ID');
     }
 
     // Relación con el modelo Documento
@@ -90,6 +101,26 @@ class Consulta extends Model
     public function divisa()
     {
         return $this->belongsTo(Divisas::class, 'Divisa_ID');
+    }
+
+    public function talla(){
+        return $this->belongsTo(Talla::class, 'Talla_ID');
+    }
+
+    public function sistema_metrico(){
+        return $this->belongsTo(SistemaMetrico::class, 'Sistema_Metrico_ID');
+    }
+
+    public function medida_corporales(){
+        return $this->belongsTo(MedidasCorporales::class, 'Medidas_Corporales_ID');
+    }
+
+    public function composicion_corporal(){
+        return $this->belongsTo(ComposicionCorporal::class, 'Composicion_Corporal_ID');
+    }
+
+    public function estatura(){
+        return $this->belongsTo(Estatura::class, 'Estatura_ID');
     }
 
 

@@ -14,6 +14,7 @@ class Divisas extends Model
         'Divisa_ID',
         'nombre',
         'fecha_creacion',
+        'tasa_cambio',
         'estado',
     ];
     protected $hidden = ['created_at', 'updated_at'];

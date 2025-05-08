@@ -36,7 +36,8 @@ class MisPacientesController extends Controller
 
         // Obtenemos los pacientes relacionados con este usuario y que tengan estado activo (true)
         $pacientes = Paciente::where('user_id', $user->id)
-            ->where('estado', true)
+            ->where('estado', true,)
+            ->where('status', 1)
             ->get();
 
         return response()->json([

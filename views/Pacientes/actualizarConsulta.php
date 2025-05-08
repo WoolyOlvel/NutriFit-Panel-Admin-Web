@@ -2,6 +2,12 @@
 require_once("../html/session.php");
 ?>
 
+<style>
+    .editable-field {
+    background-color: #fffde7; /* Fondo amarillo claro */
+    border: 1px solid #ffd600; /* Borde amarillo */
+}
+</style>
 <!doctype html>
 <html lang="es" data-layout="horizontal" data-topbar="light" data-sidebar="dark" data-sidebar-size="lg" data-sidebar-image="none" data-preloader="disable">
 
@@ -51,12 +57,12 @@ require_once("../html/session.php");
                         <div class="row">
                             <div class="col-12">
                                 <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                                    <h4 class="mb-sm-0">Nueva Consulta</h4>
+                                    <h4 class="mb-sm-0">Actualizar Consulta</h4>
 
                                     <div class="page-title-right">
                                         <ol class="breadcrumb m-0">
-                                            <li class="breadcrumb-item"><a href="./generarConsulta.php">Menu</a></li>
-                                            <li class="breadcrumb-item active">Consulta</li>
+                                            <li class="breadcrumb-item"><a href="./actualizarConsulta.php">Menu</a></li>
+                                            <li class="breadcrumb-item active">Actualizar Consulta</li>
                                         </ol>
                                     </div>
                                 </div>
@@ -155,7 +161,7 @@ require_once("../html/session.php");
                                                 </div>
 
                                                 <div class="col-lg-4">
-                                                    <label for="ciudad" class="form-label">ciudad:</label>
+                                                    <label for="ciudad" class="form-label">Ciudad:</label>
                                                     <input type="text" class="form-control" name="ciudad" id="ciudad" placeholder="Ciudad Paciente" readonly />
                                                 </div>
 
@@ -222,7 +228,7 @@ require_once("../html/session.php");
                                                 <div class="col-md-4">
                                                     <label class="form-label">Masa Corporal:</label>
                                                     <div class="input-group">
-                                                        <input for="mm" type="number" step="any" class="form-control" id="mm" name="mm" placeholder="Masa Corporal Del Paciente" aria-label="Masa" aria-describedby="basic-addon1">
+                                                        <input for="mm" type="number" step="any" class="form-control" id="mm" name="mm" placeholder="Masa Corporal Del Paciente" aria-label="Username" aria-describedby="basic-addon1">
                                                         <span class="input-group-text" id="basic-addon5">%</span>
                                                     </div>
                                                 </div>
@@ -359,11 +365,8 @@ require_once("../html/session.php");
                                             </div> <!-- end col -->
                                         </div>
 
-
                                         <div class="hstack gap-2 justify-content-start d-print-none mt-4">
-                                            <button type="submit" id="btnGuardar" class="btn btn-success"><i class="ri-printer-line align-bottom me-1"></i> Finalizar Consulta</button>
-                                            <a id="btnLimpiar" class="btn btn-danger"><i class="ri-delete-bin-5-fill align-bottom me-1"></i> Limpiar</a>
-                                            <button id="btn-limpiar-archivos" type="button" style="display: none;"></button>
+                                            <button type="submit" id="btnGuardar" class="btn btn-success"><i class="ri-printer-line align-bottom me-1"></i> Actualizar Consulta</button>
                                         </div>
 
                                     </div>
@@ -442,7 +445,7 @@ require_once("../html/session.php");
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.2.0/fullcalendar.min.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script src="../../assets/js/pages/select2.init.js"></script>
-    <script type="text/javascript" src="consulta.js"></script>
+    <script type="text/javascript" src="actualizarConsulta.js"></script>
 
 </body>
 

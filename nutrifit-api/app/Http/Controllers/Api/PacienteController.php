@@ -255,7 +255,7 @@ class PacienteController extends Controller
             'usuario' => 'sometimes|string|unique:paciente,usuario,' . $pacienteId . ',Paciente_ID',
             'enfermedad' => 'nullable|string',
             'status' => 'sometimes|boolean',
-            'foto' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+            'foto' => 'nullable|image|mimes:jpeg,png,jpg|max:10240',
             'localidad' => 'nullable|string|max:255',
             'ciudad' => 'nullable|string|max:255',
             'edad' => 'nullable|integer|min:0|max:150',

@@ -1,3 +1,7 @@
+<?php
+require_once("../html/session.php");
+?>
+
 <!doctype html>
 <html lang="es" data-layout="horizontal" data-topbar="light" data-sidebar="dark" data-sidebar-size="lg" data-sidebar-image="none" data-preloader="disable">
 

@@ -80,10 +80,15 @@ require_once("../html/session.php");
                                         <div class="col-md-auto ms-auto">
                                             <div class="d-flex align-items-center gap-2">
                                                 <span class="text-muted">Ordenar por: </span>
-                                                <select class="form-control mb-0" data-choices data-choices-search-false id="choices-single-default">
-                                                    <option value="Owner">Recientes</option>
-                                                    <option value="Company">Nombre</option>
-                                                    <option value="location">Apellidos</option>
+                                                <select class="form-control mb-0" data-choices data-choices-search-false id="ordenar-pacientes">
+                                                    <!--<option value="Recientes">Recientes (Más nuevos primero)</option>-->
+                                                    <!--<option value="Antiguos">Antiguos (Más antiguos primero)</option>--->
+                                                    <option value="NombreAZ">Nombre (A-Z)</option>
+                                                    <option value="NombreZA" selected >Nombre (Z-A)</option>
+                                                    <option value="ApellidosAZ">Apellidos (A-Z)</option>
+                                                    <option value="ApellidosZA">Apellidos (Z-A)</option>
+                                                    <option value="Masculino">Género (Masculino primero)</option>
+                                                    <option value="Femenino">Género (Femenino primero)</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -93,7 +98,7 @@ require_once("../html/session.php");
                                     <div class="card-body">
                                         <div>
                                             <div class="table-responsive table-card mb-3">
-                                                <table class="table align-middle table-nowrap mb-0" >
+                                                <table class="table align-middle table-nowrap mb-0">
                                                     <thead class="table-light">
                                                         <tr>
 
