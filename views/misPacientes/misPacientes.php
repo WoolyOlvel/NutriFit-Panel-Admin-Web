@@ -289,9 +289,6 @@ require_once("../html/session.php");
 
     <script type="text/javascript" src="misPacientes.js"></script>
 
-
-
-
 </body>
 
 </html>

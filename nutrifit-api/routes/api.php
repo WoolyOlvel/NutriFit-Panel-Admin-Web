@@ -5,6 +5,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\usuarioController;
 use App\Http\Controllers\Api\appointmentController;
+use App\Http\Controllers\Api\CalendarioCitasController;
+use App\Http\Controllers\Api\CalendarioController;
 use App\Http\Controllers\Api\chatController;
 use App\Http\Controllers\Api\desafioController;
 use App\Http\Controllers\Api\notificationController;
@@ -24,6 +26,7 @@ use App\Http\Controllers\Api\estaturaController;
 use App\Http\Controllers\Api\divisasController;
 use App\Http\Controllers\Api\HistorialPacienteController;
 use App\Http\Controllers\Api\MisPacientesController;
+use App\Http\Controllers\Api\Notificaciones;
 use App\Http\Controllers\Api\PacienteController;
 use App\Http\Controllers\Api\Pre_HistorialController;
 
@@ -146,7 +149,6 @@ Route::get('/historial-paciente/consulta/{consultaId}',[HistorialPacienteControl
 Route::get('/historial-paciente/{consultaId}/descargar-archivo', [HistorialPacienteController::class,'descargarTodosDocumentos']);
 
 
-
 Route::middleware('auth:api')->group(function () {
     Route::apiResource('pacientes', 'Api\PacienteController');
 });
@@ -155,6 +157,37 @@ Route::middleware('auth:api')->group(function () {
     Route::apiResource('misPacientes', 'Api\misPacientesController');
 });
 //Fin Pacientes 👆
+
+//Ver Citas Agendadas 👇
+
+Route::get('/calendario/eventos', [CalendarioCitasController::class, 'getEventos']);
+Route::get('/calendario/proximos-eventos', [CalendarioCitasController::class, 'getProximosEventos']);
+Route::get('/calendario/evento/{id}', [CalendarioCitasController::class, 'getEventoDetalle']);
+
+Route::post('/calendario/crear-reservacion-desde-existente', [CalendarioCitasController::class, 'crearReservacionDesdeExistente']);
+Route::put('/calendario/actualizar-reservacion/{eventId}', [CalendarioCitasController::class, 'actualizarReservacion']);
+
+
+Route::put('/calendario/reservaciones/{id}', [CalendarioCitasController::class, 'actualizarReservacion']);
+
+Route::put('/reservaciones/{realId}', [CalendarioCitasController::class, 'actualizarReservacion']);
+
+// Para consultas
+Route::put('/calendario/consultas/{id}', [CalendarioCitasController::class, 'actualizarConsulta']);
+
+// Notificaciones
+    Route::get('/notificaciones', [Notificaciones::class, 'obtenerNotificaciones']);
+    Route::post('/notificaciones/marcar-leida/{id}', [Notificaciones::class, 'marcarLeida']);
+    Route::get('/notificaciones/contar', [Notificaciones::class, 'contarNotificaciones']);
+
+//Ruta Prueba Reservaciones
+
+Route::post('/calendario/reservaciones', [CalendarioCitasController::class, 'crearReservacion']);
+
+//Fin Citas Agendadas 👆
+
+
+
 
 Route::get('/appointments', [appointmentController::class, 'index']);
 Route::get('/appointments/{id}', [appointmentController::class, 'show']);

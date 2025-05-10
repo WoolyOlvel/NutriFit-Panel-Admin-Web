@@ -65,7 +65,7 @@ const util = {
           text: "No hay sesión activa. Por favor inicie sesión nuevamente.",
           icon: "error",
           confirmButtonText: "Aceptar"
-        }).then(() => window.location.href = "login.html");
+        }).then(() => window.location.href = "../../index.php");
         return false;
       }
       return token;

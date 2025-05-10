@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 27-04-2025 a las 12:25:52
+-- Tiempo de generación: 10-05-2025 a las 23:00:03
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -85,6 +85,63 @@ INSERT INTO `composicion_corporal` (`ComposicionCorporal_ID`, `nombre`, `fecha_c
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `consulta`
+--
+
+CREATE TABLE `consulta` (
+  `Consulta_ID` int(10) UNSIGNED NOT NULL,
+  `Paciente_ID` int(10) UNSIGNED NOT NULL,
+  `Tipo_Consulta_ID` int(10) UNSIGNED NOT NULL,
+  `user_id` bigint(20) UNSIGNED NOT NULL,
+  `Documento_ID` int(10) UNSIGNED NOT NULL,
+  `Pago_ID` int(10) UNSIGNED NOT NULL,
+  `Divisa_ID` int(10) UNSIGNED NOT NULL,
+  `nombre_paciente` varchar(255) NOT NULL,
+  `apellidos` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `telefono` varchar(255) NOT NULL,
+  `genero` varchar(255) NOT NULL,
+  `usuario` varchar(255) NOT NULL,
+  `enfermedad` varchar(255) DEFAULT NULL,
+  `localidad` varchar(255) DEFAULT NULL,
+  `ciudad` varchar(255) DEFAULT NULL,
+  `edad` int(11) DEFAULT NULL,
+  `fecha_nacimiento` date DEFAULT NULL,
+  `nombre_nutriologo` varchar(255) NOT NULL,
+  `peso` decimal(5,2) DEFAULT NULL,
+  `talla` varchar(255) DEFAULT NULL,
+  `cintura` decimal(5,2) DEFAULT NULL,
+  `cadera` decimal(5,2) DEFAULT NULL,
+  `gc` decimal(5,2) DEFAULT NULL,
+  `mm` decimal(5,2) DEFAULT NULL,
+  `em` decimal(5,2) DEFAULT NULL,
+  `altura` decimal(5,2) DEFAULT NULL,
+  `detalles_diagnostico` text DEFAULT NULL,
+  `resultados_evaluacion` text DEFAULT NULL,
+  `analisis_nutricional` text DEFAULT NULL,
+  `objetivo_descripcion` text DEFAULT NULL,
+  `proxima_consulta` datetime DEFAULT NULL,
+  `nombre_consultorio` text DEFAULT NULL,
+  `direccion_consultorio` text DEFAULT NULL,
+  `plan_nutricional_path` text DEFAULT NULL,
+  `total_pago` decimal(8,2) DEFAULT NULL,
+  `fecha_creacion` date DEFAULT NULL,
+  `estado` tinyint(1) NOT NULL DEFAULT 1,
+  `estado_proximaConsulta` tinyint(4) NOT NULL DEFAULT 1,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `consulta`
+--
+
+INSERT INTO `consulta` (`Consulta_ID`, `Paciente_ID`, `Tipo_Consulta_ID`, `user_id`, `Documento_ID`, `Pago_ID`, `Divisa_ID`, `nombre_paciente`, `apellidos`, `email`, `telefono`, `genero`, `usuario`, `enfermedad`, `localidad`, `ciudad`, `edad`, `fecha_nacimiento`, `nombre_nutriologo`, `peso`, `talla`, `cintura`, `cadera`, `gc`, `mm`, `em`, `altura`, `detalles_diagnostico`, `resultados_evaluacion`, `analisis_nutricional`, `objetivo_descripcion`, `proxima_consulta`, `nombre_consultorio`, `direccion_consultorio`, `plan_nutricional_path`, `total_pago`, `fecha_creacion`, `estado`, `estado_proximaConsulta`, `created_at`, `updated_at`) VALUES
+(1, 1, 1, 2, 2, 2, 2, 'Regina', 'Estrada', 'Estrada21@gmail.com', '9995241085', 'Femenino', 'ResgEstrada', 'Hipertension', 'Campeche', 'Calkini', 24, '2003-04-09', 'Alan Antony Puc Yam', 72.40, 'M', 83.00, 98.00, 32.50, 29.10, 30.00, 1.65, '<p>Paciente con antecedentes familiares de hipertensión. Presenta valores elevados de presión arterial en consulta previa. IMC en rango de sobrepeso. Se recomienda reducción progresiva de peso y ajuste en hábitos alimenticios y de actividad física.</p>', '<ul><li>IMC: 26.6 (Sobrepeso)</li><li>Riesgo cardiovascular moderado</li><li>Retención de líquidos leve</li><li>Hábitos alimenticios con alto consumo de sodio</li><li>Actividad física irregular</li></ul>', '<ul><li>Consumo calórico actual: 2200 kcal/día</li><li>Macronutrientes desequilibrados: exceso de carbohidratos simples y sodio</li><li>Ingesta de frutas y verduras: baja</li><li>Hidratación: insuficiente (&lt;1.5 L/día)</li></ul>', '<p>Reducir 6 kg en 3 meses mediante plan alimenticio hipocalórico controlado en sodio, aumentar ingesta de fibra y agua, e implementar actividad física moderada al menos 4 veces por semana. Mejorar perfil lipídico y reducir presión arterial.</p>', '2025-06-09 17:00:00', 'NutriVida Campeche', 'Calle 20 #158, Col. Centro, Calkiní, Campeche, C.P. 24900', '[\"http:\\/\\/127.0.0.1:8000\\/storage\\/plan_nutricional\\/reginaestrada\\/1\\/1_1746793598_0_referencias.pdf\"]', 585.00, '2025-05-09', 1, 3, '2025-05-09 18:26:38', '2025-05-09 18:26:38');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `desafio`
 --
 
@@ -108,6 +165,7 @@ CREATE TABLE `desafio` (
 CREATE TABLE `divisas` (
   `Divisa_ID` int(10) UNSIGNED NOT NULL,
   `nombre` varchar(255) NOT NULL,
+  `tasa_cambio` decimal(10,4) DEFAULT NULL,
   `fecha_creacion` date DEFAULT NULL,
   `estado` tinyint(1) NOT NULL DEFAULT 1,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -118,9 +176,9 @@ CREATE TABLE `divisas` (
 -- Volcado de datos para la tabla `divisas`
 --
 
-INSERT INTO `divisas` (`Divisa_ID`, `nombre`, `fecha_creacion`, `estado`, `created_at`, `updated_at`) VALUES
-(1, 'USD', '2025-04-21', 1, '2025-04-21 16:19:36', '2025-04-21 16:19:55'),
-(2, 'MXN', '2025-04-27', 1, '2025-04-27 07:40:53', '2025-04-27 07:40:53');
+INSERT INTO `divisas` (`Divisa_ID`, `nombre`, `tasa_cambio`, `fecha_creacion`, `estado`, `created_at`, `updated_at`) VALUES
+(1, 'USD', 19.5000, '2025-04-21', 1, '2025-04-21 16:19:36', '2025-04-21 16:19:55'),
+(2, 'MXN', 1.0000, '2025-04-27', 1, '2025-04-27 07:40:53', '2025-04-27 07:40:53');
 
 -- --------------------------------------------------------
 
@@ -239,7 +297,140 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (24, '2025_04_25_022606_add_ciudad_localidad_edad_fecha_to_paciente_table', 12),
 (25, '2025_04_26_011710_create_documento_table', 13),
 (26, '2025_04_26_013437_create_pago_table', 13),
-(27, '2025_04_27_100702_create_tipo_consulta_table', 14);
+(27, '2025_04_27_100702_create_tipo_consulta_table', 14),
+(28, '2025_04_27_113218_create_consulta_table', 15),
+(29, '2025_04_28_011107_add_tasa_cambio_to_divisas_table', 16),
+(30, '2025_05_02_115248_create_consulta_table', 17),
+(31, '2025_05_02_120548_create_consulta_table', 18),
+(32, '2025_05_03_234540_create_consulta_table', 19),
+(33, '2025_05_04_104120_add_nombre_consultorio_direccion_estado_consulta_to_consulta_table', 20),
+(34, '2025_05_06_112453_add_mm_to_consulta_table', 21),
+(35, '2025_05_08_083615_create_reservaciones_table', 22),
+(36, '2025_05_08_083642_create_notificaciones_create', 23),
+(37, '2025_05_08_093900_create_reservaciones_table', 24),
+(38, '2025_05_08_093934_create_notificaciones_table', 25),
+(39, '2025_05_08_101312_create_reservaciones_table', 26),
+(40, '2025_05_08_101350_create_notificaciones_table', 27),
+(41, '2025_05_09_121643_create_reservaciones_table', 28),
+(42, '2025_05_09_121759_create_reservaciones_table', 29),
+(43, '2025_05_09_121834_create_notificaciones_table', 30),
+(44, '2025_05_09_122148_create_reservaciones_table', 31),
+(45, '2025_05_09_122225_create_notificaciones_table', 32),
+(46, '2025_05_09_230257_create_reservaciones_table', 33),
+(47, '2025_05_09_230400_create_notificaciones_table', 34),
+(48, '2025_05_09_231316_create_reservaciones_table', 35),
+(49, '2025_05_09_231352_create_notificaciones_table', 35),
+(50, '2025_05_09_235815_create_reservaciones_table', 36),
+(51, '2025_05_09_235844_create_notificaciones_table', 36),
+(52, '2025_05_10_011416_create_reservacion_table', 37),
+(53, '2025_05_10_011827_create_notificaciones_table', 37),
+(54, '2025_05_10_024357_create_reservaciones_table', 38),
+(55, '2025_05_10_024523_create_notificaciones_table', 38);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `notificaciones`
+--
+
+CREATE TABLE `notificaciones` (
+  `Notificacion_ID` int(10) UNSIGNED NOT NULL,
+  `Reservacion_ID` int(10) UNSIGNED DEFAULT NULL,
+  `Chat_ID` int(10) UNSIGNED DEFAULT NULL,
+  `Paciente_ID` int(10) UNSIGNED DEFAULT NULL,
+  `Consulta_ID` int(10) UNSIGNED DEFAULT NULL,
+  `tipo_notificacion` tinyint(4) NOT NULL,
+  `nombre` varchar(255) DEFAULT NULL,
+  `apellidos` varchar(255) DEFAULT NULL,
+  `foto` varchar(255) DEFAULT NULL,
+  `descripcion_mensaje` text NOT NULL,
+  `nombre_consultorio` text DEFAULT NULL,
+  `direccion_consultorio` text DEFAULT NULL,
+  `nombre_nutriologo` text DEFAULT NULL,
+  `status` tinyint(4) NOT NULL DEFAULT 0,
+  `estado` tinyint(4) NOT NULL DEFAULT 1,
+  `tiempo_transcurrido` varchar(255) DEFAULT NULL,
+  `fecha_creacion` datetime NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `user_id` bigint(20) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `notificaciones`
+--
+
+INSERT INTO `notificaciones` (`Notificacion_ID`, `Reservacion_ID`, `Chat_ID`, `Paciente_ID`, `Consulta_ID`, `tipo_notificacion`, `nombre`, `apellidos`, `foto`, `descripcion_mensaje`, `nombre_consultorio`, `direccion_consultorio`, `nombre_nutriologo`, `status`, `estado`, `tiempo_transcurrido`, `fecha_creacion`, `created_at`, `updated_at`, `user_id`) VALUES
+(1, 1, NULL, NULL, NULL, 1, 'Juanito', 'López', NULL, 'Nueva cita programada para   el día 2025-05-11 10:00 (Estado: En espera)', NULL, NULL, NULL, 0, 1, '0 seconds ago', '2025-05-10 02:46:18', '2025-05-10 08:46:18', '2025-05-10 08:46:18', 2),
+(2, 1, NULL, NULL, NULL, 1, 'Juanito', 'López', NULL, 'Tu cita ha sido actualizada en NutriVida Campeche Calle 20 #158, Col. Centro, Calkiní, Campeche, C.P. 24900 con estado: En progreso para el día 2025-05-11 10:00', NULL, NULL, NULL, 0, 1, '0 seconds ago', '2025-05-10 02:55:55', '2025-05-10 08:55:55', '2025-05-10 08:55:55', 2),
+(3, 2, NULL, NULL, NULL, 1, 'Francisco', 'López', NULL, 'Nueva cita programada para   el día 2025-05-13 11:00 (Estado: En espera)', NULL, NULL, 'Alan Antony Puc Yam', 0, 1, '0 seconds ago', '2025-05-10 02:59:56', '2025-05-10 08:59:56', '2025-05-10 08:59:56', 2),
+(4, 2, NULL, NULL, NULL, 1, 'Francisco', 'López', NULL, 'Tu cita ha sido actualizada en Clínica NutriBalance Calle 13 No. 206 por 20 y 22, Col. Centro, Champotón, Campeche, C.P. 24400 con estado: En progreso para el día 2025-05-13 11:00', 'Clínica NutriBalance', 'Calle 13 No. 206 por 20 y 22, Col. Centro, Champotón, Campeche, C.P. 24400', 'Alan Antony Puc Yam', 0, 1, '0 seconds ago', '2025-05-10 03:00:46', '2025-05-10 09:00:46', '2025-05-10 09:00:46', 2),
+(5, 1, NULL, NULL, NULL, 1, 'Juanito', 'López', NULL, 'Tu cita ha sido actualizada en NutriVida Campeche Calle 20 #158, Col. Centro, Calkiní, Campeche, C.P. 24900 con estado: Próxima consulta para el día 2025-05-16 13:00', 'NutriVida Campeche', 'Calle 20 #158, Col. Centro, Calkiní, Campeche, C.P. 24900', 'Alan Antony Puc Yam', 0, 1, '0 seconds ago', '2025-05-10 03:05:48', '2025-05-10 09:05:48', '2025-05-10 09:05:48', 2),
+(6, 3, NULL, NULL, NULL, 1, 'Juanito', 'López', NULL, 'Tu cita ha sido actualizada en NutriVida Campeche Calle 20 #158, Col. Centro, Calkiní, Campeche, C.P. 24900 con estado: En espera para el día 2025-05-16 13:00', 'NutriVida Campeche', 'Calle 20 #158, Col. Centro, Calkiní, Campeche, C.P. 24900', 'Alan Antony Puc Yam', 0, 1, '0 seconds ago', '2025-05-10 03:05:48', '2025-05-10 09:05:48', '2025-05-10 09:05:48', 2),
+(7, 2, NULL, NULL, NULL, 1, 'Francisco', 'López', NULL, 'Tu cita ha sido actualizada en Clínica NutriBalance Calle 13 No. 206 por 20 y 22, Col. Centro, Champotón, Campeche, C.P. 24400 con estado: Próxima consulta para el día 2025-05-30 14:00', 'Clínica NutriBalance', 'Calle 13 No. 206 por 20 y 22, Col. Centro, Champotón, Campeche, C.P. 24400', 'Alan Antony Puc Yam', 0, 1, '0 seconds ago', '2025-05-10 03:16:09', '2025-05-10 09:16:09', '2025-05-10 09:16:09', 2),
+(8, 4, NULL, NULL, NULL, 1, 'Francisco', 'López', NULL, 'Tu cita ha sido actualizada en Clínica NutriBalance Calle 13 No. 206 por 20 y 22, Col. Centro, Champotón, Campeche, C.P. 24400 con estado: En espera para el día 2025-05-30 14:00', 'Clínica NutriBalance', 'Calle 13 No. 206 por 20 y 22, Col. Centro, Champotón, Campeche, C.P. 24400', 'Alan Antony Puc Yam', 0, 1, '0 seconds ago', '2025-05-10 03:16:09', '2025-05-10 09:16:09', '2025-05-10 09:16:09', 2),
+(9, 5, NULL, NULL, NULL, 1, 'Javier', 'López', NULL, 'Nueva cita programada para   el día 2025-05-15 09:00con el Nut.Alan Antony Puc Yam (Estado: En espera)', NULL, NULL, 'Alan Antony Puc Yam', 0, 1, '0 seconds ago', '2025-05-10 03:23:36', '2025-05-10 09:23:36', '2025-05-10 09:23:36', 2),
+(10, 5, NULL, NULL, NULL, 1, 'Javier', 'López', NULL, 'Tu cita ha sido actualizada en Centro Integral NutriVida Av. 22 No. 102 por 15 y 17, Barrio San Luis, Calkiní, Campeche, C.P. 24900 con estado: En progreso para el día 2025-05-15 09:00', 'Centro Integral NutriVida', 'Av. 22 No. 102 por 15 y 17, Barrio San Luis, Calkiní, Campeche, C.P. 24900', 'Alan Antony Puc Yam', 0, 1, '0 seconds ago', '2025-05-10 03:24:34', '2025-05-10 09:24:34', '2025-05-10 09:24:34', 2),
+(11, 5, NULL, NULL, NULL, 1, 'Javier', 'López', NULL, 'Tu cita ha sido actualizada en Centro Integral NutriVida Av. 22 No. 102 por 15 y 17, Barrio San Luis, Calkiní, Campeche, C.P. 24900con el Nut. Alan Antony Puc Yam con estado: Próxima consulta para el día 2025-05-28 15:00', 'Centro Integral NutriVida', 'Av. 22 No. 102 por 15 y 17, Barrio San Luis, Calkiní, Campeche, C.P. 24900', 'Alan Antony Puc Yam', 0, 1, '0 seconds ago', '2025-05-10 03:26:30', '2025-05-10 09:26:30', '2025-05-10 09:26:30', 2),
+(12, 6, NULL, NULL, NULL, 1, 'Javier', 'López', NULL, 'Tu cita ha sido actualizada en Centro Integral NutriVida Av. 22 No. 102 por 15 y 17, Barrio San Luis, Calkiní, Campeche, C.P. 24900con el Nut. Alan Antony Puc Yam con estado: En espera para el día 2025-05-28 15:00', 'Centro Integral NutriVida', 'Av. 22 No. 102 por 15 y 17, Barrio San Luis, Calkiní, Campeche, C.P. 24900', 'Alan Antony Puc Yam', 0, 1, '0 seconds ago', '2025-05-10 03:26:30', '2025-05-10 09:26:30', '2025-05-10 09:26:30', 2),
+(13, 7, NULL, NULL, NULL, 1, 'Regina', 'Estrada', NULL, 'Nueva cita programada para   el día 2025-05-16 09:00con el Nut. Alan Antony Puc Yam (Estado: En espera)', NULL, NULL, 'Alan Antony Puc Yam', 0, 1, '0 seconds ago', '2025-05-10 03:40:24', '2025-05-10 09:40:24', '2025-05-10 09:40:24', 2),
+(14, 7, NULL, NULL, NULL, 1, 'Regina', 'Estrada', NULL, 'Tu cita ha sido actualizada en Consultorio Nutricional “Vida y Salud” Calle 20 #158 por 25 y 27, Col. Centro, Hecelchakán, Campechecon el Nut. Alan Antony Puc Yam con estado: En progreso para el día 2025-05-16 09:00', 'Consultorio Nutricional “Vida y Salud”', 'Calle 20 #158 por 25 y 27, Col. Centro, Hecelchakán, Campeche', 'Alan Antony Puc Yam', 0, 1, '0 seconds ago', '2025-05-10 03:41:15', '2025-05-10 09:41:15', '2025-05-10 09:41:15', 2),
+(15, 7, NULL, NULL, NULL, 1, 'Regina', 'Estrada', NULL, 'Tu cita ha sido actualizada en Consultorio Nutricional “Vida y Salud” Calle 20 #158 por 25 y 27, Col. Centro, Hecelchakán, Campechecon el Nut. Alan Antony Puc Yam con estado: Próxima consulta para el día 2025-05-31 09:00', 'Consultorio Nutricional “Vida y Salud”', 'Calle 20 #158 por 25 y 27, Col. Centro, Hecelchakán, Campeche', 'Alan Antony Puc Yam', 0, 1, '0 seconds ago', '2025-05-10 03:41:46', '2025-05-10 09:41:46', '2025-05-10 09:41:46', 2),
+(16, 8, NULL, NULL, NULL, 1, 'Regina', 'Estrada', NULL, 'Tu cita ha sido actualizada en Consultorio Nutricional “Vida y Salud” Calle 20 #158 por 25 y 27, Col. Centro, Hecelchakán, Campechecon el Nut. Alan Antony Puc Yam con estado: En espera para el día 2025-05-31 09:00', 'Consultorio Nutricional “Vida y Salud”', 'Calle 20 #158 por 25 y 27, Col. Centro, Hecelchakán, Campeche', 'Alan Antony Puc Yam', 0, 1, '0 seconds ago', '2025-05-10 03:41:46', '2025-05-10 09:41:46', '2025-05-10 09:41:46', 2),
+(17, 9, NULL, NULL, NULL, 1, 'Regina', 'Caceres', NULL, 'Nueva cita programada para   el día 2025-05-13 09:00con el Nut. Alan Antony Puc Yam (Estado: En espera)', NULL, NULL, 'Alan Antony Puc Yam', 0, 1, '0 seconds ago', '2025-05-10 03:47:24', '2025-05-10 09:47:24', '2025-05-10 09:47:24', 2),
+(18, 9, NULL, NULL, NULL, 1, 'Regina', 'Caceres', NULL, 'Tu cita ha sido actualizada en Consultorio Nutricional “Vida y Salud” Calle 20 #158 por 25 y 27, Col. Centro, Hecelchakán, Campechecon el Nut. Alan Antony Puc Yam con estado: En progreso para el día 2025-05-13 09:00', 'Consultorio Nutricional “Vida y Salud”', 'Calle 20 #158 por 25 y 27, Col. Centro, Hecelchakán, Campeche', 'Alan Antony Puc Yam', 0, 1, '0 seconds ago', '2025-05-10 03:47:54', '2025-05-10 09:47:54', '2025-05-10 09:47:54', 2),
+(19, 9, NULL, NULL, NULL, 1, 'Regina', 'Caceres', NULL, 'Tu cita ha sido actualizada en Consultorio Nutricional “Vida y Salud” Calle 20 #158 por 25 y 27, Col. Centro, Hecelchakán, Campechecon el Nut. Alan Antony Puc Yam con estado: Próxima consulta para el día 2025-05-26 15:00', 'Consultorio Nutricional “Vida y Salud”', 'Calle 20 #158 por 25 y 27, Col. Centro, Hecelchakán, Campeche', 'Alan Antony Puc Yam', 0, 1, '0 seconds ago', '2025-05-10 03:48:19', '2025-05-10 09:48:19', '2025-05-10 09:48:19', 2),
+(20, 10, NULL, NULL, NULL, 1, 'Isabel', 'Cuevas', NULL, 'Nueva cita programada para   el día 2025-05-18 09:00con el Nut. Alan Antony Puc Yam (Estado: En espera)', NULL, NULL, 'Alan Antony Puc Yam', 0, 1, '0 seconds ago', '2025-05-10 03:54:40', '2025-05-10 09:54:40', '2025-05-10 09:54:40', 2),
+(21, 10, NULL, NULL, NULL, 1, 'Isabel', 'Cuevas', NULL, 'Tu cita ha sido actualizada en Consultorio Nutricional “Vida y Salud” Calle 20 #158 por 25 y 27, Col. Centro, Hecelchakán, Campechecon el Nut. Alan Antony Puc Yam con estado: En progreso para el día 2025-05-18 09:00', 'Consultorio Nutricional “Vida y Salud”', 'Calle 20 #158 por 25 y 27, Col. Centro, Hecelchakán, Campeche', 'Alan Antony Puc Yam', 0, 1, '0 seconds ago', '2025-05-10 03:55:31', '2025-05-10 09:55:31', '2025-05-10 09:55:31', 2),
+(22, 10, NULL, NULL, NULL, 1, 'Isabel', 'Cuevas', NULL, 'Tu cita ha sido actualizada en Consultorio Nutricional “Vida y Salud” Calle 20 #158 por 25 y 27, Col. Centro, Hecelchakán, Campechecon el Nut. Alan Antony Puc Yam con estado: Próxima consulta para el día 2025-05-29 14:00', 'Consultorio Nutricional “Vida y Salud”', 'Calle 20 #158 por 25 y 27, Col. Centro, Hecelchakán, Campeche', 'Alan Antony Puc Yam', 0, 1, '0 seconds ago', '2025-05-10 03:55:53', '2025-05-10 09:55:53', '2025-05-10 09:55:53', 2),
+(23, 11, NULL, NULL, NULL, 1, 'Isabel', 'Cuevas', NULL, 'Tu cita ha sido actualizada en Consultorio Nutricional “Vida y Salud” Calle 20 #158 por 25 y 27, Col. Centro, Hecelchakán, Campechecon el Nut. Alan Antony Puc Yam con estado: En espera para el día 2025-05-29 14:00', 'Consultorio Nutricional “Vida y Salud”', 'Calle 20 #158 por 25 y 27, Col. Centro, Hecelchakán, Campeche', 'Alan Antony Puc Yam', 0, 1, '0 seconds ago', '2025-05-10 03:55:53', '2025-05-10 09:55:53', '2025-05-10 09:55:53', 2),
+(24, 12, NULL, NULL, NULL, 1, 'Alondra', 'Cuevas', NULL, 'Nueva cita programada para   el día 2025-05-18 09:00con el Nut. Alan Antony Puc Yam (Estado: En espera)', NULL, NULL, 'Alan Antony Puc Yam', 0, 1, '0 seconds ago', '2025-05-10 03:59:13', '2025-05-10 09:59:13', '2025-05-10 09:59:13', 2),
+(25, 12, NULL, NULL, NULL, 1, 'Alondra', 'Cuevas', NULL, 'Tu cita ha sido actualizada en Consultorio Nutricional “Vida y Salud” Calle 20 #158 por 25 y 27, Col. Centro, Hecelchakán, Campeche con el Nut. Alan Antony Puc Yam con estado: En progreso para el día 2025-05-18 09:00', 'Consultorio Nutricional “Vida y Salud”', 'Calle 20 #158 por 25 y 27, Col. Centro, Hecelchakán, Campeche', 'Alan Antony Puc Yam', 0, 1, '0 seconds ago', '2025-05-10 04:00:40', '2025-05-10 10:00:40', '2025-05-10 10:00:40', 2),
+(26, 12, NULL, NULL, NULL, 1, 'Alondra', 'Cuevas', NULL, 'Tu cita ha sido actualizada en Consultorio Nutricional “Vida y Salud” Calle 20 #158 por 25 y 27, Col. Centro, Hecelchakán, Campeche con el Nut. Alan Antony Puc Yam con estado: Próxima consulta para el día 2025-05-31 13:00', 'Consultorio Nutricional “Vida y Salud”', 'Calle 20 #158 por 25 y 27, Col. Centro, Hecelchakán, Campeche', 'Alan Antony Puc Yam', 0, 1, '0 seconds ago', '2025-05-10 04:01:03', '2025-05-10 10:01:03', '2025-05-10 10:01:03', 2),
+(27, 13, NULL, NULL, NULL, 1, 'Alondra', 'Cuevas', NULL, 'Tu cita ha sido actualizada en Consultorio Nutricional “Vida y Salud” Calle 20 #158 por 25 y 27, Col. Centro, Hecelchakán, Campeche con el Nut. Alan Antony Puc Yam con estado: En espera para el día 2025-05-31 13:00', 'Consultorio Nutricional “Vida y Salud”', 'Calle 20 #158 por 25 y 27, Col. Centro, Hecelchakán, Campeche', 'Alan Antony Puc Yam', 0, 1, '0 seconds ago', '2025-05-10 04:01:03', '2025-05-10 10:01:03', '2025-05-10 10:01:03', 2),
+(28, 14, NULL, NULL, NULL, 1, 'Jimena', 'Cuevas', NULL, 'Nueva cita programada para   el día 2025-05-10 09:00 con el Nut. Alan Antony Puc Yam (Estado: En espera)', NULL, NULL, 'Alan Antony Puc Yam', 0, 1, '0 seconds ago', '2025-05-10 04:08:38', '2025-05-10 10:08:38', '2025-05-10 10:08:38', 2),
+(29, 14, NULL, NULL, NULL, 1, 'Jimena', 'Cuevas', NULL, 'Tu cita ha sido actualizada en NutriVida Campeche Calle 20 #158 por 25 y 27, Col. Centro, Hecelchakán, Campeche con el Nut. Alan Antony Puc Yam con estado: En progreso para el día 2025-05-10 09:00', 'NutriVida Campeche', 'Calle 20 #158 por 25 y 27, Col. Centro, Hecelchakán, Campeche', 'Alan Antony Puc Yam', 0, 1, '0 seconds ago', '2025-05-10 04:08:59', '2025-05-10 10:08:59', '2025-05-10 10:08:59', 2),
+(30, 14, NULL, NULL, NULL, 1, 'Jimena', 'Cuevas', NULL, 'Tu cita ha sido actualizada en NutriVida Campeche Calle 20 #158 por 25 y 27, Col. Centro, Hecelchakán, Campeche con el Nut. Alan Antony Puc Yam con estado: Próxima consulta para el día 2025-05-30 12:00', 'NutriVida Campeche', 'Calle 20 #158 por 25 y 27, Col. Centro, Hecelchakán, Campeche', 'Alan Antony Puc Yam', 0, 1, '0 seconds ago', '2025-05-10 04:09:24', '2025-05-10 10:09:24', '2025-05-10 10:09:24', 2),
+(31, 15, NULL, NULL, NULL, 1, 'Jimena', 'Cuevas', NULL, 'Tu cita ha sido actualizada en NutriVida Campeche Calle 20 #158 por 25 y 27, Col. Centro, Hecelchakán, Campeche con el Nut. Alan Antony Puc Yam con estado: En espera para el día 2025-05-30 12:00', 'NutriVida Campeche', 'Calle 20 #158 por 25 y 27, Col. Centro, Hecelchakán, Campeche', 'Alan Antony Puc Yam', 0, 1, '0 seconds ago', '2025-05-10 04:09:24', '2025-05-10 10:09:24', '2025-05-10 10:09:24', 2),
+(32, 16, NULL, NULL, NULL, 1, 'Berenice', 'Cuevas', NULL, 'Nueva cita programada para   el día 2025-05-10 09:00 con el Nut. Alan Antony Puc Yam (Estado: En espera)', NULL, NULL, 'Alan Antony Puc Yam', 0, 1, '0 seconds ago', '2025-05-10 04:13:00', '2025-05-10 10:13:00', '2025-05-10 10:13:00', 2),
+(33, 16, NULL, NULL, NULL, 1, 'Berenice', 'Cuevas', NULL, 'Tu cita ha sido actualizada en Consultorio Nutricional “Vida y Salud” Calle 20 #158 por 25 y 27, Col. Centro, Hecelchakán, Campeche con el Nut. Alan Antony Puc Yam con estado: En progreso para el día 2025-05-10 09:00', 'Consultorio Nutricional “Vida y Salud”', 'Calle 20 #158 por 25 y 27, Col. Centro, Hecelchakán, Campeche', 'Alan Antony Puc Yam', 0, 1, '0 seconds ago', '2025-05-10 04:14:37', '2025-05-10 10:14:37', '2025-05-10 10:14:37', 2),
+(34, 16, NULL, NULL, NULL, 1, 'Berenice', 'Cuevas', NULL, 'Tu cita ha sido actualizada en Consultorio Nutricional “Vida y Salud” Calle 20 #158 por 25 y 27, Col. Centro, Hecelchakán, Campeche con el Nut. Alan Antony Puc Yam con estado: Próxima consulta para el día 2025-05-28 15:00', 'Consultorio Nutricional “Vida y Salud”', 'Calle 20 #158 por 25 y 27, Col. Centro, Hecelchakán, Campeche', 'Alan Antony Puc Yam', 0, 1, '0 seconds ago', '2025-05-10 04:15:13', '2025-05-10 10:15:13', '2025-05-10 10:15:13', 2),
+(35, 17, NULL, NULL, NULL, 1, 'Berenice', 'Cuevas', NULL, 'Tu cita ha sido actualizada en Consultorio Nutricional “Vida y Salud” Calle 20 #158 por 25 y 27, Col. Centro, Hecelchakán, Campeche con el Nut. Alan Antony Puc Yam con estado: En espera para el día 2025-05-28 15:00', 'Consultorio Nutricional “Vida y Salud”', 'Calle 20 #158 por 25 y 27, Col. Centro, Hecelchakán, Campeche', 'Alan Antony Puc Yam', 0, 1, '0 seconds ago', '2025-05-10 04:15:13', '2025-05-10 10:15:13', '2025-05-10 10:15:13', 2),
+(36, 18, NULL, NULL, NULL, 1, 'Alice', 'Cuevas', NULL, 'Nueva cita programada para   el día 2025-05-16 09:00 con el Nut. Alan Antony Puc Yam (Estado: En espera)', NULL, NULL, 'Alan Antony Puc Yam', 0, 1, '0 seconds ago', '2025-05-10 04:18:12', '2025-05-10 10:18:12', '2025-05-10 10:18:12', 2),
+(37, 18, NULL, NULL, NULL, 1, 'Alice', 'Cuevas', NULL, 'Tu cita ha sido actualizada en Consultorio Nutricional “Vida y Salud” Calle 20 #158 por 25 y 27, Col. Centro, Hecelchakán, Campeche con el Nut. Alan Antony Puc Yam con estado: En progreso para el día 2025-05-16 09:00', 'Consultorio Nutricional “Vida y Salud”', 'Calle 20 #158 por 25 y 27, Col. Centro, Hecelchakán, Campeche', 'Alan Antony Puc Yam', 0, 1, '0 seconds ago', '2025-05-10 04:18:37', '2025-05-10 10:18:37', '2025-05-10 10:18:37', 2),
+(38, 18, NULL, NULL, NULL, 1, 'Alice', 'Cuevas', NULL, 'Tu cita ha sido actualizada en Consultorio Nutricional “Vida y Salud” Calle 20 #158 por 25 y 27, Col. Centro, Hecelchakán, Campeche con el Nut. Alan Antony Puc Yam con estado: Realizado para el día 2025-05-29 12:00', 'Consultorio Nutricional “Vida y Salud”', 'Calle 20 #158 por 25 y 27, Col. Centro, Hecelchakán, Campeche', 'Alan Antony Puc Yam', 0, 1, '0 seconds ago', '2025-05-10 04:18:59', '2025-05-10 10:18:59', '2025-05-10 10:18:59', 2),
+(39, 19, NULL, NULL, NULL, 1, 'Alice', 'Cuevas', NULL, 'Tu cita ha sido actualizada en Consultorio Nutricional “Vida y Salud” Calle 20 #158 por 25 y 27, Col. Centro, Hecelchakán, Campeche con el Nut. Alan Antony Puc Yam con estado: En espera para el día 2025-05-29 12:00', 'Consultorio Nutricional “Vida y Salud”', 'Calle 20 #158 por 25 y 27, Col. Centro, Hecelchakán, Campeche', 'Alan Antony Puc Yam', 0, 1, '0 seconds ago', '2025-05-10 04:18:59', '2025-05-10 10:18:59', '2025-05-10 10:18:59', 2),
+(40, 4, NULL, NULL, NULL, 1, 'Francisco', 'López', NULL, 'Tu cita ha sido actualizada en Clínica NutriBalance Calle 13 No. 206 por 20 y 22, Col. Centro, Champotón, Campeche, C.P. 24400 con el Nut. Alan Antony Puc Yam con estado: Cancelado para el día 2025-05-30 14:00', 'Clínica NutriBalance', 'Calle 13 No. 206 por 20 y 22, Col. Centro, Champotón, Campeche, C.P. 24400', 'Alan Antony Puc Yam', 0, 1, '0 seconds ago', '2025-05-10 04:21:46', '2025-05-10 10:21:46', '2025-05-10 10:21:46', 2),
+(41, 15, NULL, NULL, NULL, 1, 'Jimena', 'Cuevas', NULL, 'Tu cita ha sido actualizada en NutriVida Campeche Calle 20 #158 por 25 y 27, Col. Centro, Hecelchakán, Campeche con el Nut. Alan Antony Puc Yam con estado: Cancelado para el día Friday, 30 May 2025 a las 12:00', 'NutriVida Campeche', 'Calle 20 #158 por 25 y 27, Col. Centro, Hecelchakán, Campeche', 'Alan Antony Puc Yam', 0, 1, '0 seconds ago', '2025-05-10 04:33:12', '2025-05-10 10:33:12', '2025-05-10 10:33:12', 2),
+(42, 19, NULL, NULL, NULL, 1, 'Alice', 'Cuevas', NULL, 'Lamentamos informarle que su cita programada para el 2025-05-29 12:00 con el Nut. Alan Antony Puc Yam ha sido cancelada. Para reagendar, puede contactarnos o seleccionar otro horario disponible en nuestro sistema. Agradecemos su comprensión.', 'Consultorio Nutricional “Vida y Salud”', 'Calle 20 #158 por 25 y 27, Col. Centro, Hecelchakán, Campeche', 'Alan Antony Puc Yam', 0, 1, '0 seconds ago', '2025-05-10 04:38:14', '2025-05-10 10:38:14', '2025-05-10 10:38:14', 2),
+(43, 20, NULL, NULL, NULL, 1, 'Alicete', 'Cuevas', NULL, 'Nueva cita programada para   el día 2025-05-16 09:00 con el Nut. Alan Antony Puc Yam (Estado: En espera)', NULL, NULL, 'Alan Antony Puc Yam', 1, 1, '0 seconds ago', '2025-05-10 05:10:42', '2025-05-10 11:10:42', '2025-05-10 16:55:50', 2),
+(44, 17, NULL, NULL, NULL, 1, 'Berenice', 'Cuevas', NULL, 'Lamentamos informarle que su cita programada para el 2025-05-28 15:00 con el Nut. Alan Antony Puc Yam ha sido cancelada. Para reagendar, puede contactarnos o seleccionar otro horario disponible en nuestro sistema. Agradecemos su comprensión.', 'Consultorio Nutricional “Vida y Salud”', 'Calle 20 #158 por 25 y 27, Col. Centro, Hecelchakán, Campeche', 'Alan Antony Puc Yam', 0, 1, '0 seconds ago', '2025-05-10 08:01:24', '2025-05-10 14:01:24', '2025-05-10 14:01:24', 2),
+(45, 21, NULL, NULL, NULL, 1, 'Miko', 'Reborth', NULL, 'Nueva cita programada para   el día 2025-05-12 16:00 con el Nut. Alan Antony Puc Yam (Estado: En espera)', NULL, NULL, 'Alan Antony Puc Yam', 0, 1, '0 seconds ago', '2025-05-10 08:30:25', '2025-05-10 14:30:25', '2025-05-10 14:30:25', 2),
+(46, 21, NULL, NULL, NULL, 1, 'Miko', 'Reborth', NULL, 'Tu cita ha sido actualizada en Consultorio Nutricional “Vida y Salud” Calle 20 #158 por 25 y 27, Col. Centro, Hecelchakán, Campeche con el Nut. Alan Antony Puc Yam con estado: En progreso para el día 2025-05-24 17:00', 'Consultorio Nutricional “Vida y Salud”', 'Calle 20 #158 por 25 y 27, Col. Centro, Hecelchakán, Campeche', 'Alan Antony Puc Yam', 0, 1, '0 seconds ago', '2025-05-10 08:32:41', '2025-05-10 14:32:41', '2025-05-10 14:32:41', 2),
+(47, 21, NULL, NULL, NULL, 1, 'Miko', 'Reborth', NULL, 'Lamentamos informarle que su cita programada para el 2025-05-24 00:00 con el Nut. Alan Antony Puc Yam ha sido cancelada. Para reagendar, puede contactarnos o seleccionar otro horario disponible en nuestro sistema. Agradecemos su comprensión.', 'Consultorio Nutricional “Vida y Salud”', 'Calle 20 #158 por 25 y 27, Col. Centro, Hecelchakán, Campeche', 'Alan Antony Puc Yam', 0, 1, '0 seconds ago', '2025-05-10 08:33:43', '2025-05-10 14:33:43', '2025-05-10 14:33:43', 2),
+(48, 22, NULL, NULL, NULL, 1, 'Miko', 'Reborth', NULL, 'Nueva cita programada para   el día 2025-05-12 16:00 con el Nut. Alan Antony Puc Yam (Estado: En espera)', NULL, NULL, 'Alan Antony Puc Yam', 0, 1, '0 seconds ago', '2025-05-10 08:33:56', '2025-05-10 14:33:56', '2025-05-10 14:33:56', 2),
+(49, 22, NULL, NULL, NULL, 1, 'Miko', 'Reborth', NULL, 'Tu cita ha sido actualizada en Consultorio Nutricional “Vida y Salud” Calle 20 #158 por 25 y 27, Col. Centro, Hecelchakán, Campeche con el Nut. Alan Antony Puc Yam con estado: En progreso para el día 2025-05-12 16:00', 'Consultorio Nutricional “Vida y Salud”', 'Calle 20 #158 por 25 y 27, Col. Centro, Hecelchakán, Campeche', 'Alan Antony Puc Yam', 0, 1, '0 seconds ago', '2025-05-10 08:34:26', '2025-05-10 14:34:26', '2025-05-10 14:34:26', 2),
+(50, 22, NULL, NULL, NULL, 1, 'Miko', 'Reborth', NULL, 'Tu cita ha sido actualizada en Consultorio Nutricional “Vida y Salud” Calle 20 #158 por 25 y 27, Col. Centro, Hecelchakán, Campeche con el Nut. Alan Antony Puc Yam con estado: Realizado para el día 2025-05-24 18:00', 'Consultorio Nutricional “Vida y Salud”', 'Calle 20 #158 por 25 y 27, Col. Centro, Hecelchakán, Campeche', 'Alan Antony Puc Yam', 0, 1, '0 seconds ago', '2025-05-10 08:35:44', '2025-05-10 14:35:44', '2025-05-10 14:35:44', 2),
+(51, 23, NULL, NULL, NULL, 1, 'Miko', 'Reborth', NULL, 'Tu cita ha sido actualizada en Consultorio Nutricional “Vida y Salud” Calle 20 #158 por 25 y 27, Col. Centro, Hecelchakán, Campeche con el Nut. Alan Antony Puc Yam con estado: En espera para el día 2025-05-24 18:00', 'Consultorio Nutricional “Vida y Salud”', 'Calle 20 #158 por 25 y 27, Col. Centro, Hecelchakán, Campeche', 'Alan Antony Puc Yam', 0, 1, '0 seconds ago', '2025-05-10 08:35:44', '2025-05-10 14:35:44', '2025-05-10 14:35:44', 2),
+(52, 24, NULL, NULL, NULL, 1, 'Alice', 'Reborth', NULL, 'Nueva cita programada para   el día 2025-05-12 16:00 con el Nut. Alan Antony Puc Yam (Estado: En espera)', NULL, NULL, 'Alan Antony Puc Yam', 1, 1, '0 seconds ago', '2025-05-10 11:38:19', '2025-05-10 17:38:19', '2025-05-10 18:45:49', 2),
+(53, 25, NULL, NULL, NULL, 1, 'Angel', 'Chan', NULL, 'Nueva cita programada para   el día 2025-05-20 14:00 con el Nut. Alan Antony Puc Yam (Estado: En espera)', NULL, NULL, 'Alan Antony Puc Yam', 1, 1, '0 seconds ago', '2025-05-10 12:28:01', '2025-05-10 18:28:01', '2025-05-10 18:48:14', 2),
+(54, 26, NULL, NULL, NULL, 1, 'Angel2', 'Chan', NULL, 'Nueva cita programada para   el día 2025-05-22 14:00 con el Nut. Alan Antony Puc Yam (Estado: En espera)', NULL, NULL, 'Alan Antony Puc Yam', 1, 1, '0 seconds ago', '2025-05-10 12:29:11', '2025-05-10 18:29:11', '2025-05-10 18:47:46', 2),
+(55, 27, NULL, NULL, NULL, 1, 'Melissa', 'Chan', NULL, 'Nueva cita programada para   el día 2025-05-23 14:00 con el Nut. Alan Antony Puc Yam (Estado: En espera)', NULL, NULL, 'Alan Antony Puc Yam', 1, 1, '0 seconds ago', '2025-05-10 12:34:19', '2025-05-10 18:34:19', '2025-05-10 18:49:04', 2),
+(56, 28, NULL, NULL, NULL, 1, 'Melissa', 'Chan', NULL, 'Nueva cita programada para   el día 2025-05-25 14:00 con el Nut. Alan Antony Puc Yam (Estado: En espera)', NULL, NULL, 'Alan Antony Puc Yam', 1, 1, '0 seconds ago', '2025-05-10 12:50:29', '2025-05-10 18:50:29', '2025-05-10 18:50:49', 2);
+
+--
+-- Disparadores `notificaciones`
+--
+DELIMITER $$
+CREATE TRIGGER `update_reservacion_notificacion_id` AFTER INSERT ON `notificaciones` FOR EACH ROW BEGIN
+                IF NEW.Reservacion_ID IS NOT NULL AND NEW.tipo_notificacion = 1 THEN
+                    UPDATE reservaciones
+                    SET Ultima_Notificacion_ID = NEW.Notificacion_ID
+                    WHERE Reservacion_ID = NEW.Reservacion_ID;
+                END IF;
+            END
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -291,10 +482,11 @@ CREATE TABLE `paciente` (
 --
 
 INSERT INTO `paciente` (`Paciente_ID`, `foto`, `nombre`, `apellidos`, `email`, `telefono`, `genero`, `usuario`, `rol_id`, `user_id`, `enfermedad`, `status`, `estado`, `ciudad`, `localidad`, `edad`, `fecha_nacimiento`, `fecha_creacion`, `created_at`, `updated_at`) VALUES
-(1, 'http://127.0.0.1:8000/storage/pacientes/1745495611_regina.png', 'Regina', 'Estrada', 'Estrada21@gmail.com', '9995241085', 'Femenino', 'ResgEstrada', 2, 2, 'Hipertension', 1, 1, 'Calkini', 'Campeche', 23, '2003-04-09', '2025-04-23', '2025-04-24 04:38:13', '2025-04-25 17:51:49'),
-(2, 'http://127.0.0.1:8000/storage/pacientes/1745458516_testcom.jpg', 'Lyura', 'Celestina', 'Celestina@gmail.com', '9961052845', 'Femenino', 'Celestina', 2, 2, 'Hepatitis B', 0, 1, 'Pomuch', 'Campeche', 25, '2003-04-24', '2025-04-23', '2025-04-24 04:47:21', '2025-04-25 17:58:28'),
-(3, NULL, 'Angelica', 'Moreno', 'angelicaMron@gmail.com', '9961018212', 'Femenino', 'asfsfasfasfss', 2, 2, 'Artritis,Cancer Pulmonar', 1, 1, NULL, NULL, NULL, NULL, '2025-04-23', '2025-04-24 05:26:36', '2025-04-25 18:29:56'),
-(4, 'http://127.0.0.1:8000/storage/pacientes/1745454970_alan-antony.jpeg', 'Alan Antony', 'Puc Yam', 'lyon_arthur2@hotmail.com', '9961018215', 'Masculino', 'Lyon_Arthur', 2, 2, 'Ninguna', 1, 1, NULL, NULL, NULL, NULL, '2025-04-24', '2025-04-24 06:36:10', '2025-04-24 17:49:48');
+(1, 'http://127.0.0.1:8000/storage/pacientes/1745495611_regina.png', 'Regina', 'Estrada', 'Estrada21@gmail.com', '9995241085', 'Femenino', 'ResgEstrada', 2, 2, 'Hipertension', 1, 1, 'Calkini', 'Campeche', 24, '2003-04-09', '2025-04-23', '2025-04-24 04:38:13', '2025-05-05 16:58:52'),
+(2, 'http://127.0.0.1:8000/storage/pacientes/1745458516_testcom.jpg', 'Lyura', 'Celestina', 'Celestina@gmail.com', '9961052845', 'Femenino', 'Celestina', 2, 2, 'Hepatitis B', 1, 1, 'Pomuch', 'Campeche', 25, '2003-04-24', '2025-04-23', '2025-04-24 04:47:21', '2025-05-08 01:36:09'),
+(3, NULL, 'Angelica', 'Moreno', 'angelicaMron@gmail.com', '9961018212', 'Femenino', 'asfsfasfasfss', 2, 2, 'Artritis,Cancer Pulmonar', 1, 1, 'Nunkini', 'Campeche', 28, '1998-05-29', '2025-04-23', '2025-04-24 05:26:36', '2025-05-07 08:53:06'),
+(4, 'http://127.0.0.1:8000/storage/pacientes/1745454970_alan-antony.jpeg', 'Alan Antony', 'Puc Yam', 'lyon_arthur2@hotmail.com', '9961018215', 'Masculino', 'Lyon_Arthur', 2, 2, 'Ninguna', 1, 1, NULL, NULL, NULL, NULL, '2025-04-24', '2025-04-24 06:36:10', '2025-04-24 17:49:48'),
+(5, 'http://127.0.0.1:8000/storage/pacientes/1746409781_alcrya.png', 'Alcrya', 'Lumina', 'LyrcaLumina@gmail.com', '9961025841', 'Femenino', 'Alcrya Lumina', 2, 2, 'Disformia,Hipertensión', 1, 1, 'Merida', 'Yucatán', 20, '2002-12-12', '2025-05-05', '2025-05-05 07:48:39', '2025-05-05 07:51:54');
 
 -- --------------------------------------------------------
 
@@ -354,6 +546,71 @@ CREATE TABLE `plan_list` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `reservaciones`
+--
+
+CREATE TABLE `reservaciones` (
+  `Reservacion_ID` int(10) UNSIGNED NOT NULL,
+  `Consulta_ID` int(10) UNSIGNED DEFAULT NULL,
+  `Paciente_ID` int(10) UNSIGNED DEFAULT NULL,
+  `Ultima_Notificacion_ID` int(10) UNSIGNED DEFAULT NULL,
+  `nombre_paciente` varchar(255) NOT NULL,
+  `apellidos` varchar(255) NOT NULL,
+  `telefono` varchar(255) DEFAULT NULL,
+  `genero` varchar(255) DEFAULT NULL,
+  `usuario` varchar(255) DEFAULT NULL,
+  `edad` int(11) DEFAULT NULL,
+  `precio_cita` decimal(8,2) DEFAULT NULL,
+  `motivo_consulta` text DEFAULT NULL,
+  `nombre_consultorio` text DEFAULT NULL,
+  `direccion_consultorio` text DEFAULT NULL,
+  `nombre_nutriologo` text DEFAULT NULL,
+  `fecha_consulta` datetime NOT NULL,
+  `fecha_proximaConsulta` datetime DEFAULT NULL,
+  `estado_proximaConsulta` tinyint(4) NOT NULL DEFAULT 0,
+  `origen` enum('movil','web') NOT NULL DEFAULT 'web',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `user_id` bigint(20) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `reservaciones`
+--
+
+INSERT INTO `reservaciones` (`Reservacion_ID`, `Consulta_ID`, `Paciente_ID`, `Ultima_Notificacion_ID`, `nombre_paciente`, `apellidos`, `telefono`, `genero`, `usuario`, `edad`, `precio_cita`, `motivo_consulta`, `nombre_consultorio`, `direccion_consultorio`, `nombre_nutriologo`, `fecha_consulta`, `fecha_proximaConsulta`, `estado_proximaConsulta`, `origen`, `created_at`, `updated_at`, `user_id`) VALUES
+(1, NULL, NULL, 5, 'Juanito', 'López', '5551234567', 'Masculino', 'juanperez', 30, 585.00, 'Consulta nutricional inicial', 'NutriVida Campeche', 'Calle 20 #158, Col. Centro, Calkiní, Campeche, C.P. 24900', 'Alan Antony Puc Yam', '2025-05-11 10:00:00', '2025-05-16 13:00:00', 3, 'web', '2025-05-10 08:46:18', '2025-05-10 09:05:48', 2),
+(2, NULL, NULL, 7, 'Francisco', 'López', '5551234567', 'Masculino', 'juanperez', 30, 585.00, 'Consulta nutricional inicial', 'Clínica NutriBalance', 'Calle 13 No. 206 por 20 y 22, Col. Centro, Champotón, Campeche, C.P. 24400', 'Alan Antony Puc Yam', '2025-05-13 11:00:00', '2025-05-30 14:00:00', 2, 'web', '2025-05-10 08:59:56', '2025-05-10 09:16:09', 2),
+(3, NULL, NULL, 6, 'Juanito', 'López', '5551234567', 'Masculino', 'juanperez', 30, 585.00, 'Seguimiento: Consulta nutricional inicial', 'NutriVida Campeche', 'Calle 20 #158, Col. Centro, Calkiní, Campeche, C.P. 24900', 'Alan Antony Puc Yam', '2025-05-16 13:00:00', NULL, 4, 'web', '2025-05-10 09:05:48', '2025-05-10 09:05:48', 2),
+(4, NULL, NULL, 40, 'Francisco', 'López', '5551234567', 'Masculino', 'juanperez', 30, 585.00, 'Seguimiento: Consulta nutricional inicial', 'Clínica NutriBalance', 'Calle 13 No. 206 por 20 y 22, Col. Centro, Champotón, Campeche, C.P. 24400', 'Alan Antony Puc Yam', '2025-05-30 14:00:00', NULL, 0, 'web', '2025-05-10 09:16:09', '2025-05-10 10:21:46', 2),
+(5, NULL, NULL, 11, 'Javier', 'López', '5551234567', 'Masculino', 'juanperez', 30, 585.00, 'Consulta nutricional inicial', 'Centro Integral NutriVida', 'Av. 22 No. 102 por 15 y 17, Barrio San Luis, Calkiní, Campeche, C.P. 24900', 'Alan Antony Puc Yam', '2025-05-15 09:00:00', '2025-05-28 15:00:00', 2, 'web', '2025-05-10 09:23:36', '2025-05-10 09:26:30', 2),
+(6, NULL, NULL, 12, 'Javier', 'López', '5551234567', 'Masculino', 'juanperez', 30, 585.00, 'Seguimiento: Consulta nutricional inicial', 'Centro Integral NutriVida', 'Av. 22 No. 102 por 15 y 17, Barrio San Luis, Calkiní, Campeche, C.P. 24900', 'Alan Antony Puc Yam', '2025-05-28 15:00:00', NULL, 4, 'web', '2025-05-10 09:26:30', '2025-05-10 09:26:30', 2),
+(7, NULL, NULL, 15, 'Regina', 'Estrada', '5551234567', 'Femenino', 'Regina', 30, 585.00, 'Consulta nutricional inicial', 'Consultorio Nutricional “Vida y Salud”', 'Calle 20 #158 por 25 y 27, Col. Centro, Hecelchakán, Campeche', 'Alan Antony Puc Yam', '2025-05-16 09:00:00', '2025-05-31 09:00:00', 2, 'web', '2025-05-10 09:40:24', '2025-05-10 09:41:46', 2),
+(8, NULL, NULL, 16, 'Regina', 'Estrada', '5551234567', 'Femenino', 'Regina', 30, 585.00, 'Seguimiento: Consulta nutricional inicial', 'Consultorio Nutricional “Vida y Salud”', 'Calle 20 #158 por 25 y 27, Col. Centro, Hecelchakán, Campeche', 'Alan Antony Puc Yam', '2025-05-31 09:00:00', NULL, 4, 'web', '2025-05-10 09:41:46', '2025-05-10 09:41:46', 2),
+(9, NULL, NULL, 19, 'Regina', 'Caceres', '5551234567', 'Femenino', 'ReginaCaceres', 30, 585.00, 'Consulta nutricional inicial', 'Consultorio Nutricional “Vida y Salud”', 'Calle 20 #158 por 25 y 27, Col. Centro, Hecelchakán, Campeche', 'Alan Antony Puc Yam', '2025-05-13 09:00:00', '2025-05-26 15:00:00', 2, 'web', '2025-05-10 09:47:24', '2025-05-10 09:48:19', 2),
+(10, NULL, NULL, 22, 'Isabel', 'Cuevas', '5551234567', 'Femenino', 'MOnsee', 30, 585.00, 'Consulta nutricional inicial', 'Consultorio Nutricional “Vida y Salud”', 'Calle 20 #158 por 25 y 27, Col. Centro, Hecelchakán, Campeche', 'Alan Antony Puc Yam', '2025-05-18 09:00:00', '2025-05-29 14:00:00', 2, 'web', '2025-05-10 09:54:40', '2025-05-10 09:55:53', 2),
+(11, NULL, NULL, 23, 'Isabel', 'Cuevas', '5551234567', 'Femenino', 'MOnsee', 30, 585.00, 'Seguimiento: Consulta nutricional inicial', 'Consultorio Nutricional “Vida y Salud”', 'Calle 20 #158 por 25 y 27, Col. Centro, Hecelchakán, Campeche', 'Alan Antony Puc Yam', '2025-05-29 14:00:00', NULL, 4, 'web', '2025-05-10 09:55:53', '2025-05-10 09:55:53', 2),
+(12, NULL, NULL, 26, 'Alondra', 'Cuevas', '5551234567', 'Femenino', 'Alondra', 30, 585.00, 'Consulta nutricional inicial', 'Consultorio Nutricional “Vida y Salud”', 'Calle 20 #158 por 25 y 27, Col. Centro, Hecelchakán, Campeche', 'Alan Antony Puc Yam', '2025-05-18 09:00:00', '2025-05-31 13:00:00', 2, 'web', '2025-05-10 09:59:13', '2025-05-10 10:01:03', 2),
+(13, NULL, NULL, 27, 'Alondra', 'Cuevas', '5551234567', 'Femenino', 'Alondra', 30, 585.00, 'Seguimiento: Consulta nutricional inicial', 'Consultorio Nutricional “Vida y Salud”', 'Calle 20 #158 por 25 y 27, Col. Centro, Hecelchakán, Campeche', 'Alan Antony Puc Yam', '2025-05-31 13:00:00', NULL, 4, 'web', '2025-05-10 10:01:03', '2025-05-10 10:01:03', 2),
+(14, NULL, NULL, 30, 'Jimena', 'Cuevas', '5551234567', 'Femenino', 'Jimena', 30, 585.00, 'Consulta nutricional inicial', 'NutriVida Campeche', 'Calle 20 #158 por 25 y 27, Col. Centro, Hecelchakán, Campeche', 'Alan Antony Puc Yam', '2025-05-10 09:00:00', '2025-05-30 12:00:00', 2, 'web', '2025-05-10 10:08:38', '2025-05-10 10:09:24', 2),
+(15, NULL, NULL, 41, 'Jimena', 'Cuevas', '5551234567', 'Femenino', 'Jimena', 30, 585.00, 'Seguimiento: Consulta nutricional inicial', 'NutriVida Campeche', 'Calle 20 #158 por 25 y 27, Col. Centro, Hecelchakán, Campeche', 'Alan Antony Puc Yam', '2025-05-30 12:00:00', NULL, 0, 'web', '2025-05-10 10:09:24', '2025-05-10 10:33:12', 2),
+(16, NULL, NULL, 34, 'Berenice', 'Cuevas', '5551234567', 'Femenino', 'Berenice', 30, 585.00, 'Consulta nutricional inicial', 'Consultorio Nutricional “Vida y Salud”', 'Calle 20 #158 por 25 y 27, Col. Centro, Hecelchakán, Campeche', 'Alan Antony Puc Yam', '2025-05-10 09:00:00', '2025-05-28 15:00:00', 2, 'web', '2025-05-10 10:13:00', '2025-05-10 10:15:13', 2),
+(17, NULL, NULL, 44, 'Berenice', 'Cuevas', '5551234567', 'Femenino', 'Berenice', 30, 585.00, 'Seguimiento: Consulta nutricional inicial', 'Consultorio Nutricional “Vida y Salud”', 'Calle 20 #158 por 25 y 27, Col. Centro, Hecelchakán, Campeche', 'Alan Antony Puc Yam', '2025-05-28 15:00:00', NULL, 0, 'web', '2025-05-10 10:15:13', '2025-05-10 14:01:24', 2),
+(18, NULL, NULL, 38, 'Alice', 'Cuevas', '5551234567', 'Femenino', 'Alice', 30, 585.00, 'Consulta nutricional inicial', 'Consultorio Nutricional “Vida y Salud”', 'Calle 20 #158 por 25 y 27, Col. Centro, Hecelchakán, Campeche', 'Alan Antony Puc Yam', '2025-05-16 09:00:00', '2025-05-29 12:00:00', 3, 'web', '2025-05-10 10:18:12', '2025-05-10 10:18:59', 2),
+(19, NULL, NULL, 42, 'Alice', 'Cuevas', '5551234567', 'Femenino', 'Alice', 30, 585.00, 'Seguimiento: Consulta nutricional inicial', 'Consultorio Nutricional “Vida y Salud”', 'Calle 20 #158 por 25 y 27, Col. Centro, Hecelchakán, Campeche', 'Alan Antony Puc Yam', '2025-05-29 12:00:00', NULL, 0, 'web', '2025-05-10 10:18:59', '2025-05-10 10:38:14', 2),
+(20, NULL, NULL, 43, 'Alicete', 'Cuevas', '5551234567', 'Femenino', 'Alicete', 30, 585.00, 'Consulta nutricional inicial', NULL, NULL, 'Alan Antony Puc Yam', '2025-05-16 09:00:00', NULL, 4, 'movil', '2025-05-10 11:10:42', '2025-05-10 11:10:42', 2),
+(21, NULL, NULL, 47, 'Miko', 'Reborth', '5551234567', 'Femenino', 'Miko R.', 30, 585.00, 'Consulta nutricional inicial', 'Consultorio Nutricional “Vida y Salud”', 'Calle 20 #158 por 25 y 27, Col. Centro, Hecelchakán, Campeche', 'Alan Antony Puc Yam', '2025-05-12 16:00:00', '2025-05-24 00:00:00', 0, 'web', '2025-05-10 14:30:25', '2025-05-10 14:33:43', 2),
+(22, NULL, NULL, 50, 'Miko', 'Reborth', '5551234567', 'Femenino', 'Miko', 30, 585.00, 'Consulta nutricional inicial', 'Consultorio Nutricional “Vida y Salud”', 'Calle 20 #158 por 25 y 27, Col. Centro, Hecelchakán, Campeche', 'Alan Antony Puc Yam', '2025-05-12 16:00:00', '2025-05-24 18:00:00', 3, 'web', '2025-05-10 14:33:56', '2025-05-10 14:35:44', 2),
+(23, NULL, NULL, 51, 'Miko', 'Reborth', '5551234567', 'Femenino', 'Miko', 30, 585.00, 'Seguimiento: Consulta nutricional inicial', 'Consultorio Nutricional “Vida y Salud”', 'Calle 20 #158 por 25 y 27, Col. Centro, Hecelchakán, Campeche', 'Alan Antony Puc Yam', '2025-05-24 18:00:00', NULL, 4, 'web', '2025-05-10 14:35:44', '2025-05-10 14:35:44', 2),
+(24, NULL, NULL, 52, 'Alice', 'Reborth', '5551234567', 'Femenino', 'Alice', 30, 585.00, 'Consulta nutricional inicial', NULL, NULL, 'Alan Antony Puc Yam', '2025-05-12 16:00:00', NULL, 4, 'movil', '2025-05-10 17:38:19', '2025-05-10 17:38:19', 2),
+(25, NULL, NULL, 53, 'Angel', 'Chan', '5551234567', 'Femenino', 'Angelito', 30, 585.00, 'Consulta nutricional inicial', NULL, NULL, 'Alan Antony Puc Yam', '2025-05-20 14:00:00', NULL, 4, 'movil', '2025-05-10 18:28:01', '2025-05-10 18:28:01', 2),
+(26, NULL, NULL, 54, 'Angel2', 'Chan', '5551234567', 'Femenino', 'Angelito22', 30, 585.00, 'Consulta nutricional inicial', NULL, NULL, 'Alan Antony Puc Yam', '2025-05-22 14:00:00', NULL, 4, 'movil', '2025-05-10 18:29:11', '2025-05-10 18:29:11', 2),
+(27, NULL, NULL, 55, 'Melissa', 'Chan', '5551234567', 'Femenino', 'Meli_Chan', 30, 585.00, 'Consulta nutricional inicial', NULL, NULL, 'Alan Antony Puc Yam', '2025-05-23 14:00:00', NULL, 4, 'movil', '2025-05-10 18:34:19', '2025-05-10 18:34:19', 2),
+(28, NULL, NULL, 56, 'Melissa', 'Chan', '5551234567', 'Femenino', 'Meli_Chane', 30, 585.00, 'Consulta nutricional inicial', NULL, NULL, 'Alan Antony Puc Yam', '2025-05-25 14:00:00', NULL, 4, 'movil', '2025-05-10 18:50:29', '2025-05-10 18:50:29', 2);
 
 -- --------------------------------------------------------
 
@@ -501,7 +758,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `nombre`, `apellidos`, `email`, `usuario`, `password`, `remember_token`, `rol_id`, `activo`, `eliminado`, `created_at`, `updated_at`, `remember_token_expires_at`) VALUES
-(2, 'Alan Antony', 'Puc Yam', 'puc-alan20@hotmail.com', 'WoolyOlvel', '$2y$12$2eX8kea.zxAt68bRmujfWOWPUKp3hgrfxgNlxSF2ltAABeYBU1svi', 'tFUDxhryhPAiPiXx4msrGsIMAAoZONFj6aCJn8nU0QFs506bIUl1MDs6nBQs', 1, 1, 0, '2025-04-19 13:59:50', '2025-04-24 03:51:07', '2025-05-24 03:51:07');
+(2, 'Alan Antony', 'Puc Yam', 'puc-alan20@hotmail.com', 'WoolyOlvel', '$2y$12$2eX8kea.zxAt68bRmujfWOWPUKp3hgrfxgNlxSF2ltAABeYBU1svi', 'tFUDxhryhPAiPiXx4msrGsIMAAoZONFj6aCJn8nU0QFs506bIUl1MDs6nBQs', 1, 1, 0, '2025-04-19 13:59:50', '2025-04-24 03:51:07', '2025-05-24 03:51:07'),
+(3, 'Juan Pérez', 'Gil', 'juanperez@example.com', 'juancito', '$2y$12$e31DOZbPJieeUS.64JYbyuXxFvQJwiqIM0KlBCOTKBUXBklijQIiO', NULL, 1, 1, 0, '2025-05-08 09:47:43', '2025-05-08 09:47:43', NULL),
+(4, 'Wilbert Edward', 'Yam', 'woolyolvel@gmail.com', 'Wepy25', '$2y$12$72sWhEMEeSTgt5EEhbngceeeaF0MdLOT8IAqcyOm7N61wUxGb1UlK', 'V2L4xHEalaJ7WBuaaN4YSQEPVvRpnx9cjtTPSJiuutpHUC89b1SV3PMG5oYd', 1, 1, 0, '2025-05-09 17:31:33', '2025-05-09 17:32:02', '2025-06-08 17:32:02');
 
 -- --------------------------------------------------------
 
@@ -543,6 +802,18 @@ ALTER TABLE `composicion_corporal`
   ADD PRIMARY KEY (`ComposicionCorporal_ID`);
 
 --
+-- Indices de la tabla `consulta`
+--
+ALTER TABLE `consulta`
+  ADD PRIMARY KEY (`Consulta_ID`),
+  ADD KEY `consulta_paciente_id_foreign` (`Paciente_ID`),
+  ADD KEY `consulta_tipo_consulta_id_foreign` (`Tipo_Consulta_ID`),
+  ADD KEY `consulta_user_id_foreign` (`user_id`),
+  ADD KEY `consulta_documento_id_foreign` (`Documento_ID`),
+  ADD KEY `consulta_pago_id_foreign` (`Pago_ID`),
+  ADD KEY `consulta_divisa_id_foreign` (`Divisa_ID`);
+
+--
 -- Indices de la tabla `desafio`
 --
 ALTER TABLE `desafio`
@@ -579,6 +850,18 @@ ALTER TABLE `migrations`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indices de la tabla `notificaciones`
+--
+ALTER TABLE `notificaciones`
+  ADD PRIMARY KEY (`Notificacion_ID`),
+  ADD KEY `notificaciones_reservacion_id_foreign` (`Reservacion_ID`),
+  ADD KEY `notificaciones_paciente_id_foreign` (`Paciente_ID`),
+  ADD KEY `notificaciones_user_id_foreign` (`user_id`),
+  ADD KEY `notificaciones_consulta_id_foreign` (`Consulta_ID`),
+  ADD KEY `notificaciones_tipo_notificacion_status_estado_index` (`tipo_notificacion`,`status`,`estado`),
+  ADD KEY `notificaciones_fecha_creacion_index` (`fecha_creacion`);
+
+--
 -- Indices de la tabla `notification`
 --
 ALTER TABLE `notification`
@@ -612,6 +895,15 @@ ALTER TABLE `patient`
 --
 ALTER TABLE `plan_list`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `reservaciones`
+--
+ALTER TABLE `reservaciones`
+  ADD PRIMARY KEY (`Reservacion_ID`),
+  ADD KEY `reservaciones_consulta_id_foreign` (`Consulta_ID`),
+  ADD KEY `reservaciones_paciente_id_foreign` (`Paciente_ID`),
+  ADD KEY `reservaciones_user_id_foreign` (`user_id`);
 
 --
 -- Indices de la tabla `rol`
@@ -683,6 +975,12 @@ ALTER TABLE `composicion_corporal`
   MODIFY `ComposicionCorporal_ID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
+-- AUTO_INCREMENT de la tabla `consulta`
+--
+ALTER TABLE `consulta`
+  MODIFY `Consulta_ID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT de la tabla `desafio`
 --
 ALTER TABLE `desafio`
@@ -716,7 +1014,13 @@ ALTER TABLE `medidas_corporales`
 -- AUTO_INCREMENT de la tabla `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
+
+--
+-- AUTO_INCREMENT de la tabla `notificaciones`
+--
+ALTER TABLE `notificaciones`
+  MODIFY `Notificacion_ID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
 
 --
 -- AUTO_INCREMENT de la tabla `notification`
@@ -728,7 +1032,7 @@ ALTER TABLE `notification`
 -- AUTO_INCREMENT de la tabla `paciente`
 --
 ALTER TABLE `paciente`
-  MODIFY `Paciente_ID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `Paciente_ID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `pago`
@@ -747,6 +1051,12 @@ ALTER TABLE `patient`
 --
 ALTER TABLE `plan_list`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `reservaciones`
+--
+ALTER TABLE `reservaciones`
+  MODIFY `Reservacion_ID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT de la tabla `rol`
@@ -776,7 +1086,7 @@ ALTER TABLE `tipo_consulta`
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`
@@ -789,11 +1099,39 @@ ALTER TABLE `usuario`
 --
 
 --
+-- Filtros para la tabla `consulta`
+--
+ALTER TABLE `consulta`
+  ADD CONSTRAINT `consulta_divisa_id_foreign` FOREIGN KEY (`Divisa_ID`) REFERENCES `divisas` (`Divisa_ID`),
+  ADD CONSTRAINT `consulta_documento_id_foreign` FOREIGN KEY (`Documento_ID`) REFERENCES `documento` (`Documento_ID`),
+  ADD CONSTRAINT `consulta_paciente_id_foreign` FOREIGN KEY (`Paciente_ID`) REFERENCES `paciente` (`Paciente_ID`),
+  ADD CONSTRAINT `consulta_pago_id_foreign` FOREIGN KEY (`Pago_ID`) REFERENCES `pago` (`Pago_ID`),
+  ADD CONSTRAINT `consulta_tipo_consulta_id_foreign` FOREIGN KEY (`Tipo_Consulta_ID`) REFERENCES `tipo_consulta` (`Tipo_Consulta_ID`),
+  ADD CONSTRAINT `consulta_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
+
+--
+-- Filtros para la tabla `notificaciones`
+--
+ALTER TABLE `notificaciones`
+  ADD CONSTRAINT `notificaciones_consulta_id_foreign` FOREIGN KEY (`Consulta_ID`) REFERENCES `consulta` (`Consulta_ID`),
+  ADD CONSTRAINT `notificaciones_paciente_id_foreign` FOREIGN KEY (`Paciente_ID`) REFERENCES `paciente` (`Paciente_ID`),
+  ADD CONSTRAINT `notificaciones_reservacion_id_foreign` FOREIGN KEY (`Reservacion_ID`) REFERENCES `reservaciones` (`Reservacion_ID`),
+  ADD CONSTRAINT `notificaciones_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
+
+--
 -- Filtros para la tabla `paciente`
 --
 ALTER TABLE `paciente`
   ADD CONSTRAINT `paciente_rol_id_foreign` FOREIGN KEY (`rol_id`) REFERENCES `rol` (`id`),
   ADD CONSTRAINT `paciente_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
+
+--
+-- Filtros para la tabla `reservaciones`
+--
+ALTER TABLE `reservaciones`
+  ADD CONSTRAINT `reservaciones_consulta_id_foreign` FOREIGN KEY (`Consulta_ID`) REFERENCES `consulta` (`Consulta_ID`),
+  ADD CONSTRAINT `reservaciones_paciente_id_foreign` FOREIGN KEY (`Paciente_ID`) REFERENCES `paciente` (`Paciente_ID`),
+  ADD CONSTRAINT `reservaciones_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
 
 --
 -- Filtros para la tabla `users`

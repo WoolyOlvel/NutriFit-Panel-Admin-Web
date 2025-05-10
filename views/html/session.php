@@ -28,6 +28,8 @@ if (!isset($data['user'])) {
     
 }
 
+
+
 session_start(); // <- MUY IMPORTANTE
 $_SESSION['nombre'] = $data['user']['nombre']; // Asegúrate que "name" es el campo correcto
 $primerNombre = explode(' ', $_SESSION['nombre'])[0];

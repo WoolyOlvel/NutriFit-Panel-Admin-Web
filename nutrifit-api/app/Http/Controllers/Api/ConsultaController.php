@@ -293,7 +293,7 @@ class ConsultaController extends Controller
             // Otros datos necesarios
             $consulta->fecha_creacion = now();
             $consulta->estado = true;
-            $consulta->estado_proximaConsulta = 2;
+            $consulta->estado_proximaConsulta = 3; //0:Cancelado, 1:En Progreso, 2: Proxima Consulta, 3: Realizado, 4:En Espera
 
             // Calcular total del pago (obteniendo el precio del tipo de consulta)
             $tipoConsulta = Tipo_Consulta::find($request->Tipo_Consulta_ID);
