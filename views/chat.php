@@ -3,7 +3,7 @@
 $token = $_COOKIE['remember_token'] ?? null;
 
 if (!$token) {
-    header("Location: views/Error403/Error403.php");
+    header("Location: Error403/Error403.php");
     exit();
 }
 
@@ -17,14 +17,14 @@ $response = @file_get_contents("http://127.0.0.1:8000/api/auto-login", false, st
 
 if ($response === false) {
     // Falló la conexión con la API, redirige a error
-    header("Location: views/Error403/Error403.php");
+    header("Location: Error403/Error403.php");
     exit();
 }
 
 $data = json_decode($response, true);
 
 if (!isset($data['user'])) {
-    header("Location: views/Error403/Error403.php");
+    header("Location: Error403/Error403.php");
     
 }
 
@@ -54,18 +54,19 @@ $_SESSION['rol_nombre'] = $data['user']['role']['nombre']; // Accede al nombre d
     <link rel="shortcut icon" href="img/logo2.ico">
 
     <!-- glightbox css -->
-    <link rel="stylesheet" href="assets/libs/glightbox/css/glightbox.min.css">>
+    <link rel="stylesheet" href="../assets/libs/glightbox/css/glightbox.min.css">>
 
     <!-- Layout config Js -->
-    <script src="assets/js/layout.js"></script>
+    <script src="../assets/js/layout.js"></script>
     <!-- Bootstrap Css -->
-    <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="../assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <!-- Icons Css -->
-    <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+    <link href="../assets/css/icons.min.css" rel="stylesheet" type="text/css" />
     <!-- App Css-->
-    <link href="assets/css/app.min.css" rel="stylesheet" type="text/css" />
+    <link href="../assets/css/app.min.css" rel="stylesheet" type="text/css" />
     <!-- custom Css-->
-    <link href="assets/css/custom.min.css" rel="stylesheet" type="text/css" />
+    <link href="../assets/css/custom.min.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
 
     <style>
@@ -427,7 +428,7 @@ $_SESSION['rol_nombre'] = $data['user']['role']['nombre']; // Accede al nombre d
                                         <!-- item -->
                                         <a href="javascript:void(0);" class="dropdown-item notify-item py-2">
                                             <div class="d-flex">
-                                                <img src="assets/images/users/avatar-2.jpg" class="me-3 rounded-circle avatar-xs" alt="user-pic">
+                                                <img src="../assets/images/users/avatar-2.jpg" class="me-3 rounded-circle avatar-xs" alt="user-pic">
                                                 <div class="flex-grow-1">
                                                     <h6 class="m-0">Angela Bernier</h6>
                                                     <span class="fs-11 mb-0 text-muted">Manager</span>
@@ -437,7 +438,7 @@ $_SESSION['rol_nombre'] = $data['user']['role']['nombre']; // Accede al nombre d
                                         <!-- item -->
                                         <a href="javascript:void(0);" class="dropdown-item notify-item py-2">
                                             <div class="d-flex">
-                                                <img src="assets/images/users/avatar-3.jpg" class="me-3 rounded-circle avatar-xs" alt="user-pic">
+                                                <img src="../assets/images/users/avatar-3.jpg" class="me-3 rounded-circle avatar-xs" alt="user-pic">
                                                 <div class="flex-grow-1">
                                                     <h6 class="m-0">David Grasso</h6>
                                                     <span class="fs-11 mb-0 text-muted">Web Designer</span>
@@ -447,7 +448,7 @@ $_SESSION['rol_nombre'] = $data['user']['role']['nombre']; // Accede al nombre d
                                         <!-- item -->
                                         <a href="javascript:void(0);" class="dropdown-item notify-item py-2">
                                             <div class="d-flex">
-                                                <img src="assets/images/users/avatar-5.jpg" class="me-3 rounded-circle avatar-xs" alt="user-pic">
+                                                <img src="../assets/images/users/avatar-5.jpg" class="me-3 rounded-circle avatar-xs" alt="user-pic">
                                                 <div class="flex-grow-1">
                                                     <h6 class="m-0">Mike Bunch</h6>
                                                     <span class="fs-11 mb-0 text-muted">React Developer</span>
@@ -588,7 +589,7 @@ $_SESSION['rol_nombre'] = $data['user']['role']['nombre']; // Accede al nombre d
 
                                             <div class="text-reset notification-item d-block dropdown-item position-relative">
                                                 <div class="d-flex">
-                                                    <img src="assets/images/users/avatar-2.jpg" class="me-3 rounded-circle avatar-xs flex-shrink-0" alt="user-pic">
+                                                    <img src="../assets/images/users/avatar-2.jpg" class="me-3 rounded-circle avatar-xs flex-shrink-0" alt="user-pic">
                                                     <div class="flex-grow-1">
                                                         <a href="#!" class="stretched-link">
                                                             <h6 class="mt-0 mb-1 fs-13 fw-semibold">Angela Bernier</h6>
@@ -637,7 +638,7 @@ $_SESSION['rol_nombre'] = $data['user']['role']['nombre']; // Accede al nombre d
 
                                             <div class="text-reset notification-item d-block dropdown-item position-relative">
                                                 <div class="d-flex">
-                                                    <img src="assets/images/users/avatar-8.jpg" class="me-3 rounded-circle avatar-xs flex-shrink-0" alt="user-pic">
+                                                    <img src="../assets/images/users/avatar-8.jpg" class="me-3 rounded-circle avatar-xs flex-shrink-0" alt="user-pic">
                                                     <div class="flex-grow-1">
                                                         <a href="#!" class="stretched-link">
                                                             <h6 class="mt-0 mb-1 fs-13 fw-semibold">Maureen Gibson</h6>
@@ -670,7 +671,7 @@ $_SESSION['rol_nombre'] = $data['user']['role']['nombre']; // Accede al nombre d
                                         <div data-simplebar style="max-height: 300px;" class="pe-2">
                                             <div class="text-reset notification-item d-block dropdown-item">
                                                 <div class="d-flex">
-                                                    <img src="assets/images/users/avatar-3.jpg" class="me-3 rounded-circle avatar-xs" alt="user-pic">
+                                                    <img src="../assets/images/users/avatar-3.jpg" class="me-3 rounded-circle avatar-xs" alt="user-pic">
                                                     <div class="flex-grow-1">
                                                         <a href="#!" class="stretched-link">
                                                             <h6 class="mt-0 mb-1 fs-13 fw-semibold">James Lemire</h6>
@@ -693,7 +694,7 @@ $_SESSION['rol_nombre'] = $data['user']['role']['nombre']; // Accede al nombre d
 
                                             <div class="text-reset notification-item d-block dropdown-item">
                                                 <div class="d-flex">
-                                                    <img src="assets/images/users/avatar-2.jpg" class="me-3 rounded-circle avatar-xs" alt="user-pic">
+                                                    <img src="../assets/images/users/avatar-2.jpg" class="me-3 rounded-circle avatar-xs" alt="user-pic">
                                                     <div class="flex-grow-1">
                                                         <a href="#!" class="stretched-link">
                                                             <h6 class="mt-0 mb-1 fs-13 fw-semibold">Angela Bernier</h6>
@@ -717,7 +718,7 @@ $_SESSION['rol_nombre'] = $data['user']['role']['nombre']; // Accede al nombre d
 
                                             <div class="text-reset notification-item d-block dropdown-item">
                                                 <div class="d-flex">
-                                                    <img src="assets/images/users/avatar-6.jpg" class="me-3 rounded-circle avatar-xs" alt="user-pic">
+                                                    <img src="../assets/images/users/avatar-6.jpg" class="me-3 rounded-circle avatar-xs" alt="user-pic">
                                                     <div class="flex-grow-1">
                                                         <a href="#!" class="stretched-link">
                                                             <h6 class="mt-0 mb-1 fs-13 fw-semibold">Kenneth Brown</h6>
@@ -741,7 +742,7 @@ $_SESSION['rol_nombre'] = $data['user']['role']['nombre']; // Accede al nombre d
 
                                             <div class="text-reset notification-item d-block dropdown-item">
                                                 <div class="d-flex">
-                                                    <img src="assets/images/users/avatar-8.jpg" class="me-3 rounded-circle avatar-xs" alt="user-pic">
+                                                    <img src="../assets/images/users/avatar-8.jpg" class="me-3 rounded-circle avatar-xs" alt="user-pic">
                                                     <div class="flex-grow-1">
                                                         <a href="#!" class="stretched-link">
                                                             <h6 class="mt-0 mb-1 fs-13 fw-semibold">Maureen Gibson</h6>
@@ -1222,7 +1223,7 @@ $_SESSION['rol_nombre'] = $data['user']['role']['nombre']; // Accede al nombre d
                                                             <div class="flex-grow-1 overflow-hidden">
                                                                 <div class="d-flex align-items-center">
                                                                     <div class="flex-shrink-0 chat-user-img online user-own-img align-self-center me-3 ms-0">
-                                                                        <img src="assets/images/perfil_prueba.png" class="rounded-circle avatar-xs" alt="">
+                                                                        <img src="../assets/images/perfil_prueba.png" class="rounded-circle avatar-xs" alt="">
                                                                         <span class="user-status"></span>
                                                                     </div>
                                                                     <div class="flex-grow-1 overflow-hidden">
@@ -1302,7 +1303,7 @@ $_SESSION['rol_nombre'] = $data['user']['role']['nombre']; // Accede al nombre d
                                                             <div class="flex-grow-1 overflow-hidden">
                                                                 <div class="d-flex align-items-center">
                                                                     <div class="flex-shrink-0 chat-user-img online user-own-img align-self-center me-3 ms-0">
-                                                                        <img src="assets/images/users/avatar-2.jpg" class="rounded-circle avatar-xs" alt="">
+                                                                        <img src="../assets/images/users/avatar-2.jpg" class="rounded-circle avatar-xs" alt="">
                                                                     </div>
                                                                     <div class="flex-grow-1 overflow-hidden">
                                                                         <h5 class="text-truncate mb-0 fs-16"><a class="text-reset username" data-bs-toggle="offcanvas" href="#userProfileCanvasExample" aria-controls="userProfileCanvasExample">Lisa Parker</a></h5>
@@ -1465,7 +1466,7 @@ $_SESSION['rol_nombre'] = $data['user']['role']['nombre']; // Accede al nombre d
         <!--end offcanvas-header-->
         <div class="offcanvas-body profile-offcanvas p-0">
             <div class="team-cover">
-                <img src="assets/images/background2.jpg" alt="" class="img-fluid" />
+                <img src="../assets/images/background2.jpg" alt="" class="img-fluid" />
             </div>
             <div class="p-1 pb-4 pt-0">
                 <div class="team-settings">
@@ -1486,7 +1487,7 @@ $_SESSION['rol_nombre'] = $data['user']['role']['nombre']; // Accede al nombre d
                 <!--end col-->
             </div>
             <div class="p-3 text-center">
-                <img src="assets/images/perfil_prueba.png" alt="" class="avatar-lg img-thumbnail rounded-circle mx-auto profile-img">
+                <img src="../assets/images/perfil_prueba.png" alt="" class="avatar-lg img-thumbnail rounded-circle mx-auto profile-img">
                 <div class="mt-3">
                     <h5 class="fs-16 mb-1"><a href="javascript:void(0);" class="link-primary username">Alcrya Lumina</a></h5>
                     <p class="text-muted"><i class="ri-checkbox-blank-circle-fill me-1 align-bottom text-success"></i>En Linea</p>
@@ -1589,27 +1590,29 @@ $_SESSION['rol_nombre'] = $data['user']['role']['nombre']; // Accede al nombre d
 
 
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
-    <script type="text/javascript" src="assets/libs/choices.js/public/assets/scripts/choices.min.js"></script>
-    <script type="text/javascript" src="assets/libs/flatpickr/flatpickr.min.js"></script>
+    <script type="text/javascript" src="../assets/libs/choices.js/public/assets/scripts/choices.min.js"></script>
+    <script type="text/javascript" src="../assets/libs/flatpickr/flatpickr.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/list.js/2.3.1/list.min.js"></script>
     <!-- JAVASCRIPT -->
-    <script src="assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/libs/simplebar/simplebar.min.js"></script>
-    <script src="assets/libs/node-waves/waves.min.js"></script>
-    <script src="assets/libs/feather-icons/feather.min.js"></script>
-    <script src="assets/js/pages/plugins/lord-icon-2.1.0.js"></script>
-    <script src="assets/js/plugins.js"></script>
+    <script src="../assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets/libs/simplebar/simplebar.min.js"></script>
+    <script src="../assets/libs/node-waves/waves.min.js"></script>
+    <script src="../assets/libs/feather-icons/feather.min.js"></script>
+    <script src="../assets/js/pages/plugins/lord-icon-2.1.0.js"></script>
+    <script src="../assets/js/plugins.js"></script>
 
     <!-- glightbox js -->
-    <script src="assets/libs/glightbox/js/glightbox.min.js"></script>
+    <script src="../assets/libs/glightbox/js/glightbox.min.js"></script>
 
     <!-- fgEmojiPicker js -->
-    <script src="assets/libs/fg-emoji-picker/fgEmojiPicker.js"></script>
+    <script src="../assets/libs/fg-emoji-picker/fgEmojiPicker.js"></script>
 
     <!-- chat init js -->
-    <script src="assets/js/pages/chat.init.js"></script>
+    <script src="../assets/js/pages/chat.init.js"></script>
 
     <!-- App js -->
-    <script src="assets/js/app.js"></script>
+    <script src="../assets/js/app.js"></script>
 
 </body>
 

@@ -124,7 +124,7 @@ class Notificacion extends Model
     }
 
     // Crear notificación de mensaje de chat
-    public static function crearNotificacionChat($chatId, $pacienteId, $userId, $mensaje, $nombreRemitente, $apellidosRemitente, $foto = null)
+    /*public static function crearNotificacionChat($chatId, $pacienteId, $userId, $mensaje, $nombreRemitente, $apellidosRemitente, $foto = null)
     {
         return self::create([
             'Chat_ID' => $chatId,
@@ -139,7 +139,7 @@ class Notificacion extends Model
             'estado' => 1, // Activo
             'fecha_creacion' => now(),
         ]);
-    }
+    }*/
 
     // Método para eliminar lógicamente una notificación
     public function eliminar()

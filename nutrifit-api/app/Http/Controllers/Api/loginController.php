@@ -17,6 +17,7 @@ class loginController extends Controller
             'email' => 'required|email',
             'password' => 'required|string',
             'remember' => 'nullable|boolean',
+            'is_mobile' => 'nullable|boolean', // Campo opcional
         ]);
 
         $user = User::where('email', $request->email)->first();
@@ -29,8 +30,16 @@ class loginController extends Controller
             return response()->json(['error' => 'Contraseña incorrecta.'], 401);
         }
 
-        if ($user->rol_id !== 1) {
-            return response()->json(['error' => 'Acceso denegado. No eres nutriólogo.'], 403);
+        // Determinar si es móvil (true si existe y es true, false en cualquier otro caso)
+        $isMobile = filter_var($request->is_mobile, FILTER_VALIDATE_BOOLEAN);
+
+        // Lógica de verificación de roles
+        if ($isMobile && $user->rol_id !== 2) {
+            return response()->json(['error' => 'Acceso solo para pacientes en la app móvil.'], 403);
+        }
+
+        if (!$isMobile && $user->rol_id !== 1) {
+            return response()->json(['error' => 'Acceso solo para nutriólogos en la web.'], 403);
         }
 
         // Generar token de sesión (puedes usar JWT, aquí lo hacemos manual)

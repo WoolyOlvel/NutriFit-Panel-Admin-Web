@@ -5,13 +5,13 @@
         "id": 1,
         "name": "Alcrya Lumina",
         "status": "online",
-        "profile": "assets/images/perfil_prueba.png"
+        "profile": "../../assets/images/perfil_prueba.png"
       },
       {
         "id": 2,
         "name": "Frank Thomas",
         "status": "online",
-        "profile": "assets/images/users/avatar-3.jpg",
+        "profile": "../../assets/images/users/avatar-3.jpg",
         "messagecount" : 8
       },
       {

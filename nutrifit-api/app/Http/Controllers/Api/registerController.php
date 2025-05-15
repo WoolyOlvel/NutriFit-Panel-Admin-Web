@@ -16,6 +16,7 @@ class registerController extends Controller
             'email' => 'required|email|unique:users,email',
             'usuario' => 'required|string|max:255|unique:users,usuario',
             'password' => 'required|string|min:8',
+            'rol_id' => 'sometimes|integer', // Opcional: si no viene, se asigna un valor por defecto
         ]);
 
         $user = User::create([
@@ -24,7 +25,7 @@ class registerController extends Controller
             'email' => $request->email,
             'usuario' => $request->usuario,
             'password' => Hash::make($request->password),
-            'rol_id' => 1, // o el ID correspondiente por defecto nutriologo
+            'rol_id' => $request->input('rol_id', 1), // Si no viene rol_id, usa 1 (nutriólogo)
             'activo' => 1,
             'eliminado' => 0,
         ]);
@@ -34,4 +35,8 @@ class registerController extends Controller
             'user' => $user,
         ], 201);
     }
+
+
+
+
 }

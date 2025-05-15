@@ -15,8 +15,8 @@ function searchMessages() {
   });
 }
 !(function () {
-  var r = "assets/images/users/user-dummy-img.jpg",
-    n = "assets/images/users/multi-user.jpg",
+  var r = "../../assets/images/users/user-dummy-img.jpg",
+    n = "../../assets/images/users/multi-user.jpg",
     o = !1;
   function s() {
     var s = document.querySelectorAll(".user-chat");
@@ -57,7 +57,7 @@ function searchMessages() {
   }
   var a = "users-chat",
     c = "users",
-    l = "assets/json/",
+    l = "../../assets/json/",
     d = "",
     m = 1;
   v(a);
@@ -724,7 +724,7 @@ function searchMessages() {
     closeButton: !0,
     position: ["top", "right"],
     preFetch: !0,
-    dir: "assets/js/pages/plugins/json",
+    dir: "../../assets/js/pages/plugins/json",
     insertInto: document.querySelector(".chat-input"),
   });
   document.getElementById("emoji-btn").addEventListener("click", function () {

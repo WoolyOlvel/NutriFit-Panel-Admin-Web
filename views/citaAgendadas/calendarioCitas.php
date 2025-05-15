@@ -154,7 +154,7 @@ require_once("../html/session.php");
     <script src="../../assets/js/pages/calendar.init.js"></script>
 
     <script type="text/javascript" src="calendar.js"></script>
-     <script type="text/javascript" src="../../js/notificacion.js"></script>
+
 
 
 </body>

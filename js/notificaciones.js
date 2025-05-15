@@ -7,7 +7,7 @@
             // Configuración con valores por defecto
             this.config = {
                 baseUrl: config.baseUrl || 'http://127.0.0.1:8000',
-                soundPath: config.soundPath || '../sound/notificacion_reservacion.mp3',
+                soundPath: config.soundPath || 'http://'+window.location.hostname+'/NutriFit/sound/notificacion_reservacion.mp3',
                 pollingInterval: config.pollingInterval || 30000,
                 token: config.token || this.getToken(),
                 authCheck: config.authCheck || (() => !!this.config.token) // Corregido para usar config.token
@@ -43,12 +43,60 @@
             };
 
             // Estado y recursos
-            this.sound = new Audio(this.config.soundPath);
+            this.sound = new Audio();
+            this.sound.preload = 'auto';
+            this.sound.src = this.config.soundPath;
+            
+            // Verifica errores de carga
+            this.sound.addEventListener('error', () => {
+                console.error('Error cargando el sonido:', {
+                    code: this.sound.error.code,
+                    message: this.getAudioErrorDescription(this.sound.error.code)
+                });
+            });
             this.pollingTimer = null;
             this.initialized = false;
-
+            this.audioPermissionGranted = false;
+            this.initializeAudioPermission();
             // Inicialización segura
             this.safeInitialize();
+       
+        }
+
+        initializeAudioPermission() {
+            // Intenta reproducir y pausar inmediatamente para "desbloquear" el audio
+            const unlockAudio = () => {
+                const testSound = new Audio();
+                testSound.volume = 0;
+                testSound.src = 'data:audio/wav;base64,UklGRl9vT19XQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YU...'; // Sonido silencioso
+                testSound.play()
+                    .then(() => {
+                        this.audioPermissionGranted = true;
+                        testSound.pause();
+                    })
+                    .catch(e => console.debug('No se pudo obtener permiso de audio inicial:', e));
+            };
+
+            // Intenta en el evento de carga
+            document.addEventListener('DOMContentLoaded', unlockAudio);
+            
+            // También intenta con el primer click del usuario
+            document.addEventListener('click', () => {
+                if (!this.audioPermissionGranted) {
+                    unlockAudio();
+                }
+            }, { once: true });
+        }
+
+
+        getAudioErrorDescription(code) {
+            const errors = {
+                1: 'MEDIA_ERR_ABORTED - El usuario canceló la carga',
+                2: 'MEDIA_ERR_NETWORK - Error de red',
+                3: 'MEDIA_ERR_DECODE - Error al decodificar el archivo',
+                4: 'MEDIA_ERR_SRC_NOT_SUPPORTED - Formato no soportado'
+            };
+            return errors[code] || `Código de error desconocido: ${code}`;
         }
 
         // Métodos principales
@@ -316,15 +364,84 @@
 
         async playSound() {
             try {
+                // Verifica si el sonido está cargado correctamente
+                if (!this.sound || !this.sound.src) {
+                    throw new Error('El elemento de audio no está configurado correctamente');
+                }
+
+                // Verifica si el navegador soporta el formato
+                if (this.sound.error) {
+                    throw new Error(`Error en el audio: ${this.sound.error.message}`);
+                }
+
                 this.sound.currentTime = 0;
-                await this.sound.play();
+                this.sound.volume = 0.7;
+                
+                // Intenta reproducir
+                const promise = this.sound.play();
+                
+                if (promise !== undefined) {
+                    await promise.catch(async error => {
+                        console.warn('Autoplay bloqueado:', error);
+                        await this.handlePlaybackError();
+                    });
+                }
             } catch (error) {
-                console.error('Error reproduciendo sonido:', error);
-                document.addEventListener('click', () => {
-                    this.sound.play().catch(e => console.error('Error después de interacción:', e));
-                }, { once: true });
+                console.error('Error en playSound:', error);
+                this.showSoundErrorToast();
             }
         }
+
+        async handlePlaybackError() {
+            // Muestra toast para interacción
+            const toast = this.createSoundPermissionToast();
+            document.body.appendChild(toast);
+            
+            try {
+                // Espera interacción del usuario
+                await this.waitForUserInteraction();
+                await this.sound.play();
+            } catch (finalError) {
+                console.error('Error final:', finalError);
+                throw finalError;
+            } finally {
+                toast.remove();
+            }
+        }
+
+
+
+        createSoundPermissionToast() {
+            const toast = document.createElement('div');
+            toast.style.position = 'fixed';
+            toast.style.bottom = '20px';
+            toast.style.right = '20px';
+            toast.style.backgroundColor = '#333';
+            toast.style.color = 'white';
+            toast.style.padding = '15px';
+            toast.style.borderRadius = '5px';
+            toast.style.zIndex = '9999';
+            toast.style.boxShadow = '0 2px 10px rgba(0,0,0,0.2)';
+            toast.innerHTML = `
+                <p>Por favor, haz clic en cualquier parte para permitir sonidos de notificaciones</p>
+                <small>Este sitio necesita tu permiso para reproducir sonidos</small>
+            `;
+            return toast;
+        }
+
+        waitForUserInteraction() {
+            return new Promise(resolve => {
+                const handler = () => {
+                    document.removeEventListener('click', handler);
+                    document.removeEventListener('keydown', handler);
+                    resolve();
+                };
+                
+                document.addEventListener('click', handler, { once: true });
+                document.addEventListener('keydown', handler, { once: true });
+            });
+        }
+
 
         startPolling() {
             this.pollingTimer = setInterval(() => {
@@ -342,7 +459,11 @@
                     const currentCount = parseInt(this.elements.badge.textContent) || 0;
                     
                     if (data.total > currentCount) {
-                        this.playSound().then(() => this.loadNotifications());
+                        // Solo reproducir sonido si hay nuevas notificaciones
+                        if (data.total > currentCount) {
+                            this.playSound().catch(e => console.error('Error al reproducir sonido:', e));
+                        }
+                        this.loadNotifications();
                     } else if (data.total < currentCount) {
                         this.loadNotifications();
                     }

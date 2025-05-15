@@ -1,6 +1,6 @@
 <?php
 
-    require_once("../html/session.php");
+require_once("../html/session.php");
 ?>
 
 <!doctype html>
@@ -13,9 +13,8 @@
     <?php
     require_once("../html/head.php")
     ?>
-
-
-</head>
+    <link href="../../assets/libs/sweetalert2/sweetalert2.min.css" rel="stylesheet" type="text/css" />    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <body>
 
@@ -43,8 +42,8 @@
                 <div class="container-fluid">
 
                     <div class="position-relative mx-n4 mt-n4" style="margin-top: 1.2rem !important;">
-                        <div class="profile-wid-bg profile-setting-img">
-                            <img src="../../img/background2.jpg" class="profile-wid-img" alt="">
+                        <div class="profile-wid-bg profile-setting-img"> <!--el foto_portada.png sera la foto portada default (ya que cuando las cuentas no tendran una foto portada luego la cambian)-->
+                            <img src="../../img/foto_portada.png" id="foto_portada" class="profile-wid-img" alt="">
                             <div class="overlay-content">
                                 <div class="text-end p-3">
                                     <div class="p-0 ms-auto rounded-circle profile-photo-edit">
@@ -64,7 +63,8 @@
                                 <div class="card-body p-4">
                                     <div class="text-center">
                                         <div class="profile-user position-relative d-inline-block mx-auto  mb-4">
-                                            <img src="../../img/perfilNutri.png" class="rounded-circle avatar-xl img-thumbnail user-profile-image" alt="user-profile-image">
+                                                <!--La foto de nutriologo por defualt es user-dummy-img.jpg-->
+                                            <img src="../../assets/images/users/user-dummy-img.jpg" id="foto" class="rounded-circle avatar-xl img-thumbnail user-profile-image" alt="user-profile-image">
                                             <div class="avatar-xs p-0 rounded-circle profile-photo-edit">
                                                 <input id="profile-img-file-input" type="file" class="profile-img-file-input">
                                                 <label for="profile-img-file-input" class="profile-photo-edit avatar-xs">
@@ -73,9 +73,9 @@
                                                     </span>
                                                 </label>
                                             </div>
-                                        </div>
-                                        <h5 class="fs-16 mb-1"><?php echo htmlspecialchars($_SESSION['nombre']); ?>  <?php echo htmlspecialchars($_SESSION['apellidos']); ?></h5>
-                                        <p class="text-muted mb-0"><?php echo htmlspecialchars($_SESSION['rol_nombre']); ?></p>
+                                        </div> <!--En este de id="nombre_nutriologo" hay que concatenar el apellido_nutriologo ya no se mostrara por session-->
+                                        <h5 class="fs-16 mb-1" id="nombreCompleto_nutriologo"></h5>
+                                        <p class="text-muted mb-0" id="rol_nombre"></p> <!--Obtener el rol_id en la tabla ajustes y acceder a la tabla rol y buscar nombre-->
 
                                     </div>
                                 </div>
@@ -88,7 +88,7 @@
                                             <h5 class="card-title mb-0">Perfil Completado:</h5>
                                         </div>
                                         <div class="flex-shrink-0">
-                                            <a href="javascript:void(0);" class="badge bg-light text-primary fs-12"><i class="ri-edit-box-line align-bottom me-1"></i> Edit</a>
+                                          
                                         </div>
                                     </div>
                                     <div class="progress animated-progress custom-progress progress-label">
@@ -113,121 +113,125 @@
                                             </a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link text-body" data-bs-toggle="tab" href="#changePassword" role="tab">
-                                                <i class="far fa-user"></i>
-                                                Cambiar Contraseña
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
                                             <a class="nav-link text-body" data-bs-toggle="tab" href="#experience" role="tab">
                                                 <i class="far fa-envelope"></i>
                                                 Experiencia
                                             </a>
                                         </li>
-
+                                        <li class="nav-item">
+                                            <a class="nav-link text-body" data-bs-toggle="tab" href="#changePassword" role="tab">
+                                                <i class="far fa-user"></i>
+                                                Cambiar Contraseña
+                                            </a>
+                                        </li>
                                     </ul>
                                 </div>
                                 <div class="card-body p-4">
                                     <div class="tab-content">
                                         <div class="tab-pane active" id="personalDetails" role="tabpanel">
-                                            <form action="javascript:void(0);">
+                                            <form method="POST" id="Ajustes_Form" enctype="multipart/form-data" autocomplete="off">
                                                 <div class="row">
                                                     <div class="col-lg-6">
                                                         <div class="mb-3">
-                                                            <label for="firstnameInput" class="form-label">Nombre:</label>
-                                                            <input type="text" class="form-control" id="firstnameInput" value="<?php echo htmlspecialchars($_SESSION['nombre'] ?? ''); ?>">
+                                                            <label for="nombre_nutriologo" class="form-label">Nombre:</label>
+                                                            <input type="text" class="form-control" id="nombre_nutriologo" value="">
                                                         </div>
                                                     </div>
                                                     <!--end col-->
                                                     <div class="col-lg-6">
                                                         <div class="mb-3">
-                                                            <label for="lastnameInput" class="form-label">Apellidos:</label>
-                                                            <input type="text" class="form-control" id="lastnameInput" value="<?php echo htmlspecialchars($_SESSION['apellidos']); ?>">
+                                                            <label for="apellido_nutriologo" class="form-label">Apellidos:</label>
+                                                            <input type="text" class="form-control" id="apellido_nutriologo" value="">
                                                         </div>
                                                     </div>
                                                     <!--end col-->
                                                     <div class="col-lg-6">
                                                         <div class="mb-3">
-                                                            <label for="phonenumberInput" class="form-label">Número De Teléfono:</label>
-                                                            <input type="text" class="form-control" id="phonenumberInput" placeholder="Su Numero De Telefóno">
+                                                            <label for="telefono" class="form-label">Número De Teléfono:</label>
+                                                            <input type="text" class="form-control" id="telefono" placeholder="Su Numero De Telefóno">
                                                         </div>
                                                     </div>
                                                     <!--end col-->
                                                     <div class="col-lg-6">
                                                         <div class="mb-3">
-                                                            <label for="emailInput" class="form-label">Correo Electrónico:</label>
-                                                            <input type="email" class="form-control" id="emailInput" value="<?php echo htmlspecialchars($_SESSION['email']); ?>">
+                                                            <label for="email" class="form-label">Correo Electrónico:</label>
+                                                            <input type="email" class="form-control" id="email" value="">
                                                         </div>
                                                     </div>
 
                                                     <div class="col-lg-6">
                                                         <div class="mb-3">
-                                                            <label for="lastnameInput" class="form-label">Edad:</label>
-                                                            <input type="number" class="form-control" id="lastnameInput" placeholder="Su edad">
+                                                            <label for="edad" class="form-label">Edad:</label>
+                                                            <input type="number" class="form-control" id="edad" placeholder="Su edad">
                                                         </div>
                                                     </div>
 
                                                     <div class="col-lg-6">
                                                         <div class="mb-3">
-                                                            <label for="lastnameInput" class="form-label">Pacientes Tratados:</label>
-                                                            <input type="number" class="form-control" id="lastnameInput" placeholder="Sus Pacientes">
+                                                            <label for="pacientes_tratados" class="form-label">Pacientes Tratados:</label>
+                                                            <input type="number" class="form-control" id="pacientes_tratados" placeholder="Sus Pacientes">
                                                         </div>
                                                     </div>
 
                                                     <div class="col-lg-6">
                                                         <div class="mb-3">
-                                                            <label for="lastnameInput" class="form-label">Especialidad:</label>
-                                                            <input type="text" class="form-control" id="lastnameInput" placeholder="Su Especialidad">
+                                                            <label for="especialidad" class="form-label">Especialidad:</label>
+                                                            <input type="text" class="form-control" id="especialidad" placeholder="Su Especialidad">
                                                         </div>
                                                     </div>
 
                                                     <div class="col-lg-6">
                                                         <div class="mb-3">
-                                                            <label for="lastnameInput" class="form-label">Profesión:</label>
-                                                            <input type="text" class="form-control" id="lastnameInput" placeholder="Su Profesión">
+                                                            <label for="profesion" class="form-label">Profesión:</label>
+                                                            <input type="text" class="form-control" id="profesion" placeholder="Su Profesión">
                                                         </div>
                                                     </div>
                                                     <!--end col-->
                                                     <div class="col-lg-12">
                                                         <div class="mb-3 pb-2">
-                                                            <label for="exampleFormControlTextarea" class="form-label">Horario</label>
-                                                            <textarea class="form-control" id="exampleFormControlTextarea" placeholder="Su Horario" rows="3">Lunes a Viernes: 10:00AM-4:00PM, 6:00PM-8:00PM</textarea>
+                                                            <label for="horario_antencion" class="form-label">Horario</label>
+                                                            <textarea class="form-control" id="horario_antencion" placeholder="Su Horario" rows="8"></textarea>
                                                         </div>
                                                     </div>
 
 
                                                     <div class="col-lg-12">
                                                         <div class="mb-3 pb-2">
-                                                            <label for="exampleFormControlTextarea" class="form-label">Describete:</label>
-                                                            <textarea class="form-control" id="exampleFormControlTextarea" placeholder="Su Descripción" rows="6">Holas</textarea>
+                                                            <label for="descripcion_nutriologo" class="form-label">Describete:</label>
+                                                            <textarea class="form-control" id="descripcion_nutriologo" placeholder="Su Descripción" rows="20"></textarea>
                                                         </div>
                                                     </div>
 
                                                     <div class="col-lg-6">
                                                         <div class="mb-3">
-                                                            <label for="firstnameInput" class="form-label">Ciudad:</label>
-                                                            <input type="text" class="form-control" id="firstnameInput" placeholder="Su Ciudad">
+                                                            <label for="ciudad" class="form-label">Ciudad:</label>
+                                                            <input type="text" class="form-control" id="ciudad" placeholder="Su Ciudad">
                                                         </div>
                                                     </div>
 
                                                     <div class="col-lg-6">
                                                         <div class="mb-3">
-                                                            <label for="firstnameInput" class="form-label">Estado:</label>
-                                                            <input type="text" class="form-control" id="firstnameInput" placeholder="Su Estado">
+                                                            <label for="estado" class="form-label">Estado:</label>
+                                                            <input type="text" class="form-control" id="estado" placeholder="Su Ciudad">
                                                         </div>
                                                     </div>
 
                                                     <div class="col-lg-6">
-                                                        <div class="mb-3">
-                                                            <label for="firstnameInput" class="form-label">Genero:</label>
-                                                            <input type="text" class="form-control" id="firstnameInput" placeholder="Su Genero">
+                                                        <div>
+                                                            <label for="industry_type-field" class="form-label">Genero</label>
+                                                            <select class="form-select" id="genero" name="genero">
+                                                                <option value="" disabled selected>Seleccione Un Genero</option>
+                                                                <option value="Femenino">Femenino</option>
+                                                                <option value="Masculino">Masculino</option>
+                                                                <option value="Otros">Otros</option>
+                                                            </select>
                                                         </div>
                                                     </div>
 
                                                     <div class="col-lg-6">
                                                         <div class="mb-3">
                                                             <label class="form-label">Fecha Nacimiento</label>
-                                                            <input type="text" class="form-control" data-provider="flatpickr" data-date-format="d M, Y">
+                                                            <input type="text" id="fecha_nacimiento" class="form-control" data-provider="flatpickr" data-date-format="d M, Y">
                                                         </div>
                                                     </div>
 
@@ -237,22 +241,22 @@
 
                                                     <div class="col-lg-6">
                                                         <div class="mb-3">
-                                                            <label for="designationInput" class="form-label">Universidad:</label>
-                                                            <input type="text" class="form-control" id="designationInput" placeholder="Universidad Donde Se Graduo">
+                                                            <label for="universidad" class="form-label">Universidad:</label>
+                                                            <input type="text" class="form-control" id="universidad" placeholder="Universidad Donde Se Graduo">
                                                         </div>
                                                     </div>
                                                     <!--end col-->
                                                     <div class="col-lg-6">
                                                         <div class="mb-3">
-                                                            <label for="websiteInput1" class="form-label">Diplomados:</label>
-                                                            <input type="text" class="form-control" id="websiteInput1" placeholder="Diplomados Cursados" />
+                                                            <label for="displomados" class="form-label">Diplomados:</label>
+                                                            <input type="text" class="form-control" id="displomados" placeholder="Diplomados Cursados" />
                                                         </div>
                                                     </div>
                                                     <!--end col-->
                                                     <div class="col-lg-12">
                                                         <div class="mb-3">
-                                                            <label for="cityInput" class="form-label">Especialización:</label>
-                                                            <input type="text" class="form-control" id="cityInput" placeholder="Nombre De La Especialización Completa" />
+                                                            <label for="especializacion" class="form-label">Especialización:</label>
+                                                            <input type="text" class="form-control" id="especializacion" placeholder="Nombre De La Especialización Completa" />
                                                         </div>
                                                     </div>
                                                     <!--end col-->
@@ -260,14 +264,46 @@
                                                     <!--end col-->
                                                     <div class="col-lg-12">
                                                         <div class="mb-3 pb-2">
-                                                            <label for="exampleFormControlTextarea" class="form-label">Descripción De La Especialización</label>
-                                                            <textarea class="form-control" id="exampleFormControlTextarea" placeholder="Descripción" rows="4">Lupus</textarea>
+                                                            <label for="descripcion_especialziacion" class="form-label">Descripción De La Especialización</label>
+                                                            <textarea class="form-control" id="descripcion_especialziacion" placeholder="Descripción" rows="4">Lupus</textarea>
                                                         </div>
                                                     </div>
+
+                                                    <div class="col-lg-6">
+                                                        <div>
+                                                            <div class="mb-3 pb-2">
+
+                                                                <label for="industry_type-field" class="form-label">Disponibilidad de Citas</label>
+                                                                <select class="form-select" id="disponibilidad" name="disponibilidad">
+                                                                    <option value="" disabled selected>Seleccione Una Disponibilidad</option>
+                                                                    <option value="Disponibles">Disponibles</option>
+                                                                    <option value="PocosCupos">Pocos Cupos</option>
+                                                                    <option value="NoDisponible">No Disponible</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-lg-6">
+                                                        <div>
+                                                            <div class="mb-3 pb-2">
+
+                                                                <label for="industry_type-field" class="form-label">Modalidad de Atención</label>
+                                                                <select class="form-select" id="modalidad" name="modalidad">
+                                                                    <option value="" disabled selected>Seleccione Una Modalidad</option>
+                                                                    <option value="Presencial">Presencial</option>
+                                                                    <option value="Virtual">Virtual</option>
+                                                                    <option value="Llamadas">Llamadas Telefonicas</option>
+                                                                    <option value="Chat">Chat</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
                                                     <!--end col-->
                                                     <div class="col-lg-12">
                                                         <div class="hstack gap-2 justify-content-end">
-                                                            <button type="submit" class="btn btn-success">Actualizar</button>
+                                                            <button type="submit" class="btn btn-success">Guardar</button>
 
                                                         </div>
                                                     </div>
@@ -284,22 +320,22 @@
                                                     <!--end col-->
                                                     <div class="col-lg-4">
                                                         <div>
-                                                            <label for="newpasswordInput" class="form-label">Nueva Contraseña</label>
-                                                            <input type="password" class="form-control" id="newpasswordInput" placeholder="Nueva Contraseña">
+                                                            <label for="password" class="form-label">Nueva Contraseña</label>
+                                                            <input type="password" class="form-control" id="password" placeholder="Nueva Contraseña">
                                                         </div>
                                                     </div>
                                                     <!--end col-->
                                                     <div class="col-lg-4">
                                                         <div>
-                                                            <label for="confirmpasswordInput" class="form-label">Confirmar Contraseña</label>
-                                                            <input type="password" class="form-control" id="confirmpasswordInput" placeholder="Confirmar Contraseña">
+                                                            <label for="confirmPassword" class="form-label">Confirmar Contraseña</label>
+                                                            <input type="password" class="form-control" id="confirmPassword" placeholder="Confirmar Contraseña">
                                                         </div>
                                                     </div>
 
                                                     <!--end col-->
                                                     <div class="col-lg-12">
                                                         <div class="text-end">
-                                                            <button type="submit" class="btn btn-success">Cambiar Contraseña</button>
+                                                            <button type="submit" id="btnGuardar" class="btn btn-success">Cambiar Contraseña</button>
                                                         </div>
                                                     </div>
                                                     <!--end col-->
@@ -308,40 +344,31 @@
                                             </form>
 
                                         </div>
-                                        <!--end tab-pane-->
                                         <div class="tab-pane" id="experience" role="tabpanel">
-                                            <form>
+                                            <form method="POST" id="Ajustes_Form_2" enctype="multipart/form-data" autocomplete="off"> 
                                                 <div id="newlink">
                                                     <div id="1">
                                                         <div class="row">
                                                             <div class="col-lg-12">
                                                                 <div class="mb-3">
-                                                                    <label for="jobTitle" class="form-label">Experiencia</label>
-                                                                    <input type="text" class="form-control" id="jobTitle" placeholder="Cantidad Años Experiencia">
+                                                                    <label for="experiencia" class="form-label">Experiencia</label>
+                                                                    <input type="text" class="form-control" id="experiencia" placeholder="Cantidad Años Experiencia">
                                                                 </div>
                                                             </div>
-                                   
+
                                                             <div class="col-lg-12">
                                                                 <div class="mb-3">
                                                                     <label for="jobTitle" class="form-label">Enfermedades Tratadas:</label>
                                                                     <div class="live-preview">
                                                                         <div class="row align-items-center g-3">
-                                                                            <div class="mb-3">
-                                                                                <div class="ckeditor-classic">
-                                                                                    <p>It will be as simple as occidental in fact, it will be Occidental. To an English person, it will seem like simplified English, as a skeptical Cambridge friend of mine told me what Occidental is. The European languages are members of the same family. Their separate existence is a myth. For science, music, sport, etc, Europe uses the same vocabulary.</p>
-                                                                                    <ul>
-                                                                                        <li>Product Design, Figma (Software), Prototype</li>
-                                                                                        <li>Four Dashboards : Ecommerce, Analytics, Project etc.</li>
-                                                                                        <li>Create calendar, chat and email app pages.</li>
-                                                                                        <li>Add authentication pages</li>
-                                                                                    </ul>
-                                                                                </div>
+                                                                            <div class="mb-3">                                                                                
+                                                                                <textarea id="enfermedades_tratadas"></textarea>
                                                                             </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            
+
                                                         </div>
                                                         <!--end row-->
                                                     </div>
@@ -350,15 +377,18 @@
 
                                                 </div>
                                                 <div class="col-lg-12">
-                                                    <div class="hstack gap-2">
+                                                    <div class="hstack gap-2 justify-content-end">
                                                         <button type="submit" class="btn btn-success">Actualizar</button>
-                                                        
+
                                                     </div>
                                                 </div>
                                                 <!--end col-->
                                             </form>
                                         </div>
-                                       
+
+                                        <!--end tab-pane-->
+
+
                                     </div>
                                 </div>
                             </div>
@@ -382,8 +412,6 @@
 
 
 
-
-
     <!-- JAVASCRIPT -->
     <!-- profile-setting init js -->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
@@ -394,10 +422,10 @@
     <!-- init js -->
     <script src="../../assets/js/pages/form-pickers.init.js"></script>
     <!-- App js -->
-    <script src="../../assets/js/app.js"></script>
     <script type="text/javascript" src="../../assets/libs/flatpickr/flatpickr.min.js"></script>
     <script type="text/javascript" src="../../assets/libs/choices.js/public/assets/scripts/choices.min.js"></script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/list.js/2.3.1/list.min.js"></script>
     <?php
     require_once("../html/js.php")
     ?>
@@ -411,16 +439,10 @@
         });
     </script>
 
-    <script>
-        document.querySelectorAll('.ckeditor-classic').forEach((el) => {
-            ClassicEditor
-                .create(el)
-                .catch(error => {
-                    console.error(error);
-                });
-        });
-    </script>
 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.0/dist/sweetalert2.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script type="text/javascript" src="ajustes.js"></script>
 </body>
 
 </html>

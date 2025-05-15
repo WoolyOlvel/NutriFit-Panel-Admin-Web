@@ -295,7 +295,7 @@
                     <div class="dropdown-menu dropdown-menu-end">
                         <!-- item-->
                         <h6 class="dropdown-header">Bienvenido <?php echo htmlspecialchars($primerNombre); ?>!</h6>
-                        <a class="dropdown-item" href="#" style="display: flex;">
+                        <!--      <a class="dropdown-item" href="#" style="display: flex;">
                             <script src="https://cdn.lordicon.com/lordicon.js"></script>
                             <lord-icon
                                 src="https://cdn.lordicon.com/cklbznjc.json"
@@ -307,7 +307,7 @@
                                         ">
                             </lord-icon>
                             <span style="margin-top: 0.4rem; margin-left:0.5rem" class="align-middle">Perfil</span>
-                        </a>
+                        </a>--->
 
                         <a class="dropdown-item" href="../../chat.php" style="display: flex;">
                             <script src="https://cdn.lordicon.com/lordicon.js"></script>
@@ -359,7 +359,7 @@
                             <span class="align-middle" style="margin-top: 0.4rem; margin-left:0.5rem">Ajustes</span>
                         </a>
 
-                        <a class="dropdown-item" href="../bloqPantalla/bloqueoPantalla.php" style="display: flex;">
+                       <!--- <a class="dropdown-item" href="../bloqPantalla/bloqueoPantalla.php" style="display: flex;">
                             <script src="https://cdn.lordicon.com/lordicon.js"></script>
                             <lord-icon
                                 src="https://cdn.lordicon.com/umjzhslu.json"
@@ -369,7 +369,7 @@
                                 style="width:30px;height:30px">
                             </lord-icon>
                             <span class="align-middle" style="margin-top: 0.4rem; margin-left:0.5rem">Bloquear Pantalla</span>
-                        </a>
+                        </a>-->
 
                         <a class="dropdown-item" href="#" id="logout-link" style="display: flex;">
                             <script src="https://cdn.lordicon.com/lordicon.js"></script>

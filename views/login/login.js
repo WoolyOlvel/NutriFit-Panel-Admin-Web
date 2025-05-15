@@ -7,34 +7,37 @@ $(document).ready(function(){
         const remember = document.getElementById("auth-remember-check").checked;
 
         $.ajax({
-            url: "http://127.0.0.1:8000/api/login", // Cambia si tu URL es diferente
+            url: "http://127.0.0.1:8000/api/login",
             type: "POST",
             contentType: "application/json",
             data: JSON.stringify({
                 email: email,
                 password: password,
-                remember: remember
+                remember: remember,
+                is_mobile: false // Explícitamente false para web
             }),
             success: function(response) {
-                // Guardar el remember_token si se marcó el checkbox
                 if (remember && response.remember_token) {
-                    // Cookie por 15 días
                     document.cookie = `remember_token=${response.remember_token}; path=/; max-age=${60 * 60 * 24 * 15}`;
-                    
                 }
-               
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Éxito',
-                    text: 'Sesión Exitosa. Bienvenido a NutriFit Panel.',
-                    showConfirmButton: false,
-                    timer: 2000
-                });
 
-                setTimeout(() => {
-                    window.location.href = `../preloader/preloader.php?token=${response.remember_token}`; // Pasa el token en la URL
-                }, 2000);
-                
+                // Verificar rol_id antes de redirigir
+                if (response.user.rol_id === 1) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Éxito',
+                        text: 'Bienvenido al Panel de Nutriólogos',
+                        timer: 2000
+                    }).then(() => {
+                        window.location.href = `../preloader/preloader.php?token=${response.remember_token}`;
+                    });
+                } else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Acceso denegado',
+                        text: 'Solo nutriólogos pueden acceder al panel web',
+                    });
+                }
             },
             error: function(xhr) {
                 const msg = xhr.responseJSON?.error || "Error desconocido.";

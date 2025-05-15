@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\ActualizarConsultaController;
+use App\Http\Controllers\Api\AjustesController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\usuarioController;
@@ -25,10 +26,12 @@ use App\Http\Controllers\Api\ConsultaController;
 use App\Http\Controllers\Api\estaturaController;
 use App\Http\Controllers\Api\divisasController;
 use App\Http\Controllers\Api\HistorialPacienteController;
+use App\Http\Controllers\Api\ListaNutriologosMovil;
 use App\Http\Controllers\Api\MisPacientesController;
 use App\Http\Controllers\Api\Notificaciones;
 use App\Http\Controllers\Api\PacienteController;
 use App\Http\Controllers\Api\Pre_HistorialController;
+use App\Http\Controllers\Api\ProfileController;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
@@ -180,13 +183,40 @@ Route::put('/calendario/consultas/{id}', [CalendarioCitasController::class, 'act
     Route::post('/notificaciones/marcar-leida/{id}', [Notificaciones::class, 'marcarLeida']);
     Route::get('/notificaciones/contar', [Notificaciones::class, 'contarNotificaciones']);
 
-//Ruta Prueba Reservaciones
+//Ruta Prueba Reservaciones👇
 
 Route::post('/calendario/reservaciones', [CalendarioCitasController::class, 'crearReservacion']);
 
 //Fin Citas Agendadas 👆
 
 
+//Inicio Ajustes
+Route::prefix('ajustes')->group(function () {
+    Route::get('/', [App\Http\Controllers\Api\AjustesController::class, 'getAjustes']);
+    Route::post('/datos-personales', [App\Http\Controllers\Api\AjustesController::class, 'storeDatosPersonales']);
+    Route::post('/experiencia', [App\Http\Controllers\Api\AjustesController::class, 'storeExperiencia']);
+    Route::post('/foto-perfil', [App\Http\Controllers\Api\AjustesController::class, 'updateFotoPerfil']);
+    Route::post('/foto-portada', [App\Http\Controllers\Api\AjustesController::class, 'updateFotoPortada']);
+});
+
+//Fin Ajustes👆
+
+
+//Movil
+
+    Route::get('users/{user_id}/profile', [ProfileController::class, 'getProfileUser']); //Es para obtener los datos de perfil cuando esta recien registrado
+    Route::put('users/{user_id}/update', [ProfileController::class, 'updateProfile']); //Actualiza el profile pero en users solo campo nombre, apellidos, email, usuario
+    Route::post('pacientes/create', [ProfileController::class, 'createPaciente']);
+    Route::get('pacientest/por-email', [ProfileController::class, 'getPacienteByEmail']);
+
+    Route::put('pacientest/update-by-email', [ProfileController::class, 'updatePacienteByEmail']);
+    Route::post('pacientest/update-with-photo-by-email', [ProfileController::class, 'updatePacienteWithPhotoByEmail']);
+
+    Route::get('nutriologos', [ListaNutriologosMovil::class, 'getNutriologos']);
+
+
+
+//Fin Movil
 
 
 Route::get('/appointments', [appointmentController::class, 'index']);

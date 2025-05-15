@@ -124,7 +124,7 @@
                     <div class="collapse menu-dropdown" id="sidebarAuth">
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
-                                <a href="../../chat.php" class="nav-link" data-key="t-detached">Chat</a>
+                                <a href="../mensajeria/mensajeria_nutri.php" class="nav-link" data-key="t-chat">Chat</a>
                             </li>
                         
                         </ul>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 10-05-2025 a las 23:00:03
+-- Tiempo de generación: 15-05-2025 a las 20:48:12
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -24,6 +24,53 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `ajustes`
+--
+
+CREATE TABLE `ajustes` (
+  `Ajuste_ID` int(10) UNSIGNED NOT NULL,
+  `user_id` bigint(20) UNSIGNED NOT NULL,
+  `rol_id` bigint(20) UNSIGNED NOT NULL,
+  `nombre_nutriologo` varchar(255) NOT NULL,
+  `apellido_nutriologo` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `telefono` varchar(20) DEFAULT NULL,
+  `edad` tinyint(3) UNSIGNED DEFAULT NULL,
+  `genero` varchar(50) DEFAULT NULL,
+  `fecha_nacimiento` date DEFAULT NULL,
+  `profesion` varchar(255) DEFAULT NULL,
+  `especialidad` varchar(255) DEFAULT NULL,
+  `universidad` varchar(255) DEFAULT NULL,
+  `displomados` text DEFAULT NULL,
+  `especializacion` varchar(255) DEFAULT NULL,
+  `descripcion_especialziacion` text DEFAULT NULL,
+  `experiencia` text DEFAULT NULL,
+  `enfermedades_tratadas` text DEFAULT NULL,
+  `foto` varchar(255) DEFAULT NULL,
+  `foto_portada` varchar(255) DEFAULT NULL,
+  `pacientes_tratados` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `horario_antencion` varchar(255) DEFAULT NULL,
+  `descripcion_nutriologo` text DEFAULT NULL,
+  `ciudad` varchar(255) DEFAULT NULL,
+  `estado` varchar(255) DEFAULT NULL,
+  `modalidad` varchar(255) DEFAULT NULL,
+  `disponibilidad` varchar(255) DEFAULT NULL,
+  `status` tinyint(1) NOT NULL DEFAULT 1,
+  `fecha_creacion` timestamp NOT NULL DEFAULT current_timestamp(),
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `ajustes`
+--
+
+INSERT INTO `ajustes` (`Ajuste_ID`, `user_id`, `rol_id`, `nombre_nutriologo`, `apellido_nutriologo`, `email`, `telefono`, `edad`, `genero`, `fecha_nacimiento`, `profesion`, `especialidad`, `universidad`, `displomados`, `especializacion`, `descripcion_especialziacion`, `experiencia`, `enfermedades_tratadas`, `foto`, `foto_portada`, `pacientes_tratados`, `horario_antencion`, `descripcion_nutriologo`, `ciudad`, `estado`, `modalidad`, `disponibilidad`, `status`, `fecha_creacion`, `created_at`, `updated_at`) VALUES
+(1, 2, 1, 'Alan Antony', 'Puc Yam', 'puc-alan20@hotmail.com', '9961018215', 22, 'Masculino', '2003-04-28', 'Lic.Nutricion', 'Nutrición Clínica', 'UAC', 'Diabetes I', 'AutoInmunes', 'Como nutriólogo especializado en enfermedades autoinmunes, me enfoco en diseñar planes de alimentación personalizados para personas que padecen condiciones como lupus, artritis reumatoide, enfermedad celíaca, esclerosis múltiple, tiroiditis de Hashimoto, entre otras.', '10', '<p><strong>Enfermedades crónicas y metabólicas:</strong></p><ul><li>Diabetes tipo 1 y 2</li><li>Hipertensión arterial</li><li>Colesterol y triglicéridos altos (dislipidemias)</li><li>Síndrome metabólico</li><li>Obesidad y sobrepeso</li><li>Hígado graso no alcohólico</li><li>Hipotiroidismo e hipertiroidismo</li></ul><p><strong>Enfermedades autoinmunes (especialidad):</strong></p><ul><li>Lupus eritematoso sistémico</li><li>Artritis reumatoide</li><li>Enfermedad celíaca</li><li>Tiroiditis de Hashimoto</li><li>Esclerosis múltiple</li><li>Psoriasis</li><li>Enfermedad de Crohn</li><li>Colitis ulcerosa</li></ul>', 'http://127.0.0.1:8000/storage/nutriologos/1747302812_alan-antony.jpeg', 'http://127.0.0.1:8000/storage/fotos_portadas/1747313108_portada_alan-antony.jpg', 12, 'Lunes a Viernes: 10:00AM-4:00PM, 6:00PM-8:00PM', 'Soy nutriólogo y mi misión es ayudarte a alcanzar un estilo de vida más saludable por medio de una alimentación equilibrada y personalizada. Me especializo en evaluar tu estado nutricional, entender tus hábitos y necesidades, y construir contigo un plan que no solo funcione, sino que también se adapte a ti.', 'Calkini', 'Campeche', 'Presencial', 'Disponibles', 1, '2025-05-15 09:07:51', '2025-05-15 15:07:51', '2025-05-15 18:45:08');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `appointment`
 --
 
@@ -35,25 +82,6 @@ CREATE TABLE `appointment` (
   `image` varchar(255) DEFAULT NULL,
   `status` varchar(255) NOT NULL,
   `status_type` int(11) NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `chat`
---
-
-CREATE TABLE `chat` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `message` varchar(255) NOT NULL,
-  `image` varchar(255) DEFAULT NULL,
-  `time` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `read` tinyint(1) NOT NULL,
-  `isOnline` tinyint(1) NOT NULL,
-  `isCurrentUser` tinyint(1) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -325,7 +353,9 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (52, '2025_05_10_011416_create_reservacion_table', 37),
 (53, '2025_05_10_011827_create_notificaciones_table', 37),
 (54, '2025_05_10_024357_create_reservaciones_table', 38),
-(55, '2025_05_10_024523_create_notificaciones_table', 38);
+(55, '2025_05_10_024523_create_notificaciones_table', 38),
+(56, '2025_05_15_034352_create_ajustes_table', 39),
+(57, '2025_05_15_073322_add_table_status_to_ajustes_table', 40);
 
 -- --------------------------------------------------------
 
@@ -416,7 +446,15 @@ INSERT INTO `notificaciones` (`Notificacion_ID`, `Reservacion_ID`, `Chat_ID`, `P
 (53, 25, NULL, NULL, NULL, 1, 'Angel', 'Chan', NULL, 'Nueva cita programada para   el día 2025-05-20 14:00 con el Nut. Alan Antony Puc Yam (Estado: En espera)', NULL, NULL, 'Alan Antony Puc Yam', 1, 1, '0 seconds ago', '2025-05-10 12:28:01', '2025-05-10 18:28:01', '2025-05-10 18:48:14', 2),
 (54, 26, NULL, NULL, NULL, 1, 'Angel2', 'Chan', NULL, 'Nueva cita programada para   el día 2025-05-22 14:00 con el Nut. Alan Antony Puc Yam (Estado: En espera)', NULL, NULL, 'Alan Antony Puc Yam', 1, 1, '0 seconds ago', '2025-05-10 12:29:11', '2025-05-10 18:29:11', '2025-05-10 18:47:46', 2),
 (55, 27, NULL, NULL, NULL, 1, 'Melissa', 'Chan', NULL, 'Nueva cita programada para   el día 2025-05-23 14:00 con el Nut. Alan Antony Puc Yam (Estado: En espera)', NULL, NULL, 'Alan Antony Puc Yam', 1, 1, '0 seconds ago', '2025-05-10 12:34:19', '2025-05-10 18:34:19', '2025-05-10 18:49:04', 2),
-(56, 28, NULL, NULL, NULL, 1, 'Melissa', 'Chan', NULL, 'Nueva cita programada para   el día 2025-05-25 14:00 con el Nut. Alan Antony Puc Yam (Estado: En espera)', NULL, NULL, 'Alan Antony Puc Yam', 1, 1, '0 seconds ago', '2025-05-10 12:50:29', '2025-05-10 18:50:29', '2025-05-10 18:50:49', 2);
+(56, 28, NULL, NULL, NULL, 1, 'Melissa', 'Chan', NULL, 'Nueva cita programada para   el día 2025-05-25 14:00 con el Nut. Alan Antony Puc Yam (Estado: En espera)', NULL, NULL, 'Alan Antony Puc Yam', 1, 1, '0 seconds ago', '2025-05-10 12:50:29', '2025-05-10 18:50:29', '2025-05-10 18:50:49', 2),
+(57, 29, NULL, NULL, NULL, 1, 'Melissass', 'Chan', NULL, 'Nueva cita programada para   el día 2025-05-14 14:00 con el Nut. Alan Antony Puc Yam (Estado: En espera)', NULL, NULL, 'Alan Antony Puc Yam', 0, 1, '0 seconds ago', '2025-05-12 06:56:56', '2025-05-12 12:56:56', '2025-05-12 12:56:56', 2),
+(58, 30, NULL, NULL, NULL, 1, 'Smara', 'Chan', NULL, 'Nueva cita programada para   el día 2025-05-15 14:00 con el Nut. Alan Antony Puc Yam (Estado: En espera)', NULL, NULL, 'Alan Antony Puc Yam', 0, 1, '0 seconds ago', '2025-05-12 07:07:43', '2025-05-12 13:07:43', '2025-05-12 13:07:43', 2),
+(59, 31, NULL, NULL, NULL, 1, 'Smara2', 'Chan', NULL, 'Nueva cita programada para   el día 2025-05-15 14:00 con el Nut. Alan Antony Puc Yam (Estado: En espera)', NULL, NULL, 'Alan Antony Puc Yam', 0, 1, '0 seconds ago', '2025-05-12 07:08:23', '2025-05-12 13:08:23', '2025-05-12 13:08:23', 2),
+(60, 32, NULL, NULL, NULL, 1, 'Samara', 'Camara', NULL, 'Nueva cita programada para   el día 2025-05-12 14:00 con el Nut. Alan Antony Puc Yam (Estado: En espera)', NULL, NULL, 'Alan Antony Puc Yam', 0, 1, '0 seconds ago', '2025-05-12 07:15:29', '2025-05-12 13:15:29', '2025-05-12 13:15:29', 2),
+(61, 33, NULL, NULL, NULL, 1, 'Ameli', 'Horta', NULL, 'Nueva cita programada para   el día 2025-05-19 14:00 con el Nut. Alan Antony Puc Yam (Estado: En espera)', NULL, NULL, 'Alan Antony Puc Yam', 0, 1, '0 seconds ago', '2025-05-12 07:19:25', '2025-05-12 13:19:25', '2025-05-12 13:19:25', 2),
+(62, 34, NULL, NULL, NULL, 1, 'Amelis', 'Horta', NULL, 'Nueva cita programada para   el día 2025-05-19 14:00 con el Nut. Alan Antony Puc Yam (Estado: En espera)', NULL, NULL, 'Alan Antony Puc Yam', 0, 1, '0 seconds ago', '2025-05-12 07:32:08', '2025-05-12 13:32:08', '2025-05-12 13:32:08', 2),
+(63, 35, NULL, NULL, NULL, 1, 'Amelis2', 'Horta', NULL, 'Nueva cita programada para   el día 2025-05-19 14:00 con el Nut. Alan Antony Puc Yam (Estado: En espera)', NULL, NULL, 'Alan Antony Puc Yam', 0, 1, '0 seconds ago', '2025-05-12 07:32:35', '2025-05-12 13:32:35', '2025-05-12 13:32:35', 2),
+(64, 36, NULL, NULL, NULL, 1, 'Amelis22', 'Horta', NULL, 'Nueva cita programada para   el día 2025-05-19 14:00 con el Nut. Alan Antony Puc Yam (Estado: En espera)', NULL, NULL, 'Alan Antony Puc Yam', 0, 1, '0 seconds ago', '2025-05-12 07:33:15', '2025-05-12 13:33:15', '2025-05-12 13:33:15', 2);
 
 --
 -- Disparadores `notificaciones`
@@ -464,7 +502,7 @@ CREATE TABLE `paciente` (
   `genero` enum('Masculino','Femenino','Otros') NOT NULL,
   `usuario` varchar(255) NOT NULL,
   `rol_id` bigint(20) UNSIGNED NOT NULL,
-  `user_id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` bigint(20) UNSIGNED DEFAULT NULL,
   `enfermedad` varchar(255) DEFAULT NULL,
   `status` tinyint(1) NOT NULL DEFAULT 1,
   `estado` tinyint(1) NOT NULL DEFAULT 1,
@@ -486,7 +524,9 @@ INSERT INTO `paciente` (`Paciente_ID`, `foto`, `nombre`, `apellidos`, `email`, `
 (2, 'http://127.0.0.1:8000/storage/pacientes/1745458516_testcom.jpg', 'Lyura', 'Celestina', 'Celestina@gmail.com', '9961052845', 'Femenino', 'Celestina', 2, 2, 'Hepatitis B', 1, 1, 'Pomuch', 'Campeche', 25, '2003-04-24', '2025-04-23', '2025-04-24 04:47:21', '2025-05-08 01:36:09'),
 (3, NULL, 'Angelica', 'Moreno', 'angelicaMron@gmail.com', '9961018212', 'Femenino', 'asfsfasfasfss', 2, 2, 'Artritis,Cancer Pulmonar', 1, 1, 'Nunkini', 'Campeche', 28, '1998-05-29', '2025-04-23', '2025-04-24 05:26:36', '2025-05-07 08:53:06'),
 (4, 'http://127.0.0.1:8000/storage/pacientes/1745454970_alan-antony.jpeg', 'Alan Antony', 'Puc Yam', 'lyon_arthur2@hotmail.com', '9961018215', 'Masculino', 'Lyon_Arthur', 2, 2, 'Ninguna', 1, 1, NULL, NULL, NULL, NULL, '2025-04-24', '2025-04-24 06:36:10', '2025-04-24 17:49:48'),
-(5, 'http://127.0.0.1:8000/storage/pacientes/1746409781_alcrya.png', 'Alcrya', 'Lumina', 'LyrcaLumina@gmail.com', '9961025841', 'Femenino', 'Alcrya Lumina', 2, 2, 'Disformia,Hipertensión', 1, 1, 'Merida', 'Yucatán', 20, '2002-12-12', '2025-05-05', '2025-05-05 07:48:39', '2025-05-05 07:51:54');
+(5, 'http://127.0.0.1:8000/storage/pacientes/1746409781_alcrya.png', 'Alcrya', 'Lumina', 'LyrcaLumina@gmail.com', '9961025841', 'Femenino', 'Alcrya Lumina', 2, 2, 'Disformia,Hipertensión', 1, 1, 'Merida', 'Yucatán', 20, '2002-12-12', '2025-05-05', '2025-05-05 07:48:39', '2025-05-05 07:51:54'),
+(15, 'http://192.168.50.221:8000/storage/pacientes/1747275591_monserrat.jpg', 'Isabel', 'Cuevas', 'monsecuevas@gmail.com', '9961025846', 'Femenino', 'monsee', 2, NULL, 'Artritis', 1, 1, 'Calkini', 'Campeche', 22, '2003-04-16', '2025-05-14', '2025-05-14 17:22:14', '2025-05-15 20:31:03'),
+(16, 'http://192.168.50.221:8000/storage/pacientes/1747278798_paula.jpg', 'Paula', 'Tuz Tuz', 'pautuztuz@gmail.com', '9993340566', 'Femenino', 'PauTuz', 2, 2, 'ninguna', 1, 1, 'Pomuch', 'Hecelchakan', 20, '2004-07-27', '2025-05-14', '2025-05-15 09:12:53', '2025-05-15 09:13:18');
 
 -- --------------------------------------------------------
 
@@ -610,7 +650,15 @@ INSERT INTO `reservaciones` (`Reservacion_ID`, `Consulta_ID`, `Paciente_ID`, `Ul
 (25, NULL, NULL, 53, 'Angel', 'Chan', '5551234567', 'Femenino', 'Angelito', 30, 585.00, 'Consulta nutricional inicial', NULL, NULL, 'Alan Antony Puc Yam', '2025-05-20 14:00:00', NULL, 4, 'movil', '2025-05-10 18:28:01', '2025-05-10 18:28:01', 2),
 (26, NULL, NULL, 54, 'Angel2', 'Chan', '5551234567', 'Femenino', 'Angelito22', 30, 585.00, 'Consulta nutricional inicial', NULL, NULL, 'Alan Antony Puc Yam', '2025-05-22 14:00:00', NULL, 4, 'movil', '2025-05-10 18:29:11', '2025-05-10 18:29:11', 2),
 (27, NULL, NULL, 55, 'Melissa', 'Chan', '5551234567', 'Femenino', 'Meli_Chan', 30, 585.00, 'Consulta nutricional inicial', NULL, NULL, 'Alan Antony Puc Yam', '2025-05-23 14:00:00', NULL, 4, 'movil', '2025-05-10 18:34:19', '2025-05-10 18:34:19', 2),
-(28, NULL, NULL, 56, 'Melissa', 'Chan', '5551234567', 'Femenino', 'Meli_Chane', 30, 585.00, 'Consulta nutricional inicial', NULL, NULL, 'Alan Antony Puc Yam', '2025-05-25 14:00:00', NULL, 4, 'movil', '2025-05-10 18:50:29', '2025-05-10 18:50:29', 2);
+(28, NULL, NULL, 56, 'Melissa', 'Chan', '5551234567', 'Femenino', 'Meli_Chane', 30, 585.00, 'Consulta nutricional inicial', NULL, NULL, 'Alan Antony Puc Yam', '2025-05-25 14:00:00', NULL, 4, 'movil', '2025-05-10 18:50:29', '2025-05-10 18:50:29', 2),
+(29, NULL, NULL, 57, 'Melissass', 'Chan', '5551234567', 'Femenino', 'Meli_Chanes', 30, 585.00, 'Consulta nutricional inicial', NULL, NULL, 'Alan Antony Puc Yam', '2025-05-14 14:00:00', NULL, 4, 'movil', '2025-05-12 12:56:56', '2025-05-12 12:56:56', 2),
+(30, NULL, NULL, 58, 'Smara', 'Chan', '5551234567', 'Femenino', 'Smaras', 30, 585.00, 'Consulta nutricional inicial', NULL, NULL, 'Alan Antony Puc Yam', '2025-05-15 14:00:00', NULL, 4, 'movil', '2025-05-12 13:07:43', '2025-05-12 13:07:43', 2),
+(31, NULL, NULL, 59, 'Smara2', 'Chan', '5551234567', 'Femenino', 'Smaras2', 30, 585.00, 'Consulta nutricional inicial', NULL, NULL, 'Alan Antony Puc Yam', '2025-05-15 14:00:00', NULL, 4, 'movil', '2025-05-12 13:08:23', '2025-05-12 13:08:23', 2),
+(32, NULL, NULL, 60, 'Samara', 'Camara', '5551234567', 'Femenino', 'Samara2', 30, 585.00, 'Consulta nutricional inicial', NULL, NULL, 'Alan Antony Puc Yam', '2025-05-12 14:00:00', NULL, 4, 'movil', '2025-05-12 13:15:29', '2025-05-12 13:15:29', 2),
+(33, NULL, NULL, 61, 'Ameli', 'Horta', '5551234567', 'Femenino', 'Amelis', 30, 585.00, 'Consulta nutricional inicial', NULL, NULL, 'Alan Antony Puc Yam', '2025-05-19 14:00:00', NULL, 4, 'movil', '2025-05-12 13:19:25', '2025-05-12 13:19:25', 2),
+(34, NULL, NULL, 62, 'Amelis', 'Horta', '5551234567', 'Femenino', 'Amelis2', 30, 585.00, 'Consulta nutricional inicial', NULL, NULL, 'Alan Antony Puc Yam', '2025-05-19 14:00:00', NULL, 4, 'movil', '2025-05-12 13:32:08', '2025-05-12 13:32:08', 2),
+(35, NULL, NULL, 63, 'Amelis2', 'Horta', '5551234567', 'Femenino', 'Amelis22', 30, 585.00, 'Consulta nutricional inicial', NULL, NULL, 'Alan Antony Puc Yam', '2025-05-19 14:00:00', NULL, 4, 'movil', '2025-05-12 13:32:35', '2025-05-12 13:32:35', 2),
+(36, NULL, NULL, 64, 'Amelis22', 'Horta', '5551234567', 'Femenino', 'Amelis222', 30, 585.00, 'Consulta nutricional inicial', NULL, NULL, 'Alan Antony Puc Yam', '2025-05-19 14:00:00', NULL, 4, 'movil', '2025-05-12 13:33:15', '2025-05-12 13:33:15', 2);
 
 -- --------------------------------------------------------
 
@@ -758,9 +806,15 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `nombre`, `apellidos`, `email`, `usuario`, `password`, `remember_token`, `rol_id`, `activo`, `eliminado`, `created_at`, `updated_at`, `remember_token_expires_at`) VALUES
-(2, 'Alan Antony', 'Puc Yam', 'puc-alan20@hotmail.com', 'WoolyOlvel', '$2y$12$2eX8kea.zxAt68bRmujfWOWPUKp3hgrfxgNlxSF2ltAABeYBU1svi', 'tFUDxhryhPAiPiXx4msrGsIMAAoZONFj6aCJn8nU0QFs506bIUl1MDs6nBQs', 1, 1, 0, '2025-04-19 13:59:50', '2025-04-24 03:51:07', '2025-05-24 03:51:07'),
+(2, 'Alan Antony', 'Puc Yam', 'puc-alan20@hotmail.com', 'WoolyOlvel', '$2y$12$2eX8kea.zxAt68bRmujfWOWPUKp3hgrfxgNlxSF2ltAABeYBU1svi', 'fjGLjzvqdpF96xfsO4BaORbqGCpWr2nufUk6CFVcSJjBSB1tAYtkQpuxIzVQ', 1, 1, 0, '2025-04-19 13:59:50', '2025-05-14 07:55:52', '2025-06-13 07:55:52'),
 (3, 'Juan Pérez', 'Gil', 'juanperez@example.com', 'juancito', '$2y$12$e31DOZbPJieeUS.64JYbyuXxFvQJwiqIM0KlBCOTKBUXBklijQIiO', NULL, 1, 1, 0, '2025-05-08 09:47:43', '2025-05-08 09:47:43', NULL),
-(4, 'Wilbert Edward', 'Yam', 'woolyolvel@gmail.com', 'Wepy25', '$2y$12$72sWhEMEeSTgt5EEhbngceeeaF0MdLOT8IAqcyOm7N61wUxGb1UlK', 'V2L4xHEalaJ7WBuaaN4YSQEPVvRpnx9cjtTPSJiuutpHUC89b1SV3PMG5oYd', 1, 1, 0, '2025-05-09 17:31:33', '2025-05-09 17:32:02', '2025-06-08 17:32:02');
+(4, 'Wilbert Edward', 'Yam', 'woolyolvel@gmail.com', 'Wepy25', '$2y$12$72sWhEMEeSTgt5EEhbngceeeaF0MdLOT8IAqcyOm7N61wUxGb1UlK', NULL, 1, 1, 0, '2025-05-09 17:31:33', '2025-05-14 07:27:41', '2025-06-08 17:32:02'),
+(5, 'Regina C', 'Estrada', 'reginacaceres@gmail.com', 'regEstrada22', '$2y$12$sghG.YOSpPOeipkbZp6ud.E8Pn4k6kiXzQ1fKv0cg3amgAt6bUmla', NULL, 1, 1, 0, '2025-05-14 06:40:11', '2025-05-14 07:51:52', '2025-06-13 07:51:31'),
+(6, 'Isabel', 'Cuevas', 'isaCuevas@gmail.com', 'isacuevas', '$2y$12$w1ZQX6jQG5r4V35Vhp5iZekCfA2GIwOdMS8UDqTWW8w823cDXM40.', NULL, 2, 1, 0, '2025-05-14 07:00:44', '2025-05-14 07:00:44', NULL),
+(7, 'Wilbert', 'Puc Ku', 'wilberPucKu@gmail.com', 'pucku', '$2y$12$Z1LEz3hly8EvXNRFSE9XA.F1wKIyh7.3tLj3cvU2NsIVxifuiZjqu', NULL, 1, 1, 0, '2025-05-14 07:02:57', '2025-05-14 07:50:59', '2025-06-13 07:50:37'),
+(8, 'Isabel', 'Cuevas', 'monsecuevas@gmail.com', 'monsee', '$2y$12$rMF75mAHj0K4YssDGzJpme4.E/FX1B1bv/acAOq.aCHVXHnNl4N.2', 'H1DqSWevuspZors7uqFfW28grEzCqjANtQpglCV7TRdI68Ogkf5XNI0kCg0l', 2, 1, 0, '2025-05-14 07:08:28', '2025-05-15 20:31:02', '2025-06-13 07:57:05'),
+(9, 'Maria', 'Veronica', 'marivero@gmail.com', 'marivero', '$2y$12$7L5m4r7hRyTtdVdiGZ6gZ.aWtZdJKraYGDqvUDNGPOvINgjWq4vE2', NULL, 1, 1, 0, '2025-05-14 07:30:37', '2025-05-14 07:34:58', '2025-06-13 07:32:56'),
+(10, 'Paula', 'Tuz Tuz', 'pautuztuz@gmail.com', 'PauTuz', '$2y$12$4kXAcvKD0pT6eMwDCLBgBuibA3x3RA3vNzonHRsDfQSNFtGdhEB9m', NULL, 2, 1, 0, '2025-05-15 09:10:26', '2025-05-15 09:10:26', NULL);
 
 -- --------------------------------------------------------
 
@@ -784,15 +838,21 @@ CREATE TABLE `usuario` (
 --
 
 --
+-- Indices de la tabla `ajustes`
+--
+ALTER TABLE `ajustes`
+  ADD PRIMARY KEY (`Ajuste_ID`),
+  ADD UNIQUE KEY `ajustes_email_unique` (`email`),
+  ADD KEY `ajustes_user_id_index` (`user_id`),
+  ADD KEY `ajustes_rol_id_index` (`rol_id`),
+  ADD KEY `ajustes_nombre_nutriologo_apellido_nutriologo_index` (`nombre_nutriologo`,`apellido_nutriologo`),
+  ADD KEY `ajustes_especialidad_index` (`especialidad`),
+  ADD KEY `ajustes_ciudad_estado_index` (`ciudad`,`estado`);
+
+--
 -- Indices de la tabla `appointment`
 --
 ALTER TABLE `appointment`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indices de la tabla `chat`
---
-ALTER TABLE `chat`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -957,15 +1017,15 @@ ALTER TABLE `usuario`
 --
 
 --
+-- AUTO_INCREMENT de la tabla `ajustes`
+--
+ALTER TABLE `ajustes`
+  MODIFY `Ajuste_ID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT de la tabla `appointment`
 --
 ALTER TABLE `appointment`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de la tabla `chat`
---
-ALTER TABLE `chat`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
@@ -1014,13 +1074,13 @@ ALTER TABLE `medidas_corporales`
 -- AUTO_INCREMENT de la tabla `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
 
 --
 -- AUTO_INCREMENT de la tabla `notificaciones`
 --
 ALTER TABLE `notificaciones`
-  MODIFY `Notificacion_ID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
+  MODIFY `Notificacion_ID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
 
 --
 -- AUTO_INCREMENT de la tabla `notification`
@@ -1032,7 +1092,7 @@ ALTER TABLE `notification`
 -- AUTO_INCREMENT de la tabla `paciente`
 --
 ALTER TABLE `paciente`
-  MODIFY `Paciente_ID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `Paciente_ID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT de la tabla `pago`
@@ -1056,7 +1116,7 @@ ALTER TABLE `plan_list`
 -- AUTO_INCREMENT de la tabla `reservaciones`
 --
 ALTER TABLE `reservaciones`
-  MODIFY `Reservacion_ID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `Reservacion_ID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT de la tabla `rol`
@@ -1086,7 +1146,7 @@ ALTER TABLE `tipo_consulta`
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`
@@ -1097,6 +1157,13 @@ ALTER TABLE `usuario`
 --
 -- Restricciones para tablas volcadas
 --
+
+--
+-- Filtros para la tabla `ajustes`
+--
+ALTER TABLE `ajustes`
+  ADD CONSTRAINT `ajustes_rol_id_foreign` FOREIGN KEY (`rol_id`) REFERENCES `rol` (`id`),
+  ADD CONSTRAINT `ajustes_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
 
 --
 -- Filtros para la tabla `consulta`
