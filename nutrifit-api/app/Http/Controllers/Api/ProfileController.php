@@ -9,6 +9,7 @@ use App\Models\Paciente;
 use App\Models\User;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\DB;
 
 class ProfileController extends Controller
 {
@@ -108,6 +109,8 @@ class ProfileController extends Controller
             'paciente' => $paciente
         ], 201);
     }
+
+
 
     // En ProfileController.php, agrega:
     public function getPacienteByEmail(Request $request)
@@ -246,6 +249,110 @@ class ProfileController extends Controller
             ], 500);
         }
     }
+
+
+    public function duplicarPacienteParaNutriologo(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|email|exists:paciente,email',
+            'user_id_nutriologo' => 'required|integer|exists:users,id',
+        ]);
+
+        return DB::transaction(function () use ($request) {
+            // Buscar paciente original
+            $pacienteOriginal = Paciente::where('email', $request->email)
+                ->firstOrFail();
+
+            // Verificar si ya existe un duplicado para este nutriólogo
+            $existingDuplicate = Paciente::where('email', $request->email)
+                ->where('user_id', $request->user_id_nutriologo)
+                ->first();
+
+            if ($existingDuplicate) {
+                return response()->json([
+                    'success' => true,
+                    'paciente' => $existingDuplicate,
+                    'message' => 'Paciente ya existe para este nutriólogo'
+                ]);
+            }
+
+            // Generar valores únicos para campos que deben ser únicos
+            $suffix = '_nut'.$request->user_id_nutriologo;
+            $nuevoTelefono = $pacienteOriginal->telefono ? $pacienteOriginal->telefono.$suffix : null;
+            $nuevoUsuario = $pacienteOriginal->usuario.$suffix;
+            $nuevoEmail = $pacienteOriginal->email; // Mantenemos el mismo email
+
+            // Crear nuevo paciente
+            $nuevoPaciente = $pacienteOriginal->replicate();
+            $nuevoPaciente->user_id = $request->user_id_nutriologo;
+            $nuevoPaciente->telefono = $nuevoTelefono;
+            $nuevoPaciente->usuario = $nuevoUsuario;
+            $nuevoPaciente->email = $nuevoEmail;
+            $nuevoPaciente->save();
+
+            // También puedes duplicar relaciones si es necesario
+            // Ejemplo: $pacienteOriginal->historiales->each->replicate()->paciente_id = $nuevoPaciente->id;
+
+            return response()->json([
+                'success' => true,
+                'paciente' => $nuevoPaciente,
+                'message' => 'Paciente duplicado exitosamente'
+            ]);
+        });
+    }
+
+    public function getPacientesPorEmail(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|email'
+        ]);
+
+        try {
+            $pacientes = Paciente::where('email', $request->email)->get();
+
+            if ($pacientes->isEmpty()) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'No se encontraron pacientes con este email'
+                ], 404);
+            }
+
+            // Obtener información de nutriólogos asociados
+            $pacientesConNutriologos = $pacientes->map(function($paciente) {
+                $nutriologo = null;
+                if ($paciente->user_id) {
+                    $nutriologo = User::find($paciente->user_id);
+                }
+
+                return [
+                    'paciente' => $paciente,
+                    'nutriologo' => $nutriologo ? [
+                        'id' => $nutriologo->id,
+                        'nombre' => $nutriologo->nombre,
+                        'apellidos' => $nutriologo->apellidos
+                    ] : null
+                ];
+            });
+
+            return response()->json([
+                'success' => true,
+                'total' => $pacientes->count(),
+                'pacientes' => $pacientesConNutriologos
+            ], 200);
+
+        } catch (\Exception $e) {
+            Log::error("Error en getPacientesPorEmail: " . $e->getMessage(), [
+                'email' => $request->email ?? 'no proporcionado'
+            ]);
+
+            return response()->json([
+                'success' => false,
+                'message' => 'Error interno del servidor',
+                'error' => $e->getMessage()
+            ], 500);
+        }
+    }
+
 
 
 }

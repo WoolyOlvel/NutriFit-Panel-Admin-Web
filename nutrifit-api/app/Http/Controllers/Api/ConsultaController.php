@@ -193,6 +193,16 @@ class ConsultaController extends Controller
             'mm' => 'nullable|numeric|between:0,999.99',
             'em' => 'nullable|numeric|between:0,999.99',
             'altura' => 'nullable|numeric|between:0,999.99',
+            'proteina' => 'nullable|numeric|between:0,999.99',
+            'ec'=> 'nullable|numeric|between:0,999.99',
+            'me' => 'nullable|numeric|between:0,999.99',
+            'gv' => 'nullable|numeric|between:0,999.99',
+            'pg' => 'nullable|numeric|between:0,999.99',
+            'gs' => 'nullable|numeric|between:0,999.99',
+            'meq' => 'nullable|numeric|between:0,999.99',
+            'bmr' => 'nullable|numeric|min:0|max:99999.99',
+            'ac' => 'nullable|numeric|between:0,999.99',
+            'imc' => 'nullable|numeric|between:0,999.99',
 
             // Campos de texto
             'detalles_diagnostico' => 'nullable|string',
@@ -277,6 +287,16 @@ class ConsultaController extends Controller
             $consulta->mm = $request->mm;
             $consulta->em = $request->em;
             $consulta->altura = $request->altura;
+            $consulta->proteina = $request->proteina;
+            $consulta->ec = $request->ec;
+            $consulta->me = $request->me;
+            $consulta->gv = $request->gv;
+            $consulta->pg = $request->pg;
+            $consulta->gs = $request->gs;
+            $consulta->meq = $request->meq;
+            $consulta->bmr = $request->bmr;
+            $consulta->ac = $request->ac;
+            $consulta->imc = $request->imc;
 
             // Asignar datos de CKEditor
             $consulta->detalles_diagnostico = $request->detalles_diagnostico;

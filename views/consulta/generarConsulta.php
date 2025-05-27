@@ -220,7 +220,7 @@ require_once("../html/session.php");
                                                 </div>
 
                                                 <div class="col-md-4">
-                                                    <label class="form-label">Masa Corporal:</label>
+                                                    <label class="form-label">Masa Muscular:</label>
                                                     <div class="input-group">
                                                         <input for="mm" type="number" step="any" class="form-control" id="mm" name="mm" placeholder="Masa Corporal Del Paciente" aria-label="Masa" aria-describedby="basic-addon1">
                                                         <span class="input-group-text" id="basic-addon5">%</span>
@@ -234,6 +234,7 @@ require_once("../html/session.php");
                                                         <span class="input-group-text" id="basic-addon6">años</span>
                                                     </div>
                                                 </div>
+                                                
 
                                                 <div class="col-md-4">
                                                     <label class="form-label">Altura:</label>
@@ -242,6 +243,88 @@ require_once("../html/session.php");
                                                         <span class="input-group-text" id="basic-addon7">m</span>
                                                     </div>
                                                 </div>
+
+                                                <div class="col-md-4">
+                                                    <label class="form-label">Proteina:</label>
+                                                    <div class="input-group">
+                                                        <input for="proteina" type="number" step="any" class="form-control" id="proteina" name="proteina" placeholder="Porcentaje De Proteina Del Paciente" aria-label="Username" aria-describedby="basic-addon1">
+                                                        <span class="input-group-text" id="basic-addon8">%</span>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-4">
+                                                    <label class="form-label">Edad Corporal:</label>
+                                                    <div class="input-group">
+                                                        <input for="ec" type="number" step="any" class="form-control" id="ec" name="ec" placeholder="Edad Corporal Del Paciente" aria-label="Username" aria-describedby="basic-addon1">
+                                                        <span class="input-group-text" id="basic-addon9">años</span>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-4">
+                                                    <label class="form-label">Masa Esquelética:</label>
+                                                    <div class="input-group">
+                                                        <input for="me" type="number" step="any" class="form-control" id="me" name="me" placeholder="Masa Esquelética Del Paciente" aria-label="Username" aria-describedby="basic-addon1">
+                                                        <span class="input-group-text" id="basic-addon10">Kg</span>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-4">
+                                                    <label class="form-label">Grasa Vísceral:</label>
+                                                    <div class="input-group">
+                                                        <input for="gv" type="number" step="any" class="form-control" id="gv" name="gv" placeholder="Grasa Vísceral Del Paciente" aria-label="Username" aria-describedby="basic-addon1">
+                                                        <span class="input-group-text" id="basic-addon11">%</span>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-4">
+                                                    <label class="form-label">Pérdida De Grasa:</label>
+                                                    <div class="input-group">
+                                                        <input for="pg" type="number" step="any" class="form-control" id="pg" name="pg" placeholder="Pérdida De Grasa Del Paciente" aria-label="Username" aria-describedby="basic-addon1">
+                                                        <span class="input-group-text" id="basic-addon12">Kg</span>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-4">
+                                                    <label class="form-label">Grasa Subcutanea:</label>
+                                                    <div class="input-group">
+                                                        <input for="gs" type="number" step="any" class="form-control" id="gs" name="gs" placeholder="Grasa Subcutanea Del Paciente" aria-label="Username" aria-describedby="basic-addon1">
+                                                        <span class="input-group-text" id="basic-addon13">%</span>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-4">
+                                                    <label class="form-label">Músculo Esquelético:</label>
+                                                    <div class="input-group">
+                                                        <input for="meq" type="number" step="any" class="form-control" id="meq" name="meq" placeholder="Músculo Esquelético Del Paciente" aria-label="Username" aria-describedby="basic-addon1">
+                                                        <span class="input-group-text" id="basic-addon14">%</span>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-4">
+                                                    <label class="form-label">BMR:</label>
+                                                    <div class="input-group">
+                                                        <input for="bmr" type="number" step="any" class="form-control" id="bmr" name="bmr" placeholder="BMR Del Paciente" aria-label="Username" aria-describedby="basic-addon1">
+                                                        <span class="input-group-text" id="basic-addon15">Kcal</span>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-4">
+                                                    <label class="form-label">Agua Corporal:</label>
+                                                    <div class="input-group">
+                                                        <input for="ac" type="number" step="any" class="form-control" id="ac" name="ac" placeholder="Agua Corporal Del Paciente" aria-label="Username" aria-describedby="basic-addon1">
+                                                        <span class="input-group-text" id="basic-addon16">%</span>
+                                                    </div>
+                                                </div>
+
+                 
+                                                <div class="col-md-4">
+                                                    <label class="form-label">IMC:</label>
+                                                    <div class="input-group">
+                                                        <input for="imc" type="number" step="any" class="form-control" id="imc" name="imc" placeholder="IMC Del Paciente" aria-label="Username" aria-describedby="basic-addon1">
+                                                        <span class="input-group-text" id="basic-addon17">%</span>
+                                                    </div>
+                                                </div>
+
 
                                             </div>
                                         </div>

@@ -165,7 +165,7 @@ class CalendarioCitasController extends Controller
             try {
                 $reservaciones = Reservaciones::where('user_id', $user->id)
                     ->where('fecha_consulta', '>=', $ahora)
-                    ->where('estado_proximaConsulta', '!=', 3 )
+                    ->where('estado_proximaConsulta', '!=', 3)
                     ->where('estado_proximaConsulta', '!=', 2)
                     ->where('estado_proximaConsulta', '!=', 0)
                     ->select(
@@ -496,6 +496,11 @@ class CalendarioCitasController extends Controller
     {
         $original->estado_proximaConsulta = 3;
         $original->save();
+        // Verificar si el motivo ya comienza con "Seguimiento: "
+        $motivoConsulta = $original->motivo_consulta;
+        if (!str_starts_with($motivoConsulta, "Seguimiento: ")) {
+            $motivoConsulta = "Seguimiento: " . $motivoConsulta;
+        }
         return Reservaciones::create([
             'user_id' => $original->user_id,
             'Paciente_ID' => $original->Paciente_ID,
@@ -507,7 +512,7 @@ class CalendarioCitasController extends Controller
             'usuario' => $original->usuario,
             'edad' => $original->edad,
             'precio_cita' => $original->precio_cita,
-            'motivo_consulta' => "Seguimiento: " . $original->motivo_consulta,
+            'motivo_consulta' =>$motivoConsulta,
             'nombre_consultorio' => $original->nombre_consultorio,
             'direccion_consultorio' => $original->direccion_consultorio,
             'nombre_nutriologo' => $original->nombre_nutriologo,

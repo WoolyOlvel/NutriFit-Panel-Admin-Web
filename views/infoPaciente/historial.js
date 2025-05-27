@@ -373,6 +373,56 @@ function mostrarDatosAntropometricos(antropometria) {
     if (alturaElement) {
         alturaElement.textContent = antropometria.altura ? `${antropometria.altura} m` : 'No disponible';
     }
+
+    const proteinaElement = document.getElementById('proteina');
+    if (proteinaElement) {
+        proteinaElement.textContent = antropometria.proteina ? `${antropometria.proteina} %` : 'No disponible';
+    }
+
+    const ecElement = document.getElementById('ec');
+    if (ecElement) {
+        ecElement.textContent = antropometria.ec ? `${antropometria.ec} años` : 'No disponible';
+    }
+
+    const meElement = document.getElementById('me');
+    if (meElement) {
+        meElement.textContent = antropometria.me ? `${antropometria.me} Kg` : 'No disponible';
+    }
+
+    const gvElement = document.getElementById('gv');
+    if (gvElement) {
+        gvElement.textContent = antropometria.gv ? `${antropometria.gv} %` : 'No disponible';
+    }
+       
+    const pgElement = document.getElementById('pg');
+    if (pgElement) {
+        pgElement.textContent = antropometria.pg ? `${antropometria.pg} Kg` : 'No disponible';
+    }
+
+    const gsElement = document.getElementById('gs');
+    if (gsElement) {
+        gsElement.textContent = antropometria.gs ? `${antropometria.gs} %` : 'No disponible';
+    }
+
+    const meqElement = document.getElementById('meq');
+    if (meqElement) {
+        meqElement.textContent = antropometria.meq ? `${antropometria.meq} %` : 'No disponible';
+    }
+        
+    const bmrElement = document.getElementById('bmr');
+    if (bmrElement) {
+        bmrElement.textContent = antropometria.bmr ? `${antropometria.bmr} kcal` : 'No disponible';
+    }
+
+    const acElement = document.getElementById('ac');
+    if (acElement) {
+        acElement.textContent = antropometria.ac ? `${antropometria.ac} %` : 'No disponible';
+    }
+
+    const imcElement = document.getElementById('imc');
+    if (imcElement) {
+        imcElement.textContent = antropometria.imc ? `${antropometria.imc} %` : 'No disponible';
+    }
 }
 
 // Mostrar información adicional

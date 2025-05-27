@@ -212,6 +212,16 @@ document.addEventListener("DOMContentLoaded", function () {
       gc: datos.gc,
       em: datos.em,
       altura: datos.altura,
+      proteina: datos.proteina,
+      ec: datos.ec,
+      me: datos.me,
+      gv: datos.gv,
+      pg: datos.pg,
+      gs: datos.gs,
+      meq: datos.meq,
+      bmr: datos.bmr,
+      ac: datos.ac,
+      imc: datos.imc,
       proxima_consulta: datos.proxima_consulta,
       nombre_consultorio: datos.nombre_consultorio,
       direccion_consultorio: datos.direccion_consultorio,
@@ -239,7 +249,7 @@ document.addEventListener("DOMContentLoaded", function () {
     inicializarSelect2();
     
     // Llenar campos básicos (texto, número, etc.)
-    const camposNumericos = ["peso", "cintura", "cadera", "gc", "em", "altura"];
+    const camposNumericos = ["peso", "cintura", "cadera", "gc", "em", "altura", "proteina", "ec", "me", "gv", "pg", "gs", "meq", "bmr", "ac", "imc"];
     camposNumericos.forEach(campo => {
       const input = document.getElementById(campo);
       if (input && consulta[campo] !== undefined && consulta[campo] !== null) {
@@ -1158,7 +1168,7 @@ function cargarDatosConsulta(consultaId) {
     }
 
     // Validar entradas numéricas
-    ["peso", "cintura", "cadera", "gc", "em", "altura"].forEach(id => {
+    ["peso", "cintura", "cadera", "gc", "em", "altura", 'proteina', 'ec', 'me', 'gv', 'pg', 'gs', 'meq', 'bmr', 'ac', 'imc'].forEach(id => {
       const elemento = document.getElementById(id);
       if (elemento) elemento.addEventListener("input", validarEntradaNumerica);
     });
@@ -1818,7 +1828,7 @@ function cargarDatosConsulta(consultaId) {
   }
 
   function prepararDatosAdicionales() {
-    const campos = ["peso", "talla", "cintura", "cadera", "gc", "em", "altura"];
+    const campos = ["peso", "talla", "cintura", "cadera", "gc", "em", "altura", 'proteina', 'ec', 'me', 'gv', 'pg', 'gs', 'meq', 'bmr', 'ac', 'imc'];
     const datos = {};
 
     campos.forEach(campo => {

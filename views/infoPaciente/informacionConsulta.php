@@ -215,6 +215,7 @@ require_once("../html/session.php");
                                                                         <div id="peso" class="badge bg-dark-subtle text-body badge-border  fs-11"></div><!--Obtener de la tabla consulta el peso (asi: 55 Kg, Kg debe ser cocatenado en js) apartir de la consulta_id-->
                                                                     </div>
                                                                 </div>
+
                                                                 <div class="col-lg-3 col-sm-6">
                                                                     <div>
                                                                         <p class="mb-2 text-uppercase fw-medium">Talla:</p>
@@ -228,36 +229,113 @@ require_once("../html/session.php");
                                                                         <div id="cintura" class="badge bg-dark-subtle text-body badge-border  fs-11"></div><!--Obtener de la tabla consulta la cintura (asi:95 Cm, Cm debe ser cocatenado en js) apartir de la consulta_id-->
                                                                     </div>
                                                                 </div>
+
                                                                 <div class="col-lg-3 col-sm-6">
                                                                     <div>
                                                                         <p class="mb-2 text-uppercase fw-medium">Medida Cadera:</p>
                                                                         <div id="cadera" class="badge bg-dark-subtle text-body badge-border fs-11"></div><!--Obtener de la tabla consulta la cadera  (asi:95 Cm, Cm debe ser cocatenado en js)  apartir de la consulta_id-->
                                                                     </div>
                                                                 </div>
+
                                                                 <div class="col-lg-3 col-sm-6">
                                                                     <div>
                                                                         <p class="mb-2 text-uppercase fw-medium">Grasa Corporal:</p>
                                                                         <div id="gc" class="badge bg-dark-subtle text-body badge-border fs-11"></div><!--Obtener de la tabla consulta la gc  (asi:95 %, % debe ser cocatenado en js)  apartir de la consulta_id-->
                                                                     </div>
                                                                 </div>
+
                                                                 <div class="col-lg-3 col-sm-6">
                                                                     <div>
                                                                         <p class="mb-2 text-uppercase fw-medium">Masa Muscular:</p>
                                                                         <div id="mm" class="badge bg-dark-subtle text-body badge-border fs-11"></div><!--Obtener de la tabla consulta la mm  (asi:95 %, % debe ser cocatenado en js)  apartir de la consulta_id-->
                                                                     </div>
                                                                 </div>
+
                                                                 <div class="col-lg-3 col-sm-6">
                                                                     <div>
                                                                         <p class="mb-2 text-uppercase fw-medium">Edad Metabolica:</p>
                                                                         <div id="em" class="badge bg-dark-subtle text-body badge-border fs-11"></div><!--Obtener de la tabla consulta la em  (asi:95 años, años debe ser cocatenado en js)  apartir de la consulta_id-->
                                                                     </div>
                                                                 </div>
+
                                                                 <div class="col-lg-3 col-sm-6">
                                                                     <div>
                                                                         <p class="mb-2 text-uppercase fw-medium">Altura:</p>
                                                                         <div id="altura" class="badge bg-dark-subtle text-body badge-border fs-11"></div><!--Obtener de la tabla consulta la altura  (asi:1.60 m, m debe ser cocatenado en js)  apartir de la consulta_id-->
                                                                     </div>
                                                                 </div>
+
+                                                                <div class="col-lg-3 col-sm-6">
+                                                                    <div>
+                                                                        <p class="mb-2 text-uppercase fw-medium">Proteina:</p>
+                                                                        <div id="proteina" class="badge bg-dark-subtle text-body badge-border fs-11"></div><!--Obtener de la tabla consulta la altura  (asi:1.60 m, m debe ser cocatenado en js)  apartir de la consulta_id-->
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="col-lg-3 col-sm-6">
+                                                                    <div>
+                                                                        <p class="mb-2 text-uppercase fw-medium">Edad Corporal:</p>
+                                                                        <div id="ec" class="badge bg-dark-subtle text-body badge-border fs-11"></div><!--Obtener de la tabla consulta la altura  (asi:1.60 m, m debe ser cocatenado en js)  apartir de la consulta_id-->
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="col-lg-3 col-sm-6">
+                                                                    <div>
+                                                                        <p class="mb-2 text-uppercase fw-medium">Masa Esquelética:</p>
+                                                                        <div id="me" class="badge bg-dark-subtle text-body badge-border fs-11"></div><!--Obtener de la tabla consulta la altura  (asi:1.60 m, m debe ser cocatenado en js)  apartir de la consulta_id-->
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="col-lg-3 col-sm-6">
+                                                                    <div>
+                                                                        <p class="mb-2 text-uppercase fw-medium">Grasa Visceral:</p>
+                                                                        <div id="gv" class="badge bg-dark-subtle text-body badge-border fs-11"></div><!--Obtener de la tabla consulta la altura  (asi:1.60 m, m debe ser cocatenado en js)  apartir de la consulta_id-->
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="col-lg-3 col-sm-6">
+                                                                    <div>
+                                                                        <p class="mb-2 text-uppercase fw-medium">Pérdida De Grasa:</p>
+                                                                        <div id="pg" class="badge bg-dark-subtle text-body badge-border fs-11"></div><!--Obtener de la tabla consulta la altura  (asi:1.60 m, m debe ser cocatenado en js)  apartir de la consulta_id-->
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="col-lg-3 col-sm-6">
+                                                                    <div>
+                                                                        <p class="mb-2 text-uppercase fw-medium">Grasa Subcutanea:</p>
+                                                                        <div id="gs" class="badge bg-dark-subtle text-body badge-border fs-11"></div><!--Obtener de la tabla consulta la altura  (asi:1.60 m, m debe ser cocatenado en js)  apartir de la consulta_id-->
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="col-lg-3 col-sm-6">
+                                                                    <div>
+                                                                        <p class="mb-2 text-uppercase fw-medium">Músculo Esquelético:</p>
+                                                                        <div id="meq" class="badge bg-dark-subtle text-body badge-border fs-11"></div><!--Obtener de la tabla consulta la altura  (asi:1.60 m, m debe ser cocatenado en js)  apartir de la consulta_id-->
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="col-lg-3 col-sm-6">
+                                                                    <div>
+                                                                        <p class="mb-2 text-uppercase fw-medium">BMR:</p>
+                                                                        <div id="bmr" class="badge bg-dark-subtle text-body badge-border fs-11"></div><!--Obtener de la tabla consulta la altura  (asi:1.60 m, m debe ser cocatenado en js)  apartir de la consulta_id-->
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="col-lg-3 col-sm-6">
+                                                                    <div>
+                                                                        <p class="mb-2 text-uppercase fw-medium">Agua Corporal:</p>
+                                                                        <div id="ac" class="badge bg-dark-subtle text-body badge-border fs-11"></div><!--Obtener de la tabla consulta la altura  (asi:1.60 m, m debe ser cocatenado en js)  apartir de la consulta_id-->
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="col-lg-3 col-sm-6">
+                                                                    <div>
+                                                                        <p class="mb-2 text-uppercase fw-medium">IMC:</p>
+                                                                        <div id="imc" class="badge bg-dark-subtle text-body badge-border fs-11"></div><!--Obtener de la tabla consulta la altura  (asi:1.60 m, m debe ser cocatenado en js)  apartir de la consulta_id-->
+                                                                    </div>
+                                                                </div>
+
+
                                                                 <div>
                                                                     <h3 class="btn btn-link link-success p-0">Información Adicional</h3>
                                                                 </div>

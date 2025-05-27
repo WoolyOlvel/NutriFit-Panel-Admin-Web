@@ -296,7 +296,7 @@ const pacienteManager = {
 
         if (detalleCard) {
           // Actualizar imagen
-          const avatarImg = detalleCard.querySelector(".avatar-sm");
+          const avatarImg = detalleCard.querySelector(".avatar-lg");
           if (avatarImg) {
             avatarImg.src =
               paciente.foto || "../../assets/images/users/user-dummy-img.jpg";

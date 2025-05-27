@@ -2,15 +2,12 @@
 require_once("../html/session.php");
 ?>
 
-<style>
-    
-</style>
 
 <!doctype html>
 <html lang="es" data-layout="horizontal" data-topbar="light" data-sidebar="dark" data-sidebar-size="lg" data-sidebar-image="none" data-preloader="disable">
 
 <head>
-    <title>Consulta | NutriFit Planner</title>
+    <title>Calendario | NutriFit Planner</title>
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.0/dist/sweetalert2.min.css">
     <?php

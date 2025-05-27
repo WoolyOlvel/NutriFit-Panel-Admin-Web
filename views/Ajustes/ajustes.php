@@ -277,8 +277,8 @@ require_once("../html/session.php");
                                                                 <select class="form-select" id="disponibilidad" name="disponibilidad">
                                                                     <option value="" disabled selected>Seleccione Una Disponibilidad</option>
                                                                     <option value="Disponibles">Disponibles</option>
-                                                                    <option value="PocosCupos">Pocos Cupos</option>
-                                                                    <option value="NoDisponible">No Disponible</option>
+                                                                    <option value="Pocos Cupos">Pocos Cupos</option>
+                                                                    <option value="No Disponible">No Disponible</option>
                                                                 </select>
                                                             </div>
                                                         </div>

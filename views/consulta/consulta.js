@@ -594,7 +594,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // Validar entradas numéricas
-    ["peso", "cintura", "cadera", "gc", "em", "altura"].forEach(id => {
+    ["peso", "cintura", "cadera", "gc", "em", "altura", "proteina", "ec", "me", "gv", "pg", "gs", "meq", "bmr", "ac", "imc"].forEach(id => {
       const elemento = document.getElementById(id);
       if (elemento) elemento.addEventListener("input", validarEntradaNumerica);
     });
@@ -1160,7 +1160,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function prepararDatosAdicionales() {
-    const campos = ["peso", "talla", "cintura", "cadera", "gc", "em", "altura"];
+    const campos = ["peso", "talla", "cintura", "cadera", "gc", "em", "altura", 'proteina', 'ec', 'me', 'gv', 'pg', 'gs', 'meq', 'bmr', 'ac', 'imc'];
     const datos = {};
 
     campos.forEach(campo => {

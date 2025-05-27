@@ -177,9 +177,9 @@ require_once("../html/session.php");
                             <div class="card" id="company-view-detail">
                                 <div class="card-body text-center">
                                     <div class="position-relative d-inline-block">
-                                        <div class="avatar-md">
+                                        <div class="avatar-xl">
                                             <div class="avatar-title bg-light rounded-circle">
-                                                <img src="../../assets/images/users/user-dummy-img.jpg " alt="" class="avatar-sm rounded-circle object-fit-cover">
+                                                <img src="../../assets/images/users/user-dummy-img.jpg " alt="" class="avatar-lg rounded-circle object-fit-cover">
                                             </div>
                                         </div>
                                     </div>

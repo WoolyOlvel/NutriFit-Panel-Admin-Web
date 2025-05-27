@@ -132,7 +132,7 @@ class Reservaciones extends Model
         }elseif($tipo === 'creación') {
             $descripcion = "Nueva cita programada para " . $this->nombre_consultorio . " " . $this->direccion_consultorio . " el día " . $textoFecha . " con el Nut. " . $nombre_nutriologo . " (Estado: " . $estadoTexto . ")";
         } else {
-            $descripcion = "Tu cita ha sido actualizada en " . $this->nombre_consultorio . " " . $this->direccion_consultorio . " con el Nut. " . $nombre_nutriologo . " con estado: " . $estadoTexto;
+            $descripcion = "Tu cita ha sido actualizada en " . $this->nombre_consultorio . " " . $this->direccion_consultorio . " con Nut. " . $nombre_nutriologo . " con estado: " . $estadoTexto;
 
             // Solo agregar la fecha si está disponible
             if ($fechaAUsar) {

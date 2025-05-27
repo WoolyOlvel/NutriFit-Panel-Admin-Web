@@ -192,11 +192,9 @@
                     <div class="collapse menu-dropdown" id="sidebarLanding">
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
-                                <a href="../nutriDesafiosAdd/nutriDesafios.php" class="nav-link" data-key="t-one-page"> Añadir Nuevos </a>
+                                <a href="../nutriDesafiosAdd/nutriDesafios.php" class="nav-link" data-key="t-one-page"> Añadir NutriDesafios </a>
                             </li>
-                            <li class="nav-item">
-                                <a href="../listNutriDesafios/listNutriDesafios.php" class="nav-link" data-key="t-nft-landing"> Ver Lista </a>
-                            </li>
+                        
                         </ul>
                     </div>
                 </li>

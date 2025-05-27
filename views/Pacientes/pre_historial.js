@@ -432,28 +432,29 @@ function crearTarjetaConsulta(consulta) {
                     </div>
                     <div class="d-flex mb-2">
                         <div class="flex-shrink-0 me-3">
-                            <div class="avatar-md p-1">
+                            <div class="avatar-xl p-1">
                                 <span class="avatar-roundend-md">
-                                    <img class="img-thumbnail rounded-avatar-md" name="foto" id="foto" alt="200x200" src="${rutaImagen}" onerror="this.src='../../assets/images/users/user-dummy-img.jpg'">
+                                    <img class="img-thumbnail rounded-avatar-lg" name="foto" id="foto" alt="200x200" src="${rutaImagen}" onerror="this.src='../../assets/images/users/user-dummy-img.jpg'">
                                 </span>
                             </div>
                         </div>
                         <div class="flex-grow-1">
                             <h5 class="mb-1 fs-14">
                                 <a href="../infoPaciente/informacionConsulta.php?consulta_id=${consulta.id}" class="text-body">
-                                    ${consulta.nombre_paciente} ${consulta.apellidos_paciente}
+                                  Paciente:  ${consulta.nombre_paciente} ${consulta.apellidos_paciente}
                                 </a>
                             </h5>
-                        </div>
-                    </div>
-                    <div class="mt-auto">
-                        <div class="flex-grow-1">
-                            <p class="text-muted text-truncate-two-lines mb-3">Consultorio: ${consulta.consultorio}</p>
-                        </div>
-                    </div>
-                    <div class="mt-auto">
-                        <div class="flex-grow-1">
+                            <p class="text-muted text-truncate-one-lines mb-1">Consultorio: ${consulta.consultorio}</p>
                             <p class="text-muted text-truncate-two-lines mb-3">Tipo Consulta: ${consulta.tipo_consulta}</p>
+
+                        </div>
+                    </div>
+                    <div class="mt-auto">
+                        <div class="flex-grow-1">
+                        </div>
+                    </div>
+                    <div class="mt-auto">
+                        <div class="flex-grow-1">
                         </div>
                     </div>
                 </div>

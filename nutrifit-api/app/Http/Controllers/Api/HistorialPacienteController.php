@@ -175,7 +175,17 @@ class HistorialPacienteController extends Controller
                     'gc' => $consulta->gc ?? 'N/A',
                     'mm' => $consulta->mm ?? 'N/A',
                     'em' => $consulta->em ?? 'N/A',
-                    'altura' => $consulta->altura ?? 'N/A'
+                    'altura' => $consulta->altura ?? 'N/A',
+                    'proteina' => $consulta->proteina ?? 'N/A',
+                    'ec' => $consulta->ec ?? 'N/A',
+                    'me' => $consulta->me ?? 'N/A',
+                    'gv'=>$consulta->gv ?? 'N/A',
+                    'pg'=> $consulta->pg?? 'N/A',
+                    'gs'=>$consulta->gs ?? 'N/A',
+                    'meq'=>$consulta->meq?? 'N/A',
+                    'bmr'=>$consulta->bmr?? 'N/A',
+                    'ac'=>$consulta->ac?? 'N/A',
+                    'imc'=>$consulta->imc?? 'N/A'
                 ],
                 'enfermedad' => $consulta->enfermedad ? explode(',', $consulta->enfermedad) : [],
                 'documentos' => $documentos,

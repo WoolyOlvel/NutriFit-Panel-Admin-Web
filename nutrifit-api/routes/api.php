@@ -25,13 +25,22 @@ use App\Http\Controllers\Api\composicionCorporalController;
 use App\Http\Controllers\Api\ConsultaController;
 use App\Http\Controllers\Api\estaturaController;
 use App\Http\Controllers\Api\divisasController;
+use App\Http\Controllers\Api\HistorialNutricionalController;
 use App\Http\Controllers\Api\HistorialPacienteController;
 use App\Http\Controllers\Api\ListaNutriologosMovil;
 use App\Http\Controllers\Api\MisPacientesController;
 use App\Http\Controllers\Api\Notificaciones;
+use App\Http\Controllers\Api\NotificacionesMovilController;
+use App\Http\Controllers\Api\NutriDesafiosController;
+use App\Http\Controllers\Api\NutriDesafiosMovilController;
 use App\Http\Controllers\Api\PacienteController;
+use App\Http\Controllers\Api\PlanAlimenticioController;
 use App\Http\Controllers\Api\Pre_HistorialController;
 use App\Http\Controllers\Api\ProfileController;
+use App\Http\Controllers\Api\ReservacionController as ApiReservacionController;
+use App\Http\Controllers\Api\SeguimientoController;
+use App\Http\Controllers\Api\TipoConsultaController;
+use App\Http\Controllers\ReservacionController;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
@@ -201,6 +210,27 @@ Route::prefix('ajustes')->group(function () {
 
 //Fin Ajustes👆
 
+// INICIO NUTRIDESAFIOS👇
+
+
+
+//FIN NUTRIDESAFIOS👆
+
+// Rutas para NutriDesafios
+Route::prefix('nutridesafios')->group(function () {
+    Route::get('/', [NutriDesafiosController::class, 'index']);
+    Route::get('/listar', [NutriDesafiosController::class, 'listar']);
+    Route::post('/guardar_editar', [NutriDesafiosController::class, 'guardar_editar']);
+    Route::post('/mostrar', [NutriDesafiosController::class, 'mostrar']);
+    Route::post('/eliminar', [NutriDesafiosController::class, 'eliminar']);
+
+    // Rutas RESTful estándar
+    Route::post('/', [NutriDesafiosController::class, 'store']);
+    Route::get('/{id}', [NutriDesafiosController::class, 'show']);
+    Route::put('/{id}', [NutriDesafiosController::class, 'update']);
+    Route::delete('/{id}', [NutriDesafiosController::class, 'destroy']);
+});
+
 
 //Movil
 
@@ -208,11 +238,69 @@ Route::prefix('ajustes')->group(function () {
     Route::put('users/{user_id}/update', [ProfileController::class, 'updateProfile']); //Actualiza el profile pero en users solo campo nombre, apellidos, email, usuario
     Route::post('pacientes/create', [ProfileController::class, 'createPaciente']);
     Route::get('pacientest/por-email', [ProfileController::class, 'getPacienteByEmail']);
+    Route::get('pacientest/paciente_id', [ProfileController::class, 'getPacienteByPacienId']);
+
+    Route::post('pacientest/duplicar-para-nutriologo', [ProfileController::class, 'duplicarPacienteParaNutriologo']);
+    Route::get('pacientes/por-email-todos', [ProfileController::class, 'getPacientesPorEmail']);
 
     Route::put('pacientest/update-by-email', [ProfileController::class, 'updatePacienteByEmail']);
     Route::post('pacientest/update-with-photo-by-email', [ProfileController::class, 'updatePacienteWithPhotoByEmail']);
 
     Route::get('nutriologos', [ListaNutriologosMovil::class, 'getNutriologos']);
+    Route::get('nutriologos/byId', [ListaNutriologosMovil::class, 'getNutriologoById']);
+    Route::get('nutriologos/detalles/byId',[ListaNutriologosMovil::class, 'getNutriologoDetallesById']);
+
+    Route::get('tipo_consulta', [TipoConsultaController::class, 'index']);
+    Route::post('reservaciones/create', [ApiReservacionController::class, 'create']);
+
+
+    Route::prefix('movil')->group(function () {
+        Route::get('notificaciones/{pacienteId}', [NotificacionesMovilController::class, 'obtenerNotificaciones']);
+        Route::put('notificaciones/marcar-leida/{notificacionId}/{pacienteId}', [NotificacionesMovilController::class, 'marcarLeida']);
+        Route::put('notificaciones/marcar-todas-leidas/{pacienteId}', [NotificacionesMovilController::class, 'marcarTodasLeidas']);
+        Route::put('notificaciones/eliminar/{pacienteId}', [NotificacionesMovilController::class, 'eliminarNotificaciones']);
+        Route::get('notificaciones/contar/{pacienteId}', [NotificacionesMovilController::class, 'contarNotificaciones']);
+
+        Route::get('reservaciones/verificar-seguimiento/{reservacionId}/{pacienteId}', [SeguimientoController::class, 'verificarSeguimiento']);
+
+        Route::post('verificar-seguimiento', [SeguimientoController::class, 'verificarSeguimiento2']); //Este usaremos
+
+
+    });
+
+     Route::get('historial/consultas-por-paciente', [HistorialNutricionalController::class, 'getConsultasPorPaciente']);
+
+     Route::get('historial/consultas-por-paciente2', [HistorialNutricionalController::class, 'getConsultasPorPaciente2']);
+
+     Route::get('historial/consultas-por-paciente3', [HistorialNutricionalController::class, 'getConsultasPorPaciente3']);
+
+     Route::get('historial/consultas-por-paciente4', [HistorialNutricionalController::class, 'getConsultasPorPaciente4']);
+
+     Route::get('historial/consultas-por-paciente5', [HistorialNutricionalController::class, 'getConsultasPorPaciente5']);
+
+
+
+     Route::get('historial/consultas-por-pacienteD', [HistorialNutricionalController::class, 'getGcMmPorConsulta']);
+
+
+
+    // Obtener detalle de una consulta específica
+    Route::get('historial/detalle-consulta/{consultaId}', [HistorialNutricionalController::class, 'getDetalleConsulta']);
+
+    Route::post('consultas/paciente/ids', [HistorialNutricionalController::class, 'getConsultaIdsPorPaciente']);
+
+
+    Route::post('historial/formatearFechaSegunEstado/{fecha_consulta}', [HistorialNutricionalController::class, 'calcularTiempoRestante']);
+
+    Route::post('historial/tiempo-restante', [HistorialNutricionalController::class, 'calcularTiempoRestante']);
+
+    // Opción 1: POST (Recomendado)
+    Route::post('consulta/planes-alimenticios', [PlanAlimenticioController::class, 'getPlanesAlimenticios']);
+
+    // Opción 2: GET con query parameters
+    Route::get('consulta/planes-alimenticios', [PlanAlimenticioController::class, 'getPlanesAlimenticios']);
+
+    Route::get('nutri-desafios', [NutriDesafiosMovilController::class, 'index']);
 
 
 

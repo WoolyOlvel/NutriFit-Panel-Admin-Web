@@ -28,7 +28,9 @@ class Notificacion extends Model
         'direccion_consultorio',
         'nombre_nutriologo',
         'status', // 0: No leido, 1: Leido
+        'status_movil',
         'estado', // 0: Eliminado 1: Activo
+        'estado_movil',
         'tiempo_transcurrido', // Tiempo transcurrido desde la notificacion
         'fecha_creacion',
     ];
