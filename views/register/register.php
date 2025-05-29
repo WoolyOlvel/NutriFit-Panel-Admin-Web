@@ -147,9 +147,9 @@
                                                 </div>
 
                                                 <div class="mt-4 text-center">
-                                                    <div class="signin-other-title">
+                                                   <!-- <div class="signin-other-title">
                                                         <h5 class="fs-13 mb-4 title text-muted">Únete Con</h5>
-                                                    </div>
+                                                    </div>-->
 
                                                     <div>
                                                         <!---<a href="http://127.0.0.1:8000/api/auth/redirect/facebook" class="btn btn-primary btn-icon waves-effect waves-light">

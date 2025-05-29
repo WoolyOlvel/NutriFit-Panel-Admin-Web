@@ -1,4 +1,4 @@
-const BASE_URL = "http://127.0.0.1:8000";
+const BASE_URL = "https://nutrifitplanner.site";
 
 // Variables globales para gestionar estado
 let todasLasConsultas = []; // Almacena todas las consultas sin filtrar

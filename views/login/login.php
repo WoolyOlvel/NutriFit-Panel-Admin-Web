@@ -126,9 +126,9 @@ if (isset($_SESSION['remember_token'])) {
                                                 </div>
 
                                                 <div class="mb-3">
-                                                    <div class="float-end">
+                                                    <!--<div class="float-end">
                                                         <a href="../resetPassword/resetPassword.php" class="text-muted">Olvidó su contraseña?</a>
-                                                    </div>
+                                                    </div>-->
                                                     <label class="form-label" for="password-input">Contraseña</label>
                                                     <div class="position-relative auth-pass-inputgroup mb-3">
                                                         <input type="password" class="form-control pe-5 password-input" name="password" id="password-input" autocomplete="current-password" placeholder="Su contraseña">
@@ -150,9 +150,9 @@ if (isset($_SESSION['remember_token'])) {
                                                 </div>
 
                                                 <div class="mt-4 text-center">
-                                                    <div class="signin-other-title">
+                                                    <!---<div class="signin-other-title">
                                                         <h5 class="fs-13 mb-4 title">Iniciar Sesión Con</h5>
-                                                    </div>
+                                                    </div>-->
 
                                                     <div>
                                                        <!-- <button onclick="loginWithFacebook()" class="btn btn-primary btn-icon waves-effect waves-light">

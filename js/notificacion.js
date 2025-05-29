@@ -56,7 +56,7 @@ class Notificaciones {
     this.sound = new Audio("../sound/notificacion_reservacion.mp3");
     this.pollingInterval = 30000; // 30 segundos
     this.token = util.getToken();
-    const BASE_URL = "http://127.0.0.1:8000";
+    const BASE_URL = "https://nutrifitplanner.site";
     this.init();
   }
 
@@ -272,7 +272,7 @@ class Notificaciones {
 
   getLinkNotificacion(notificacion, tipo) {
     if (tipo === "reservacion") {
-      return "http://localhost/NutriFit/views/citaAgendadas/calendarioCitas.php";
+      return "https://nutrifitplanner.site/NutriFit/views/citaAgendadas/calendarioCitas.php";
     } else {
       return "#chat"; // Ajusta según tu implementación de chat
     }

@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (tokenCookie) {
         const token = tokenCookie.split('=')[1];
 
-        fetch('http://localhost:8000/api/auto-login', {
+        fetch('https://nutrifitplanner.site/api/auto-login', {
             method: 'GET',
             headers: {
                 'remember-token': token

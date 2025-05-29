@@ -1,4 +1,4 @@
-const BASE_URL = "http://127.0.1:8000";
+const BASE_URL = "https://nutrifitplanner.site";
 
 function init() {
   $("#ComposicionCorporal_form").on("submit", function (e) {

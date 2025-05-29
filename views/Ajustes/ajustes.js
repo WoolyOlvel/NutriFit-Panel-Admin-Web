@@ -1,5 +1,5 @@
 // Definimos URL base
-const BASE_URL = "http://127.0.0.1:8000";
+const BASE_URL = "https://nutrifitplanner.site";
 
 // Utilidades
 const util = {

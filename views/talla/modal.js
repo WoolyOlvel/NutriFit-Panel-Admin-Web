@@ -1,4 +1,4 @@
-const BASE_URL = "http://127.0.0.1:8000";
+const BASE_URL = "https://nutrifitplanner.site";
 
 function init() {
   $("#Talla_form").on("submit", function (e) {
