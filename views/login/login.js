@@ -7,7 +7,7 @@ $(document).ready(function(){
         const remember = document.getElementById("auth-remember-check").checked;
 
         $.ajax({
-            url: "https://nutrifitplanner.site/api/login",
+            url: "http://nutrifitplanner.site/api/login",
             type: "POST",
             contentType: "application/json",
             data: JSON.stringify({

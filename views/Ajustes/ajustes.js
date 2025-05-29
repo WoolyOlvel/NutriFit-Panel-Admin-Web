@@ -1,5 +1,5 @@
 // Definimos URL base
-const BASE_URL = "https://nutrifitplanner.site";
+const BASE_URL = "http://nutrifitplanner.site";
 
 // Utilidades
 const util = {

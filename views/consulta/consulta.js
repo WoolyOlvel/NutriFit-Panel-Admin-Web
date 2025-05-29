@@ -1,5 +1,5 @@
 
-const BASE_URL = "https://nutrifitplanner.site";
+const BASE_URL = "http://nutrifitplanner.site";
 
 document.addEventListener("DOMContentLoaded", function () {
   if (window.Dropzone) {

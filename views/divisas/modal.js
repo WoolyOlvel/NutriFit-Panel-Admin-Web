@@ -1,4 +1,4 @@
-const BASE_URL = "https://nutrifitplanner.site";
+const BASE_URL = "http://nutrifitplanner.site";
 
 function init() {
   $("#Divisa_form").on("submit", function (e) {

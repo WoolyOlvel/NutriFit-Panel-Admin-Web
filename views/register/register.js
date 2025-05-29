@@ -55,7 +55,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
 
         // Enviar la petición
-        fetch('https://nutrifitplanner.site/api/register', {
+        fetch('http://nutrifitplanner.site/api/register', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

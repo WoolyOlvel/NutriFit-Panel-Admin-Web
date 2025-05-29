@@ -213,7 +213,7 @@
                             document.addEventListener('DOMContentLoaded', function() {
                                 // Función para cargar los datos del usuario
                                 function loadUserData() {
-                                    fetch('https://nutrifitplanner.site/api/ajustes/', {
+                                    fetch('http://nutrifitplanner.site/api/ajustes/', {
                                         headers: {
                                             'Content-Type': 'application/json',
                                             'remember-token': '<?php echo $_COOKIE['remember_token'] ?? ''; ?>'
@@ -301,7 +301,7 @@
                             document.addEventListener('DOMContentLoaded', function() {
                                 // Función para cargar las ganancias desde el dashboard
                                 function loadGanancias2() {
-                                    fetch('https://nutrifitplanner.site/api/dashboard/', {
+                                    fetch('http://nutrifitplanner.site/api/dashboard/', {
                                         headers: {
                                             'Content-Type': 'application/json',
                                             'remember-token': '<?php echo $_COOKIE['remember_token'] ?? ''; ?>'

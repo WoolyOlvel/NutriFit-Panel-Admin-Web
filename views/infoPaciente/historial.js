@@ -1,5 +1,5 @@
 // Archivo: historialPaciente.js
-const BASE_URL = "https://nutrifitplanner.site";
+const BASE_URL = "http://nutrifitplanner.site";
 
 document.addEventListener('DOMContentLoaded', function() {
     // Obtener ID de consulta de la URL

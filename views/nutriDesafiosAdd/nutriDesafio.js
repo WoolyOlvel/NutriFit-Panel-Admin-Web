@@ -1,4 +1,4 @@
-const BASE_URL = "https://nutrifitplanner.site";
+const BASE_URL = "http://nutrifitplanner.site";
 
 // Función para inicializar el formulario
 document.addEventListener("DOMContentLoaded", function () {

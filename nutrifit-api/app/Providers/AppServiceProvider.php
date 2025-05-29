@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\URL;
 use App\Observers\PacienteObserver;
 use App\Models\Paciente;
 
@@ -22,5 +23,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Paciente::observe(PacienteObserver::class);
+
+
     }
 }
