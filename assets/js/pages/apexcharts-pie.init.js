@@ -17,7 +17,7 @@ function getChartColorsArray(e) {
     );
 }
 var upadatedonutchart,
-  chartPieBasicColors = getChartColorsArray("simple_pie_chart"),
+  chartPieBasicColors = getChartColorsArray(""),
   chartDonutBasicColors =
     (chartPieBasicColors &&
       ((options = {
@@ -29,7 +29,7 @@ var upadatedonutchart,
         colors: chartPieBasicColors,
       }),
       (chart = new ApexCharts(
-        document.querySelector("#simple_pie_chart"),
+        document.querySelector(""),
         options
       )).render()),
     getChartColorsArray("simple_dount_chart")),

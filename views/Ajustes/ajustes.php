@@ -80,6 +80,19 @@ require_once("../html/session.php");
                                     </div>
                                 </div>
                             </div>
+                            <style>
+                                .animated-progress {
+                                    transition: width 0.5s ease-in-out;
+                                }
+
+                                .progress-label .label {
+                                    position: absolute;
+                                    right: 10px;
+                                    color: white;
+                                    font-weight: bold;
+                                    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+                                }
+                            </style>
                             <!--end card-->
                             <div class="card">
                                 <div class="card-body">
@@ -92,8 +105,9 @@ require_once("../html/session.php");
                                         </div>
                                     </div>
                                     <div class="progress animated-progress custom-progress progress-label">
-                                        <div class="progress-bar bg-danger" role="progressbar" style="width: 30%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100">
-                                            <div class="label">30%</div>
+                                        <div class="progress-bar bg-danger" id="profileProgressBar" role="progressbar" 
+                                            style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                                            <div class="label" id="progressPercentage">0%</div>
                                         </div>
                                     </div>
                                 </div>
@@ -314,35 +328,31 @@ require_once("../html/session.php");
                                         </div>
                                         <!--end tab-pane-->
                                         <div class="tab-pane" id="changePassword" role="tabpanel">
-                                            <form action="javascript:void(0);">
+                                            <form method="POST" id="Ajustes_Form3" enctype="multipart/form-data" autocomplete="off">
                                                 <div class="row g-2">
-
-                                                    <!--end col-->
                                                     <div class="col-lg-4">
                                                         <div>
                                                             <label for="password" class="form-label">Nueva Contraseña</label>
-                                                            <input type="password" class="form-control" id="password" placeholder="Nueva Contraseña">
+                                                            <input type="password" class="form-control" id="password" name="password" 
+                                                                placeholder="Nueva Contraseña" minlength="8" required>
+                                                            <div class="invalid-feedback">La contraseña debe tener al menos 8 caracteres</div>
                                                         </div>
                                                     </div>
-                                                    <!--end col-->
                                                     <div class="col-lg-4">
                                                         <div>
                                                             <label for="confirmPassword" class="form-label">Confirmar Contraseña</label>
-                                                            <input type="password" class="form-control" id="confirmPassword" placeholder="Confirmar Contraseña">
+                                                            <input type="password" class="form-control" id="confirmPassword" name="password_confirmation"
+                                                                placeholder="Confirmar Contraseña" minlength="8" required>
+                                                            <div class="invalid-feedback">Las contraseñas deben coincidir</div>
                                                         </div>
                                                     </div>
-
-                                                    <!--end col-->
                                                     <div class="col-lg-12">
                                                         <div class="text-end">
                                                             <button type="submit" id="btnGuardar" class="btn btn-success">Cambiar Contraseña</button>
                                                         </div>
                                                     </div>
-                                                    <!--end col-->
                                                 </div>
-                                                <!--end row-->
                                             </form>
-
                                         </div>
                                         <div class="tab-pane" id="experience" role="tabpanel">
                                             <form method="POST" id="Ajustes_Form_2" enctype="multipart/form-data" autocomplete="off"> 

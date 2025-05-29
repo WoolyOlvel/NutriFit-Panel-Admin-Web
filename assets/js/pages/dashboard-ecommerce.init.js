@@ -1,3 +1,5 @@
+
+
 function getChartColorsArray(e) {
   if (null !== document.getElementById(e)) {
     var t = document.getElementById(e).getAttribute("data-colors");
@@ -19,7 +21,7 @@ function getChartColorsArray(e) {
 }
 var options,
   chart,
-  linechartcustomerColors = getChartColorsArray("customer_impression_charts"),
+  linechartcustomerColors = getChartColorsArray(""),
   chartDonutBasicColors =
     (linechartcustomerColors &&
       ((options = {
@@ -103,10 +105,10 @@ var options,
         },
       }),
       (chart = new ApexCharts(
-        document.querySelector("#customer_impression_charts"),
+        document.querySelector(""),
         options
       )).render()),
-    getChartColorsArray("store-visits-source")),
+    getChartColorsArray("")),
   worldemapmarkers =
     (chartDonutBasicColors &&
       ((options = {
@@ -119,7 +121,7 @@ var options,
         colors: chartDonutBasicColors,
       }),
       (chart = new ApexCharts(
-        document.querySelector("#store-visits-source"),
+        document.querySelector(""),
         options
       )).render()),
     "");

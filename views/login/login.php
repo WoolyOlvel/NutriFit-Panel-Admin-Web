@@ -155,12 +155,11 @@ if (isset($_SESSION['remember_token'])) {
                                                     </div>
 
                                                     <div>
-                                                        <button onclick="loginWithFacebook()" class="btn btn-primary btn-icon waves-effect waves-light">
+                                                       <!-- <button onclick="loginWithFacebook()" class="btn btn-primary btn-icon waves-effect waves-light">
                                                             <i class="ri-facebook-fill fs-16"></i>
-                                                        </button>
+                                                        </button>-->
 
-                                                        <button type="button" class="btn btn-danger btn-icon waves-effect waves-light"><i class="ri-google-fill fs-16"></i></button>
-
+                                                        <!--<button type="button" class="btn btn-danger btn-icon waves-effect waves-light"><i class="ri-google-fill fs-16"></i></button>-->
                                                     </div>
                                                 </div>
 

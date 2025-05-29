@@ -23,6 +23,7 @@ use App\Http\Controllers\Api\Sistema_Metrico;
 use App\Http\Controllers\Api\medidasCorporalesController;
 use App\Http\Controllers\Api\composicionCorporalController;
 use App\Http\Controllers\Api\ConsultaController;
+use App\Http\Controllers\Api\DashboardController;
 use App\Http\Controllers\Api\estaturaController;
 use App\Http\Controllers\Api\divisasController;
 use App\Http\Controllers\Api\HistorialNutricionalController;
@@ -206,15 +207,14 @@ Route::prefix('ajustes')->group(function () {
     Route::post('/experiencia', [App\Http\Controllers\Api\AjustesController::class, 'storeExperiencia']);
     Route::post('/foto-perfil', [App\Http\Controllers\Api\AjustesController::class, 'updateFotoPerfil']);
     Route::post('/foto-portada', [App\Http\Controllers\Api\AjustesController::class, 'updateFotoPortada']);
+
 });
+
+Route::post('/ajustes/cambiar-password', [AjustesController::class, 'changePassword']);
 
 //Fin Ajustes👆
 
 // INICIO NUTRIDESAFIOS👇
-
-
-
-//FIN NUTRIDESAFIOS👆
 
 // Rutas para NutriDesafios
 Route::prefix('nutridesafios')->group(function () {
@@ -230,6 +230,23 @@ Route::prefix('nutridesafios')->group(function () {
     Route::put('/{id}', [NutriDesafiosController::class, 'update']);
     Route::delete('/{id}', [NutriDesafiosController::class, 'destroy']);
 });
+
+//FIN NUTRIDESAFIOS👆
+
+// INICIO DASHBOARD
+
+Route::prefix('dashboard')->group(function () {
+    Route::get('/', [DashboardController::class, 'getDashboardData']);
+
+});
+
+
+//FIN DASHBOARD
+
+
+
+//FIN ROUTES WEB
+
 
 
 //Movil
@@ -306,50 +323,3 @@ Route::prefix('nutridesafios')->group(function () {
 
 //Fin Movil
 
-
-Route::get('/appointments', [appointmentController::class, 'index']);
-Route::get('/appointments/{id}', [appointmentController::class, 'show']);
-Route::post('/appointments', [appointmentController::class, 'store']);
-Route::put('/appoitnments/{id}', [appointmentController::class, 'update']);
-Route::patch('/appointments/{id}', [appointmentController::class, 'updatePartial']);
-Route::delete('/appointments/{id}', [appointmentController::class, 'destroy']);
-
-
-Route::get('/chats', [chatController::class, 'index']);
-Route::get('/chats/{id}', [chatController::class, 'show']);
-Route::post('/chats', [chatController::class, 'store']);
-Route::put('/chats/{id}', [chatController::class, 'update']);
-Route::patch('/chats/{id}', [chatController::class, 'updatePartial']);
-Route::delete('/chats/{id}', [chatController::class, 'destroy']);
-
-
-Route::get('/desafios', [desafioController::class, 'index']);
-Route::get('/desafios/{id}', [desafioController::class, 'show']);
-Route::post('/desafios', [desafioController::class, 'store']);
-Route::put('/desafios/{id}', [desafioController::class, 'update']);
-Route::patch('/desafios/{id}', [desafioController::class, 'updatePartial']);
-Route::delete('/desafios/{id}', [desafioController::class, 'destroy']);
-
-
-Route::get('/notifications', [notificationController::class, 'index']);
-Route::get('/notifications/{id}', [notificationController::class, 'show']);
-Route::post('/notifications', [notificationController::class, 'store']);
-Route::put('/notifications/{id}', [notificationController::class, 'update']);
-Route::patch('/notifications/{id}', [notificationController::class, 'updatePartial']);
-Route::delete('/notifications/{id}', [notificationController::class, 'destroy']);
-
-
-Route::get('/patiens', [patientController::class, 'index']);
-Route::get('/patiens/{id}', [patientController::class, 'show']);
-Route::post('/patiens', [patientController::class, 'store']);
-Route::put('/patiens/{id}', [patientController::class, 'update']);
-Route::patch('/patiens/{id}', [patientController::class, 'updatePartial']);
-Route::delete('/patiens/{id}', [patientController::class, 'destroy']);
-
-
-Route::get('/plan_lists', [plan_listController::class, 'index']);
-Route::get('/plan_lists/{id}', [plan_listController::class, 'show']);
-Route::post('/plan_lists', [plan_listController::class, 'store']);
-Route::put('/plan_lists/{id}', [plan_listController::class, 'update']);
-Route::patch('/plan_lists/{id}', [plan_listController::class, 'updatePartial']);
-Route::delete('/plan_lists/{id}', [plan_listController::class, 'destroy']);

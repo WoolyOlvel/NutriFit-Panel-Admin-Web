@@ -124,11 +124,22 @@
                     <div class="collapse menu-dropdown" id="sidebarAuth">
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
-                                <a href="../mensajeria/mensajeria_nutri.php" class="nav-link" data-key="t-chat">Chat</a>
+                                <a href="#" onclick="mostrarMantenimientoChat()" class="nav-link" data-key="t-chat">Chat</a>
                             </li>
                         
                         </ul>
                     </div>
+                        <script>
+                            function mostrarMantenimientoChat() {
+                                Swal.fire({
+                                    title: 'Sección en mantenimiento',
+                                    text: 'La sección de chats está actualmente en mantenimiento.',
+                                    icon: 'info',
+                                    confirmButtonText: 'Entendido'
+                                });
+                            }
+                        </script>
+
                 </li>
 
                 <li class="nav-item">

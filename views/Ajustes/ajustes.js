@@ -91,6 +91,9 @@ const util = {
     }
 };
 
+
+
+
 // Clase principal para manejar los ajustes
 class AjustesManager {
   constructor() {
@@ -102,6 +105,7 @@ class AjustesManager {
     this.loadAjustes();
     this.initImageUploads();
     this.initFlatpickr();
+    this.initProgressTracker();
   }
 
        initFlatpickr() {
@@ -155,15 +159,211 @@ class AjustesManager {
     }
     
     // Formulario de cambio de contraseña
-    const passwordForm = document.querySelector('#changePassword form');
+    const passwordForm = document.getElementById('Ajustes_Form3');
     if (passwordForm) {
-      passwordForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        // Aquí iría la lógica para cambiar la contraseña
-        util.showError("Función de cambio de contraseña no implementada aún");
-      });
+        passwordForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            this.changePassword();
+        });
     }
   }
+
+  async changePassword() {
+      try {
+          const newPassword = document.getElementById('password').value;
+          const confirmPassword = document.getElementById('confirmPassword').value;
+          
+          // Validaciones del lado del cliente
+          if (!newPassword || !confirmPassword) {
+              throw new Error('Ambos campos son requeridos');
+          }
+          
+          if (newPassword !== confirmPassword) {
+              throw new Error('Las contraseñas no coinciden');
+          }
+          
+          if (newPassword.length < 8) {
+              throw new Error('La contraseña debe tener al menos 8 caracteres');
+          }
+          
+          const response = await fetch(`${BASE_URL}/api/ajustes/cambiar-password`, {
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/json',
+                  'remember-token': this.token
+              },
+              body: JSON.stringify({
+                  password: newPassword,
+                  password_confirmation: confirmPassword
+              })
+          });
+
+          const data = await response.json();
+
+          if (!response.ok) {
+              throw new Error(data.message || `Error ${response.status}: ${response.statusText}`);
+          }
+
+          if (!data.success) {
+              throw new Error(data.message || 'Error desconocido al cambiar la contraseña');
+          }
+
+          // Mostrar mensaje de éxito y redirigir
+          Swal.fire({
+              title: '¡Éxito!',
+              text: data.message || 'Contraseña cambiada correctamente',
+              icon: 'success',
+              confirmButtonText: 'Aceptar'
+          }).then(() => {
+              // Limpiar el token y redirigir
+              localStorage.removeItem('remember_token');
+              document.cookie = 'remember_token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+              window.location.href = '../login/login.php';
+          });
+      } catch (error) {
+          console.error('Error:', error);
+          util.showError(`Error al cambiar contraseña: ${error.message}`);
+      }
+  }
+
+  initProgressTracker() {
+  
+      const fieldsToTrack = [
+          // Datos personales
+          'nombre_nutriologo', 'apellido_nutriologo', 'telefono', 'edad',
+          'genero', 'fecha_nacimiento', 'profesion', 'especialidad',
+          'universidad', 'displomados', 'especializacion', 
+          'descripcion_especialziacion', 'pacientes_tratados',
+          'horario_antencion', 'descripcion_nutriologo', 'ciudad', 'estado',
+          'modalidad', 'disponibilidad',
+          
+          // Experiencia
+          'experiencia', 'enfermedades_tratadas',
+          
+          // Archivos (fotos)
+          'profile-img-file-input', 'profile-foreground-img-file-input'
+      ];
+
+      // Monitorear cambios en todos los campos
+      fieldsToTrack.forEach(fieldId => {
+          const field = document.getElementById(fieldId);
+          if (field) {
+              field.addEventListener('input', () => this.updateProfileProgress());
+              field.addEventListener('change', () => this.updateProfileProgress());
+          }
+      });
+
+      // Para CKEditor (enfermedades_tratadas)
+      if (window.enfermedadesEditor) {
+          window.enfermedadesEditor.model.document.on('change:data', () => {
+              this.updateProfileProgress();
+          });
+      }
+
+      // Actualizar progreso inicial
+      this.updateProfileProgress();
+  }
+
+  updateProgressBar(percentage) {
+      const progressBar = document.getElementById('profileProgressBar');
+      const progressText = document.getElementById('progressPercentage');
+      
+      if (progressBar && progressText) {
+          // Cambiar color según el porcentaje
+          let bgClass = 'bg-danger';
+          if (percentage >= 70) bgClass = 'bg-success';
+          else if (percentage >= 40) bgClass = 'bg-warning';
+          
+          // Actualizar la barra de progreso
+          progressBar.style.width = `${percentage}%`;
+          progressBar.setAttribute('aria-valuenow', percentage);
+          progressBar.className = `progress-bar ${bgClass}`;
+          progressText.textContent = `${percentage}%`;
+      }
+  }
+
+  updateProfileProgress() {
+      // Definir todos los campos con sus pesos (ajusta según importancia)
+      const allFields = {
+          // Información básica (más importante)
+          'nombre_nutriologo': 5,
+          'apellido_nutriologo': 5,
+          'telefono': 4,
+          'edad': 3,
+          'genero': 3,
+          'fecha_nacimiento': 4,
+          
+          // Información profesional
+          'profesion': 4,
+          'especialidad': 4,
+          'universidad': 3,
+          'displomados': 2,
+          'especializacion': 3,
+          'descripcion_especialziacion': 2,
+          'pacientes_tratados': 2,
+          'horario_antencion': 3,
+          'descripcion_nutriologo': 3,
+          'ciudad': 2,
+          'estado': 2,
+          'modalidad': 3,
+          'disponibilidad': 3,
+          
+          // Experiencia
+          'experiencia': 5,
+          'enfermedades_tratadas': 5,
+          
+          // Imágenes
+          'profile-img-file-input': 8,    // Foto perfil
+          'profile-foreground-img-file-input': 7  // Foto portada
+      };
+
+      let totalWeight = 0;
+      let completedWeight = 0;
+
+      // Calcular progreso para cada campo
+      Object.entries(allFields).forEach(([fieldId, weight]) => {
+          totalWeight += weight;
+          
+          const field = document.getElementById(fieldId);
+          let isCompleted = false;
+          
+          if (field) {
+              // Campos de archivo (imágenes)
+              if (field.type === 'file') {
+                  if (field.files && field.files.length > 0) {
+                      isCompleted = true;
+                  } else {
+                      // Verificar si ya tiene imagen (previa)
+                      const imgId = fieldId === 'profile-img-file-input' ? 'foto' : 'foto_portada';
+                      const imgPreview = document.getElementById(imgId);
+                      if (imgPreview && imgPreview.src && !imgPreview.src.includes('placeholder')) {
+                          isCompleted = true;
+                      }
+                  }
+              } 
+              // Campo de CKEditor (enfermedades_tratadas)
+              else if (fieldId === 'enfermedades_tratadas' && window.enfermedadesEditor) {
+                  isCompleted = window.enfermedadesEditor.getData().trim() !== '';
+              }
+              // Todos los demás campos
+              else if (field.value && field.value.trim() !== '') {
+                  isCompleted = true;
+              }
+          }
+          
+          if (isCompleted) {
+              completedWeight += weight;
+          }
+      });
+
+      // Calcular porcentaje (asegurando que esté entre 0 y 100)
+      const percentage = totalWeight > 0 ? 
+          Math.min(Math.round((completedWeight / totalWeight) * 100), 100) : 0;
+
+      this.updateProgressBar(percentage);
+  }
+
+  
 
   // Inicializar la subida de imágenes
   initImageUploads() {
@@ -189,6 +389,7 @@ class AjustesManager {
   
   }
 
+  
   // Cargar los ajustes desde el servidor
   async loadAjustes() {
     try {
@@ -315,6 +516,7 @@ class AjustesManager {
 
     // Actualizar nombre en el perfil
     this.updateProfileName(ajustes, userData);
+    this.updateProfileProgress();
   }
   
   // Método auxiliar para actualizar un input si existe

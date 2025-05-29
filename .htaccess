@@ -2,6 +2,8 @@ RewriteEngine On
 Options -Indexes
 
 ErrorDocument 403 http://localhost/NutriFit/views/Error403/Error403.php
+ErrorDocument 404 http://localhost/NutriFit/views/Error404/Error404.php
+
 
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d

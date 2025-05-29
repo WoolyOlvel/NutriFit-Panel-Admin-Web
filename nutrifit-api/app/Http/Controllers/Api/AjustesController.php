@@ -36,11 +36,14 @@ class AjustesController extends Controller
 
         $ajustes = Ajustes::where('user_id', $user->id)->first();
 
+        // Cargar relación de rol si existe
+        $user->load('role');
         // Si no hay ajustes, no creamos registro, solo enviamos datos del usuario
         $userData = [
             'nombre' => $user->nombre,
             'apellidos'=>$user->apellidos,
             'email' => $user->email,
+            'rol_nombre' => $user->role->nombre ?? 'Usuario'
             // Otros campos que quieras incluir
         ];
 
@@ -332,4 +335,53 @@ class AjustesController extends Controller
             ], 500);
         }
     }
+
+
+    // Cambiar contraseña
+    public function changePassword(Request $request)
+    {
+        $user = $this->getUserFromToken($request);
+        if (!$user) {
+            return response()->json(['message' => 'Usuario no autenticado'], 401);
+        }
+
+        $validator = Validator::make($request->all(), [
+            'password' => 'required|string|min:8|confirmed',
+        ], [
+            'password.required' => 'La nueva contraseña es requerida',
+            'password.min' => 'La contraseña debe tener al menos 8 caracteres',
+            'password.confirmed' => 'Las contraseñas no coinciden',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'success' => false,
+                'errors' => $validator->errors()
+            ], 422);
+        }
+
+        try {
+            // Actualizar la contraseña (se encripta automáticamente por Laravel)
+            $user->password = bcrypt($request->password);
+            $user->save();
+
+            // Invalidar el token actual
+            $user->remember_token = null;
+            $user->remember_token_expires_at = null;
+            $user->save();
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Contraseña cambiada correctamente. Serás redirigido para iniciar sesión nuevamente.'
+            ]);
+
+        } catch (\Exception $e) {
+            Log::error('Error al cambiar contraseña: ' . $e->getMessage());
+            return response()->json([
+                'success' => false,
+                'message' => 'Error al cambiar la contraseña: ' . $e->getMessage()
+            ], 500);
+        }
+    }
+
 }

@@ -152,13 +152,13 @@
                                                     </div>
 
                                                     <div>
-                                                        <a href="http://127.0.0.1:8000/api/auth/redirect/facebook" class="btn btn-primary btn-icon waves-effect waves-light">
+                                                        <!---<a href="http://127.0.0.1:8000/api/auth/redirect/facebook" class="btn btn-primary btn-icon waves-effect waves-light">
                                                             <i class="ri-facebook-fill fs-16"></i>
-                                                        </a>
+                                                        </a>--->
 
-                                                        <a href="http://127.0.0.1:8000/api/auth/redirect/google" class="btn btn-danger btn-icon waves-effect waves-light">
+                                                        <!---<a href="http://127.0.0.1:8000/api/auth/redirect/google" class="btn btn-danger btn-icon waves-effect waves-light">
                                                             <i class="ri-google-fill fs-16"></i>
-                                                        </a>
+                                                        </a>-->
                                                     </div>
                                                 </div>
                                             </form>

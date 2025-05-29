@@ -15,6 +15,8 @@ $response = @file_get_contents("http://127.0.0.1:8000/api/auto-login", false, st
     ]
 ]));
 
+
+
 if ($response === false) {
     // Falló la conexión con la API, redirige a error
     header("Location: ../Error403/Error403.php");

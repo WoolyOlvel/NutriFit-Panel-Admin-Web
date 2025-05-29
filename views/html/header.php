@@ -30,112 +30,10 @@
                         <span></span>
                     </span>
                 </button>
-
-                <!-- App Search-->
-                <form class="app-search d-none d-md-block">
-                    <div class="position-relative">
-                        <input type="text" class="form-control" placeholder="Buscar..." autocomplete="off" id="search-options" value="">
-                        <span class="mdi mdi-magnify search-widget-icon"></span>
-                        <span class="mdi mdi-close-circle search-widget-icon search-widget-icon-close d-none" id="search-close-options"></span>
-                    </div>
-                    <div class="dropdown-menu dropdown-menu-lg" id="search-dropdown">
-                        <div data-simplebar style="max-height: 320px;">
-                            <!-- item-->
-                            <div class="dropdown-header">
-                                <h6 class="text-overflow text-muted mb-0 text-uppercase">Recent Searches</h6>
-                            </div>
-
-                            <div class="dropdown-item bg-transparent text-wrap">
-                                <a href="index.html" class="btn btn-soft-secondary btn-sm rounded-pill">how to setup <i class="mdi mdi-magnify ms-1"></i></a>
-                                <a href="index.html" class="btn btn-soft-secondary btn-sm rounded-pill">buttons <i class="mdi mdi-magnify ms-1"></i></a>
-                            </div>
-                            <!-- item-->
-                            <div class="dropdown-header mt-2">
-                                <h6 class="text-overflow text-muted mb-1 text-uppercase">Pages</h6>
-                            </div>
-
-                            <!-- item-->
-                            <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                <i class="ri-bubble-chart-line align-middle fs-18 text-muted me-2"></i>
-                                <span>Analytics Dashboard</span>
-                            </a>
-
-                            <!-- item-->
-                            <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                <i class="ri-lifebuoy-line align-middle fs-18 text-muted me-2"></i>
-                                <span>Help Center</span>
-                            </a>
-
-                            <!-- item-->
-                            <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                <i class="ri-user-settings-line align-middle fs-18 text-muted me-2"></i>
-                                <span>My account settings</span>
-                            </a>
-
-                            <!-- item-->
-                            <div class="dropdown-header mt-2">
-                                <h6 class="text-overflow text-muted mb-2 text-uppercase">Members</h6>
-                            </div>
-
-                            <div class="notification-list">
-                                <!-- item -->
-                                <a href="javascript:void(0);" class="dropdown-item notify-item py-2">
-                                    <div class="d-flex">
-                                        <img src="../../assets/images/users/avatar-2.jpg" class="me-3 rounded-circle avatar-xs" alt="user-pic">
-                                        <div class="flex-grow-1">
-                                            <h6 class="m-0">Angela Bernier</h6>
-                                            <span class="fs-11 mb-0 text-muted">Manager</span>
-                                        </div>
-                                    </div>
-                                </a>
-                                <!-- item -->
-                                <a href="javascript:void(0);" class="dropdown-item notify-item py-2">
-                                    <div class="d-flex">
-                                        <img src="../../assets/images/users/avatar-3.jpg" class="me-3 rounded-circle avatar-xs" alt="user-pic">
-                                        <div class="flex-grow-1">
-                                            <h6 class="m-0">David Grasso</h6>
-                                            <span class="fs-11 mb-0 text-muted">Web Designer</span>
-                                        </div>
-                                    </div>
-                                </a>
-                                <!-- item -->
-                                <a href="javascript:void(0);" class="dropdown-item notify-item py-2">
-                                    <div class="d-flex">
-                                        <img src="../../assets/images/users/avatar-5.jpg" class="me-3 rounded-circle avatar-xs" alt="user-pic">
-                                        <div class="flex-grow-1">
-                                            <h6 class="m-0">Mike Bunch</h6>
-                                            <span class="fs-11 mb-0 text-muted">React Developer</span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-
-                        <div class="text-center pt-3 pb-1">
-                            <a href="pages-search-results.html" class="btn btn-primary btn-sm">View All Results <i class="ri-arrow-right-line ms-1"></i></a>
-                        </div>
-                    </div>
-                </form>
+                
             </div>
 
             <div class="d-flex align-items-center">
-
-                <div class="dropdown d-md-none topbar-head-dropdown header-item">
-                    <button type="button" class="btn btn-icon btn-topbar btn-ghost-secondary rounded-circle" id="page-header-search-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="bx bx-search fs-22"></i>
-                    </button>
-                    <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end p-0" aria-labelledby="page-header-search-dropdown">
-                        <form class="p-3">
-                            <div class="form-group m-0">
-                                <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="Search ..." aria-label="Recipient's username">
-                                    <button class="btn btn-primary" type="submit"><i class="mdi mdi-magnify"></i></button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-
                 <div class="ms-1 header-item d-none d-sm-flex">
                     <button type="button" class="btn btn-icon btn-topbar btn-ghost-secondary rounded-circle" data-toggle="fullscreen">
                         <script src="https://cdn.lordicon.com/lordicon.js"></script>
@@ -161,6 +59,8 @@
                         </lord-icon>
                     </button>
                 </div>
+
+                
 
                 <style>
                     /* Estilos para el contenedor de notificaciones */
@@ -285,16 +185,16 @@
                 <div class="dropdown ms-sm-3 header-item topbar-user">
                     <button type="button" class="btn" id="page-header-user-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <span class="d-flex align-items-center">
-                            <img class="rounded-circle header-profile-user" src="../../img/perfilNutri.png" alt="Header Avatar">
+                            <img class="rounded-circle header-profile-user" id="user-avatar" src="../../assets/images/users/user-dummy-img.jpg" alt="Header Avatar">
                             <span class="text-start ms-xl-2">
-                                <span class="d-none d-xl-inline-block ms-1 fw-medium user-name-text"><?php echo htmlspecialchars($_SESSION['nombre']); ?></span>
-                                <span class="d-none d-xl-block ms-1 fs-12 user-name-sub-text"><?php echo htmlspecialchars($_SESSION['rol_nombre']); ?></span>
+                                <span class="d-none d-xl-inline-block ms-1 fw-medium user-name-text" id="user-name">Cargando...</span>
+                                <span class="d-none d-xl-block ms-1 fs-12 user-name-sub-text" id="user-role">Cargando rol...</span>
                             </span>
                         </span>
                     </button>
                     <div class="dropdown-menu dropdown-menu-end">
                         <!-- item-->
-                        <h6 class="dropdown-header">Bienvenido <?php echo htmlspecialchars($primerNombre); ?>!</h6>
+                        <h6 class="dropdown-header" id="welcome-message2">Bienvenido!</h6>
                         <!--      <a class="dropdown-item" href="#" style="display: flex;">
                             <script src="https://cdn.lordicon.com/lordicon.js"></script>
                             <lord-icon
@@ -309,7 +209,55 @@
                             <span style="margin-top: 0.4rem; margin-left:0.5rem" class="align-middle">Perfil</span>
                         </a>--->
 
-                        <a class="dropdown-item" href="../../chat.php" style="display: flex;">
+                        <script>
+                            document.addEventListener('DOMContentLoaded', function() {
+                                // Función para cargar los datos del usuario
+                                function loadUserData() {
+                                    fetch('http://127.0.0.1:8000/api/ajustes/', {
+                                        headers: {
+                                            'Content-Type': 'application/json',
+                                            'remember-token': '<?php echo $_COOKIE['remember_token'] ?? ''; ?>'
+                                        }
+                                    })
+                                    .then(response => {
+                                        if (!response.ok) {
+                                            throw new Error('Error al cargar datos');
+                                        }
+                                        return response.json();
+                                    })
+                                    .then(data => {
+                                        if (data.success) {
+                                            // Actualizar nombre y rol
+                                            document.getElementById('user-name').textContent = data.user.nombre;
+                                            document.getElementById('user-role').textContent = data.user.rol_nombre || 'Usuario';
+                                            
+                                            // Actualizar mensaje de bienvenida
+                                            const primerNombre = data.user.nombre.split(' ')[0];
+                                            document.getElementById('welcome-message2').textContent = `Bienvenido ${primerNombre}!`;
+                                            
+                                            // Actualizar avatar si existe en ajustes
+                                            if (data.data && data.data.foto) {
+                                                document.getElementById('user-avatar').src = data.data.foto;
+                                            } else {
+                                                // Usar imagen por defecto si no hay foto
+                                                document.getElementById('user-avatar').src = "../../assets/images/users/user-dummy-img.jpg";
+                                            }
+                                        }
+                                    })
+                                    .catch(error => {
+                                        console.error('Error:', error);
+                                        // Mostrar valores por defecto en caso de error
+                                        document.getElementById('user-name').textContent = 'Usuario';
+                                        document.getElementById('user-role').textContent = 'Rol no disponible';
+                                    });
+                                }
+
+                                // Cargar datos al iniciar
+                                loadUserData();
+                            });
+                        </script>
+
+                        <a class="dropdown-item" href="#" onclick="mostrarMantenimientoChat()" style="display: flex;">
                             <script src="https://cdn.lordicon.com/lordicon.js"></script>
                             <lord-icon
                                 src="https://cdn.lordicon.com/ypjuppft.json"
@@ -335,7 +283,7 @@
                         </a>
 
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#" style="display: flex;">
+                        <a class="dropdown-item" href="#" id="ganancias-item" style="display: flex;">
                             <script src="https://cdn.lordicon.com/lordicon.js"></script>
                             <lord-icon
                                 src="https://cdn.lordicon.com/opqmrqco.json"
@@ -344,8 +292,53 @@
                                 stroke="bold"
                                 style="width:30px;height:30px">
                             </lord-icon>
-                            <span class="align-middle" style="margin-top: 0.4rem; margin-left:0.5rem">Ganancias : <b>$5971.67</b></span>
+                            <span class="align-middle" style="margin-top: 0.4rem; margin-left:0.5rem">
+                                Ganancias: <b id="ganancias-amount">Cargando...</b>
+                            </span>
                         </a>
+
+                        <script>
+                            document.addEventListener('DOMContentLoaded', function() {
+                                // Función para cargar las ganancias desde el dashboard
+                                function loadGanancias2() {
+                                    fetch('http://127.0.0.1:8000/api/dashboard/', {
+                                        headers: {
+                                            'Content-Type': 'application/json',
+                                            'remember-token': '<?php echo $_COOKIE['remember_token'] ?? ''; ?>'
+                                        }
+                                    })
+                                    .then(response => {
+                                        if (!response.ok) {
+                                            throw new Error('Error al cargar datos del dashboard');
+                                        }
+                                        return response.json();
+                                    })
+                                    .then(data => {
+                                        if (data.grafica_resumen && data.grafica_resumen.total_ganancias !== undefined) {
+                                            // Formatear el número como moneda
+                                            const formattedAmount = new Intl.NumberFormat('es-MX', {
+                                                style: 'currency',
+                                                currency: 'MXN'
+                                            }).format(data.grafica_resumen.total_ganancias);
+                                            
+                                            document.getElementById('ganancias-amount').textContent = formattedAmount;
+                                        } else {
+                                            document.getElementById('ganancias-amount').textContent = '$0.00';
+                                        }
+                                    })
+                                    .catch(error => {
+                                        console.error('Error al cargar ganancias:', error);
+                                        document.getElementById('ganancias-amount').textContent = 'Error al cargar';
+                                    });
+                                }
+
+                                // Cargar ganancias al iniciar
+                                loadGanancias2();
+                                
+                                // Opcional: Recargar cada 5 minutos (300000 ms)
+                                setInterval(loadGanancias, 300000);
+                            });
+                        </script>
 
                         <a class="dropdown-item" href="../Ajustes/ajustes.php" style="display: flex;">
                             <script src="https://cdn.lordicon.com/lordicon.js"></script>
