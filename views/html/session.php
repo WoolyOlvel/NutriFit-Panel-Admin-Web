@@ -8,7 +8,7 @@ if (!$token) {
 }
 
 // Si quieres validar contra la API (opcional pero más seguro):
-$response = @file_get_contents("http://nutrifitplanner.site/api/auto-login", false, stream_context_create([
+$response = @file_get_contents("https://nutrifitplanner.site/api/auto-login", false, stream_context_create([
     "http" => [
         "method" => "GET",
         "header" => "remember-token: $token\r\n"

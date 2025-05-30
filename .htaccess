@@ -1,8 +1,8 @@
 RewriteEngine On
 Options -Indexes
 
-ErrorDocument 403 http://nutrifitplanner.site/views/Error403/Error403.php
-ErrorDocument 404 http://nutrifitplanner.site/views/Error404/Error404.php
+ErrorDocument 403 https://nutrifitplanner.site/views/Error403/Error403.php
+ErrorDocument 404 https://nutrifitplanner.site/views/Error404/Error404.php
 
 
 RewriteCond %{REQUEST_FILENAME} !-f

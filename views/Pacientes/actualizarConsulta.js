@@ -1,5 +1,5 @@
 // actualizarConsulta.js - Versión corregida
-const BASE_URL = "http://nutrifitplanner.site";
+const BASE_URL = "https://nutrifitplanner.site";
 
 document.addEventListener("DOMContentLoaded", function () {
   if (window.Dropzone) {

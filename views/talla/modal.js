@@ -1,4 +1,4 @@
-const BASE_URL = "http://nutrifitplanner.site";
+const BASE_URL = "https://nutrifitplanner.site";
 
 function init() {
   $("#Talla_form").on("submit", function (e) {
