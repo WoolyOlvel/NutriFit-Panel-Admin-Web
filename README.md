@@ -50,7 +50,7 @@ Ubica tu carpeta `htdocs` de XAMPP y clona el proyecto allí:
 ```bash
 cd C:\xampp\htdocs
 git clone https://github.com/WoolyOlvel/NutriFit-Panel-Admin-Web.git
-
+```
 ## 2. Instalar Laravel y Composer
 
 Dirígete a la carpeta del proyecto, y entra en la subcarpeta nutrifit-api:
@@ -58,4 +58,4 @@ Dirígete a la carpeta del proyecto, y entra en la subcarpeta nutrifit-api:
 ```bash
 cd NutriFit-Panel-Admin-Web/nutrifit-api
 
-
+```
