@@ -4,6 +4,30 @@
 
 ---
 
+### Previsualización NutriFIt - Panel Administrativo Web
+
+## Inicio
+
+![Inicio](https://drive.google.com/uc?export=view&id=1CkWyqDFD8qmw7uZeht7lY9K4e8Tq4PKU)
+
+![Inicio2](https://drive.google.com/uc?export=view&id=13gl3EDIidETBm9xv3D3u-nUyPevFonts)
+
+## Login 
+
+![Login](https://drive.google.com/uc?export=view&id=1T58P5OXEzbJT0sxoQ-yKOX15uHE_E6Py)
+
+
+## Dashboard
+
+![Dashboard](https://drive.google.com/uc?export=view&id=1vleQwvY9_QBTUm4PttQ9djsnWyHufroV)
+
+![Dashboard](https://drive.google.com/uc?export=view&id=1EtPhQ0syhr2rMcCx5f1LvLHencdVrWMk)
+
+![Dashboard](https://drive.google.com/uc?export=view&id=1pAkqdEyZ4K0I_gzxDSyv7oQhEZBghw27)
+
+
+### Prueba Con Cuenta Demo !!!
+
 ## 👥 Integrantes ISC 8A
 
 - Quintal Pech Carlos Daniel – 7647  
