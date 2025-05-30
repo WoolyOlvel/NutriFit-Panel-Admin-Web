@@ -1,5 +1,5 @@
 // actualizarConsulta.js - Versión corregida
-const BASE_URL = "http://nutrifitplanner.site";
+const BASE_URL = "http://127.0.0.1:8000";
 
 document.addEventListener("DOMContentLoaded", function () {
   if (window.Dropzone) {

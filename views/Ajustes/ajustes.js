@@ -1,5 +1,5 @@
 // Definimos URL base
-const BASE_URL = "http://nutrifitplanner.site";
+const BASE_URL = "http://127.0.0.1:8000";
 
 // Utilidades
 const util = {
@@ -265,22 +265,22 @@ class AjustesManager {
   }
 
   updateProgressBar(percentage) {
-      const progressBar = document.getElementById('profileProgressBar');
-      const progressText = document.getElementById('progressPercentage');
-      
-      if (progressBar && progressText) {
-          // Cambiar color según el porcentaje
-          let bgClass = 'bg-danger';
-          if (percentage >= 70) bgClass = 'bg-success';
-          else if (percentage >= 40) bgClass = 'bg-warning';
-          
-          // Actualizar la barra de progreso
-          progressBar.style.width = `${percentage}%`;
-          progressBar.setAttribute('aria-valuenow', percentage);
-          progressBar.className = `progress-bar ${bgClass}`;
-          progressText.textContent = `${percentage}%`;
-      }
-  }
+    const progressBar = document.getElementById('profileProgressBar');
+    const progressText = document.getElementById('progressPercentage');
+    
+    if (progressBar && progressText) {
+        // Cambiar color según el porcentaje
+        let bgClass = 'bg-danger';
+        if (percentage >= 70) bgClass = 'bg-success';
+        else if (percentage >= 40) bgClass = 'bg-warning';
+        
+        // Actualizar la barra de progreso
+        progressBar.style.width = `${percentage}%`;
+        progressBar.setAttribute('aria-valuenow', percentage);
+        progressBar.className = `progress-bar ${bgClass}`;
+        progressText.textContent = `${percentage}%`;
+    }
+}
 
   updateProfileProgress() {
       // Definir todos los campos con sus pesos (ajusta según importancia)

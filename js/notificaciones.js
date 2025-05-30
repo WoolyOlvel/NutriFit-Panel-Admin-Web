@@ -6,8 +6,8 @@
         constructor(config = {}) {
             // Configuración con valores por defecto
             this.config = {
-                baseUrl: config.baseUrl || 'https://nutrifitplanner.site',
-                soundPath: config.soundPath || 'https://'+window.location.hostname+'/NutriFit/sound/notificacion_reservacion.mp3',
+                baseUrl: config.baseUrl || 'http://127.0.0.1:8000',
+                soundPath: config.soundPath || 'http://'+window.location.hostname+'/NutriFit/sound/notificacion_reservacion.mp3',
                 pollingInterval: config.pollingInterval || 30000,
                 token: config.token || this.getToken(),
                 authCheck: config.authCheck || (() => !!this.config.token) // Corregido para usar config.token
@@ -307,7 +307,7 @@
 
         getNotificationLink(notification, type) {
             if (type === 'reservacion') {
-                return 'https://nutrifitplanner.site/NutriFit/views/citaAgendadas/calendarioCitas.php';
+                return 'http://localhost/NutriFit/views/citaAgendadas/calendarioCitas.php';
             }
             return '#chat';
         }
