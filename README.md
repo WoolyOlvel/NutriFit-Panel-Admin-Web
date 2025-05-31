@@ -4,6 +4,22 @@
 
 ---
 
+## ¡Actualización!
+
+Actualmente ya contamos con servidores alojados en diferentes partes del mundo,  
+así que ya no es necesario que corras directamente nuestro sistema **NutriFit - Panel Administrativo Web**,  
+ahora solamente accede a:
+
+👉 [https://nutrifitplanner.site/](https://nutrifitplanner.site/)
+
+y que descargues nuestro apk:
+
+[![Descargar APK](https://img.shields.io/badge/Descargar-APK-green?style=for-the-badge&logo=android)](https://drive.google.com/uc?export=download&id=1LCbPg3A4oR2pkfifXUuP4AzXSL2BKIgI)
+
+### En caso que aun desees probar el sistema NutriFit - Sistema Panel Administrativo debe seguir los pasos próximos.
+
+---
+
 ### Previsualización NutriFIt - Panel Administrativo Web
 
 ## Inicio
