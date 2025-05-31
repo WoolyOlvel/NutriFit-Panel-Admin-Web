@@ -14,7 +14,7 @@ ahora solamente accede a:
 
 y que descargues nuestro apk:
 
-[![Descargar APK](https://img.shields.io/badge/Descargar-APK-green?style=for-the-badge&logo=android)](https://drive.google.com/uc?export=download&id=1LCbPg3A4oR2pkfifXUuP4AzXSL2BKIgI)
+[![Descargar APK](https://img.shields.io/badge/Descargar-APK-green?style=for-the-badge&logo=android)](https://drive.google.com/uc?export=download&id=1iAuAPX0vHnKGTtTjePfSMj-6fITkEI3r)
 
 ### En caso que aun desees probar el sistema NutriFit - Sistema Panel Administrativo debe seguir los pasos próximos.
 
