@@ -21,7 +21,7 @@ return new class extends Migration
             $table->enum('genero', ['Masculino', 'Femenino', 'Otros']);
             $table->string('usuario')->unique();
             $table->foreignId('rol_id')->constrained('rol');
-            $table->foreignId('user_id')->constrained('users'); // ← Clave foránea a users.id
+            $table->foreignId('user_id')->nullable()->constrained('users'); // ← Clave foránea a users.id
             $table->string('enfermedad')->nullable();
             $table->boolean('status')->default(true); // 0 = inactivo, 1 = activo
             $table->boolean('estado')->default(true); // activo o inactivo

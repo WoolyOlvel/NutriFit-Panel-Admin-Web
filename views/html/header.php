@@ -195,20 +195,6 @@
                     <div class="dropdown-menu dropdown-menu-end">
                         <!-- item-->
                         <h6 class="dropdown-header" id="welcome-message2">Bienvenido!</h6>
-                        <!--      <a class="dropdown-item" href="#" style="display: flex;">
-                            <script src="https://cdn.lordicon.com/lordicon.js"></script>
-                            <lord-icon
-                                src="https://cdn.lordicon.com/cklbznjc.json"
-                                trigger="loop"
-                                delay="2000"
-                                stroke="bold"
-                                style=" width: 30px;
-                                        height: 30px;
-                                        ">
-                            </lord-icon>
-                            <span style="margin-top: 0.4rem; margin-left:0.5rem" class="align-middle">Perfil</span>
-                        </a>--->
-
                         <script>
                             document.addEventListener('DOMContentLoaded', function() {
                                 // Función para cargar los datos del usuario

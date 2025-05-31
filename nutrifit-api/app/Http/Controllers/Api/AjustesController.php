@@ -26,7 +26,23 @@ class AjustesController extends Controller
             ->first();
     }
 
-    // Obtener ajustes del usuario actual
+    // Función helper para generar URLs HTTPS correctas
+    private function generateSecureUrl($path)
+    {
+        // Elimina cualquier prefijo 'public/' o 'storage/'
+        $cleanPath = ltrim(str_replace(['public/', 'storage/'], '', $path), '/');
+        return url('storage/'.$cleanPath);
+    }
+
+    // ALTERNATIVA: Usar el helper de Laravel para URLs de storage
+    private function generateSecureUrlAlternative($path)
+    {
+        // Usar el helper de Laravel que maneja automáticamente las rutas
+        return asset('storage/' . ltrim($path, '/'));
+    }
+
+
+    // Obtener ajustes del usuario actual - MODIFICADA
     public function getAjustes(Request $request)
     {
         $user = $this->getUserFromToken($request);
@@ -178,7 +194,7 @@ class AjustesController extends Controller
         }
     }
 
-    // Actualizar foto de perfil
+   // Actualizar foto de perfil - MODIFICADA
     public function updateFotoPerfil(Request $request)
     {
         $user = $this->getUserFromToken($request);
@@ -187,12 +203,11 @@ class AjustesController extends Controller
         }
 
         $validator = Validator::make($request->all(), [
-               'foto' => 'required|file|image|mimes:jpeg,png,jpg,gif|max:15120', // 5MB
+            'foto' => 'required|file|image|mimes:jpeg,png,jpg,gif|max:15120', // 15MB
         ], [
             'foto.max' => 'La foto de portada no puede exceder 15 MB.',
             'foto.mimes' => 'Formato no válido. Sólo jpeg, png, jpg o gif.',
         ]);
-
 
         if ($validator->fails()) {
             return response()->json([
@@ -213,21 +228,30 @@ class AjustesController extends Controller
                 $ajustes->status = 1;
                 $ajustes->nombre_nutriologo = $user->nombre ?? '';
                 $ajustes->apellido_nutriologo = $user->apellidos ?? '';
-                $ajustes->email = $user->email; // Añadir email desde el usuario
+                $ajustes->email = $user->email;
                 $ajustes->save();
             }
 
             // Eliminar foto anterior si existe
-            if ($ajustes->foto && Storage::disk('public')->exists(str_replace(asset('storage/'), '', $ajustes->foto))) {
-                $oldPath = str_replace(asset('storage/'), '', $ajustes->foto);
-                Storage::disk('public')->delete($oldPath);
+            if ($ajustes->foto) {
+                try {
+                    // Extraer solo el path relativo desde storage/
+                    $oldPath = str_replace('https://nutrifitplanner.site/storage/', '', $ajustes->foto);
+                    if ($oldPath && Storage::disk('public')->exists($oldPath)) {
+                        Storage::disk('public')->delete($oldPath);
+                    }
+                } catch (\Exception $e) {
+                    Log::error('Error al eliminar foto anterior: ' . $e->getMessage());
+                }
             }
 
             // Guardar nueva foto
             $foto = $request->file('foto');
             $filename = time() . '_' . Str::slug($user->nombre ?? 'user') . '.' . $foto->getClientOriginalExtension();
             $path = $foto->storeAs('nutriologos', $filename, 'public');
-            $fotoUrl = asset('storage/' . $path);
+
+            // CAMBIO: Usar el método corregido
+            $fotoUrl = $this->generateSecureUrl($path);
 
             $ajustes->foto = $fotoUrl;
             $ajustes->save();
@@ -246,7 +270,7 @@ class AjustesController extends Controller
         }
     }
 
-    // Actualizar foto de portada
+    // Actualizar foto de portada - MODIFICADA
     public function updateFotoPortada(Request $request)
     {
         $user = $this->getUserFromToken($request);
@@ -255,7 +279,7 @@ class AjustesController extends Controller
         }
 
         $validator = Validator::make($request->all(), [
-            'foto_portada' => 'required|image|mimes:jpeg,png,jpg,gif|max:15120', // 5MB máximo
+            'foto_portada' => 'required|image|mimes:jpeg,png,jpg,gif|max:15120', // 15MB máximo
         ], [
             'foto_portada.max' => 'La foto de portada no puede exceder 15 MB.',
             'foto_portada.mimes' => 'Formato no válido. Sólo jpeg, png, jpg o gif.',
@@ -269,7 +293,7 @@ class AjustesController extends Controller
         }
 
         try {
-            // Comprobar si el archivo existe en la solicitud
+            // Verificaciones del archivo
             if (!$request->hasFile('foto_portada')) {
                 return response()->json([
                     'success' => false,
@@ -277,7 +301,6 @@ class AjustesController extends Controller
                 ], 422);
             }
 
-            // Verificar si el archivo es válido
             if (!$request->file('foto_portada')->isValid()) {
                 return response()->json([
                     'success' => false,
@@ -296,20 +319,20 @@ class AjustesController extends Controller
                 $ajustes->status = 1;
                 $ajustes->nombre_nutriologo = $user->nombre ?? '';
                 $ajustes->apellido_nutriologo = $user->apellidos ?? '';
-                $ajustes->email = $user->email; // Añadir email desde el usuario
+                $ajustes->email = $user->email;
                 $ajustes->save();
             }
 
-            // Eliminar foto anterior si existe y si es una ruta válida
+            // Eliminar foto anterior si existe
             if ($ajustes->foto_portada) {
                 try {
-                    $oldPath = str_replace(asset('storage/'), '', $ajustes->foto_portada);
+                    // Extraer solo el path relativo desde storage/
+                    $oldPath = str_replace('https://nutrifitplanner.site/storage/', '', $ajustes->foto_portada);
                     if ($oldPath && Storage::disk('public')->exists($oldPath)) {
                         Storage::disk('public')->delete($oldPath);
                     }
                 } catch (\Exception $e) {
                     Log::error('Error al eliminar foto de portada anterior: ' . $e->getMessage());
-                    // Continuar con el proceso aunque no se pueda eliminar la anterior
                 }
             }
 
@@ -317,7 +340,8 @@ class AjustesController extends Controller
             $foto = $request->file('foto_portada');
             $filename = time() . '_portada_' . Str::slug($user->nombre ?? 'user') . '.' . $foto->getClientOriginalExtension();
             $path = $foto->storeAs('fotos_portadas', $filename, 'public');
-            $fotoUrl = asset('storage/' . $path);
+            // CAMBIO: Usar el método corregido
+            $fotoUrl = $this->generateSecureUrl($path);
 
             $ajustes->foto_portada = $fotoUrl;
             $ajustes->save();
