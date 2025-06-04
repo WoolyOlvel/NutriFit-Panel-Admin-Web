@@ -159,7 +159,7 @@ Para dudas, soporte o sugerencias:
   - Pull Requests
   - Reportes de errores (Issues)
 ## 📄 Licencia
-Este proyecto se encuentra bajo la licencia MIT.
+Este software se proporciona únicamente con fines de visualización. No está permitido modificar, redistribuir ni reutilizar el código sin autorización expresa del autor.
 
 ## © Derechos de Autor
 NutriFit - Panel Administrativo Web es un producto desarrollado y propiedad intelectual de:
