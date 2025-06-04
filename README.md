@@ -44,13 +44,6 @@ y que descargues nuestro apk:
 
 ### Prueba Con Cuenta Demo !!!
 
-## 👥 Integrantes ISC 8A
-
-- Quintal Pech Carlos Daniel – 7647  
-- Puc Yam Alan Antony – 7637  
-- Huchin Yeh Jesus Eduardo – 7623  
-- Canul Cocom Jesus Roberto – 7605  
-
 ---
 
 ## 📋 Descripción
